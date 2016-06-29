@@ -1,7 +1,7 @@
 [{
   "id": 1,
-  "image-id": "java_design_patterns.jpg",
   "title" : "Java Design Patterns",
+  "image-id": "java_design_patterns.jpg",
   "sub-title": "A tour of 23 gang of four design patterns in Java",
   "desciption": "Learn how to implement design patterns in Java: each pattern in Java Design Patterns is a complete implementation and the output is generated using Eclipse, making the code accessible to all. The examples are chosen so you will be able to absorb the core concepts easily and quickly. This book presents the topic of design patterns in Java in such a way that anyone can grasp the idea. By giving easy to follow examples, you will understand the concepts with increasing depth. The examples presented are straightforward and the topic is presented in a concise manner. This is a practitioner's book on design patterns in Java. Design patterns are a popular topic in software development. A design pattern is a common, well-described solution to a common software problem. There is a lot of written material available on design patterns, but scattered and not in one single reference source. Also, many of these examples are unnecessarily big and complex.",
   "publisher": "Apress",
@@ -12,5 +12,41 @@
   "language": "English"
 },
 {
-
+  "id": 2,
+  "title" : "Head First JavaScript",
+  "image-id": "head_first_javascript.jpg",
+  "sub-title": "A Learner's Companion to JavaScript",
+  "desciption": "Want to make the leap from writing HTML and CSS web pages and create dynamic web applications? Want to take your web skills to the next level? It sounds like you're ready to learn the Web's hottest programminglanguage: JavaScript. Head First JavaScript is your ticket to going beyond copying and pasting the code from someone else's web site, and writing your own interactive web pages.",
+  "publisher": "O'Reilly Media",
+  "author": "Michael Morrison",
+  "isbn": "978-0-596-52774-7",
+  "year": "2007",
+  "pages": "656",
+  "language": "English"
+},
+{
+  "id": 3,
+  "title" : "Learning JavaScript Design Patterns",
+  "image-id": "learning_javascript_design_patterns.jpg",
+  "sub-title": "A JavaScript and jQuery Developer's Guide",
+  "desciption": "If you want to write beautiful, structured, and maintainable JavaScriptcode, this guide shows you how to apply both classical and moderndesign patterns to the language. The patterns in this book provide reusable code solutions to common problems in software design, and give you a shared vocabulary for describing solutions to others.You'll explore several popular design patterns in plain JavaScript as well as jQuery and other abstracted libraries. If you're familiar with concepts such as closures and prototypal inheritance, you'll be able to determine why some patterns may be more suitable for your projects than others.",
+  "publisher": "O'Reilly Media",
+  "author": "Addy Osmani",
+  "isbn": "978-1-4493-3181-8",
+  "year": "2012",
+  "pages": "150",
+  "language": "English"
+},
+{
+  "id": 4,
+  "title" : "JavaScript Testing with Jasmine",
+  "image-id": "javascript_testing_with_jasmine.jpg",
+  "sub-title": "JavaScript Behavior-Driven Development",
+  "desciption": "Get a concise introduction to Jasmine, the popular behavior-driventesting framework for JavaScript. This practical guide shows you how to write unit tests with Jasmine that automatically check for bugs in your application. Learn how to write specifications for individual components, and then use those specs to test the code you write.Throughout the book, author Evan Hahn focuses primarily on methods for testing browser-based JavaScript applications, but you'll also discover how to use Jasmine with CoffeeScript, Node.js, Ruby on Rails, and Ruby without Rails. You won't find a more in-depth source for Jasmine anywhere.",
+  "publisher": "O'Reilly Media",
+  "author": "Evan Hahn",
+  "isbn": "978-1-44935-637-8",
+  "year": "2013",
+  "pages": "52",
+  "language": "English"
 }]
