@@ -1,5 +1,6 @@
 [{
   "id": 1,
+  "image-id": "java_design_patterns.jpg",
   "title" : "Java Design Patterns",
   "sub-title": "A tour of 23 gang of four design patterns in Java",
   "desciption": "Learn how to implement design patterns in Java: each pattern in Java Design Patterns is a complete implementation and the output is generated using Eclipse, making the code accessible to all. The examples are chosen so you will be able to absorb the core concepts easily and quickly. This book presents the topic of design patterns in Java in such a way that anyone can grasp the idea. By giving easy to follow examples, you will understand the concepts with increasing depth. The examples presented are straightforward and the topic is presented in a concise manner. This is a practitioner's book on design patterns in Java. Design patterns are a popular topic in software development. A design pattern is a common, well-described solution to a common software problem. There is a lot of written material available on design patterns, but scattered and not in one single reference source. Also, many of these examples are unnecessarily big and complex.",
