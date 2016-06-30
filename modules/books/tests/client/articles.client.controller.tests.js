@@ -61,7 +61,7 @@
       // Initialize the Articles controller.
       ArticlesController = $controller('ArticlesController as vm', {
         $scope: $scope,
-        articleResolve: {}
+        bookResolve: {}
       });
 
       // Spy on state go
