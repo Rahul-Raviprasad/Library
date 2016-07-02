@@ -3,17 +3,28 @@
     <h1>Books</h1>
   </div>
   <div class="list-group">
-    <a ng-repeat="book in vm.books" ui-sref="books.view({ bookId: book._id })" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="book.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="book.user" ng-bind="book.user.displayName"></span>
-        <span ng-if="!book.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="book.title"></h4>
-      <p class="list-group-item-text" ng-bind="book.content"></p>
-    </a>
+
+      <div class="row" ng-repeat="book in vm.books">
+        <div class="col-md-4">
+            <a href="#">
+                <img class="img-responsive" src="http://placehold.it/200x300" alt="">
+            </a>
+        </div>
+        <div class="col-md-8">
+            <h3 ng-bind="book.title">Project One</h3>
+            <h4>Subheading</h4>
+            <p ng-bind="book.content"></p>
+            <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+            <small class="list-group-item-text">
+              Posted on
+              <span ng-bind="book.created | date:'mediumDate'"></span>
+              by
+              <span ng-if="book.user" ng-bind="book.user.displayName"></span>
+              <span ng-if="!book.user">Deleted User</span>
+            </small>
+        </div>
+      </div>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.books.$resolved && !vm.books.length">
     No books yet, why don't you <a ui-sref="books.create">create one</a>?
