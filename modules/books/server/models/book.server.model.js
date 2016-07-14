@@ -28,7 +28,8 @@ var BookSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+  isbn: String
 });
 
 mongoose.model('Book', BookSchema);
