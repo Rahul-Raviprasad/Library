@@ -6,7 +6,7 @@
 var config = require('../config'),
   mongoose = require('./mongoose'),
   express = require('./express'),
-  chalk = require('chalk'),
+  chalk = require('chalk'), // Terminal string styling
   seed = require('./seed');
 
 function seedDB() {
