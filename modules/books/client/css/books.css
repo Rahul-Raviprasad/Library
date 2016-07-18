@@ -1,0 +1,10 @@
+.book-list .row {
+  border: 1px solid;
+  height: 150px;
+}
+
+.book-list .row .col-md-2 img {
+  margin: auto;
+  margin-top: 5px;
+  max-height: 140px;
+}
