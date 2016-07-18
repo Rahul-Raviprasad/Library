@@ -11,20 +11,26 @@
             </a>
         </div>
         <div class="col-md-8">
-            <h3 ng-bind="book.title">Project One</h3>
-            <h4>Subheading</h4>
-            <p ng-bind="book.content"></p>
-            <a class="btn btn-primary" href="#">View Book Details <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a class="btn btn-primary" href="#">Request <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a class="btn btn-primary" href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <div class="col-md-4">
+            <h3 ng-bind="book.title"></h3>
+            <h4>to write awesome code!</h4>
+            <h5>Author: Micheal Morrison</h5>
+            <h5>Publication: O'reilly</h5>
+            <h5>Category: Fiction</h5>
+            <h5>Location: Midtown - 2nd Floor</h5>
+            <h5>Condition: New</h5>
+            <a class="btn btn-primary">9 reviews</a>
+            <a class="btn btn-primary">goodbooks review link</a>
 
-            <small class="list-group-item-text">
-              Posted on
-              <span ng-bind="book.created | date:'mediumDate'"></span>
-              by
-              <span ng-if="book.user" ng-bind="book.user.displayName"></span>
-              <span ng-if="!book.user">Deleted User</span>
-            </small>
+            <p ng-bind="book.content"></p>
+          </div>
+ <!--Action buttons should exist seperately-->
+          <div class="col-md-4">
+            <a class="btn btn-primary" href="#">View Book Details <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+            <a class="btn btn-primary" href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-primary" href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
         </div>
       </div>
   </div>
