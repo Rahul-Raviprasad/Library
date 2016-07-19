@@ -83,3 +83,16 @@ To help you start using MongoDB, MongoDB provides Getting Started Guides in vari
 Before deploying MongoDB in a production environment, consider the Production Notes document.
 
 Later, to stop MongoDB, press Control+C in the terminal where the mongod instance is running.
+
+###5) One way of killing monogdb process
+In this case, type the following command
+```
+ps wuax | grep mongo
+You should see something that looks like this
+
+User           31936   0.5 0.4 2719784 35624   ?? S     7:34pm   0:09.98 mongod
+User           31945   0.0 0.0 2423368   184 s000 R+   8:24pm   0:00.00 grep mongo
+Now enter the kill command for the mongod instance (31936 in this case):
+
+kill 31936
+```
