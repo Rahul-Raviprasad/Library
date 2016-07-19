@@ -110,17 +110,6 @@ var BookSchema = new Schema({
     default: '',
     trim: true
   },
-  requestQueue: {
-    userId: {
-      type: Schema.Types.ObjectId,
-      default: '',
-      trim: true,
-      required: 'UserID cannot be blank'
-    },
-    queueNumber: {
-      type: Number
-    }
-  },
   createdOn: {
     type: Date,
     default: Date.now

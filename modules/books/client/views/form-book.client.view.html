@@ -1,28 +1,106 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.book._id ? 'Edit Article' : 'New Article'}}</h1>
+    <h2>{{vm.book._id ? 'Edit Book' : 'Add New Book'}}</h2>
   </div>
   <div class="col-md-12">
     <form name="vm.form.bookForm" class="form-horizontal" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="title">Title</label>
-          <input name="title" type="text" ng-model="vm.book.title" id="title" class="form-control" placeholder="Title" required>
-          <div ng-messages="vm.form.bookForm.title.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Book title is required.</p>
+        <div class="row-fluid">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="title">Title</label>
+              <input name="title" size="30" type="text" ng-model="vm.book.title" id="title" class="form-control" placeholder="Title" required>
+              <div ng-messages="vm.form.bookForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Book title is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="author">Author</label>
+              <input name="author" size="30" type="text" ng-model="vm.book.author" id="author" class="form-control" placeholder="Author" required>
+              <div ng-messages="vm.form.bookForm.author.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Author name is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="publication">Publication</label>
+              <input name="publication" size="30" type="text" ng-model="vm.book.publication" id="publication" class="form-control" placeholder="Publication" required>
+              <div ng-messages="vm.form.bookForm.publication.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Publication name is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="condition">Condition</label>
+              <input name="condition" size="30" type="text" ng-model="vm.book.condition" id="condition" class="form-control" placeholder="Condition" required>
+              <div ng-messages="vm.form.bookForm.condition.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Condition is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="isbn">ISBN</label>
+              <input name="isbn" size="30" type="text" ng-model="vm.book.isbn" id="isbn" class="form-control" placeholder="ISBN" required>
+              <div ng-messages="vm.form.bookForm.isbn.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">ISBN is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="contribution">Contributed By</label>
+              <input name="contributedBy" size="30" type="text" ng-model="vm.book.contributedBy" id="contributedBy" class="form-control" placeholder="Contributed By">
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="content">Content</label>
+              <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="10" rows="10" placeholder="Content"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">{{vm.book._id ? 'Update' : 'Create'}}</button>
+            </div>
+            <div ng-show="vm.error" class="text-danger">
+              <strong ng-bind="vm.error"></strong>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="content">Content</label>
-          <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.book._id ? 'Update' : 'Create'}}</button>
-        </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
+          <div class="col-md-6">
+            <div class="">
+              <img alt="Book Image" id="book_image" src="http://placehold.it/300x300/c1c1c1/c1c1c1">
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="title">Image Link</label>
+              <input name="imageLink" size="30" type="text" ng-model="vm.book.imageUrl" id="imageLink" class="form-control" placeholder="ImageUrl">
+            </div>
+          </div>
         </div>
       </fieldset>
     </form>
   </div>
+
+  <form class="form-horizontal">
+      <div class="row-fluid">
+        <div class="col-md-6">
+          <div class="control-group">
+            <label class="control-label" for="book_book_type_id">Book Type</label>
+            <div class="controls">
+              <select id="book_book_type_id" name="book[book_type_id]">
+                <option value="1">Fiction</option>
+                <option value="2">Non_Fiction</option>
+                <option value="3">Technical</option>
+                <option value="4">Magazine</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="book_link_for_review">Review Link</label>
+            <div class="controls">
+              <input id="book_link_for_review" label="Review Link" name="book[link_for_review]" size="30" title="Link that gives a reivew of this book" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="book_location_id">Location</label>
+            <div class="controls">
+              <select id="book_location_id" name="book[location_id]">
+                <option value="4">Midtown-2nd Floor</option>
+              </select>
+            </div>
+          </div>
+      </div>
+    </div>
+  </form>
 </section>
