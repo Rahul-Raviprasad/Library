@@ -7,6 +7,15 @@
       <fieldset>
         <div class="row-fluid">
           <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label" for="title">Book Type</label>
+              <select id="book_id" class="form-control" ng-model="vm.book.category">
+                <option value="1">Fiction</option>
+                <option value="2">Non_Fiction</option>
+                <option value="3">Technical</option>
+                <option value="4">Magazine</option>
+              </select>
+            </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="title">Title</label>
               <input name="title" size="30" type="text" ng-model="vm.book.title" id="title" class="form-control" placeholder="Title" required>
@@ -23,7 +32,7 @@
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="publication">Publication</label>
-              <input name="publication" size="30" type="text" ng-model="vm.book.publication" id="publication" class="form-control" placeholder="Publication" required>
+              <input name="publication" size="30" type="text" ng-model="vm.book.publications" id="publication" class="form-control" placeholder="Publication" required>
               <div ng-messages="vm.form.bookForm.publication.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Publication name is required.</p>
               </div>
@@ -47,11 +56,8 @@
               <input name="contributedBy" size="30" type="text" ng-model="vm.book.contributedBy" id="contributedBy" class="form-control" placeholder="Contributed By">
             </div>
             <div class="form-group">
-              <label class="control-label" for="content">Content</label>
-              <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="10" rows="10" placeholder="Content"></textarea>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-default">{{vm.book._id ? 'Update' : 'Create'}}</button>
+              <label class="control-label" for="content">Description</label>
+              <textarea name="content" data-ng-model="vm.book.desc" id="content" class="form-control" cols="10" rows="10" placeholder="Content"></textarea>
             </div>
             <div ng-show="vm.error" class="text-danger">
               <strong ng-bind="vm.error"></strong>
@@ -62,45 +68,33 @@
               <img alt="Book Image" id="book_image" src="http://placehold.it/300x300/c1c1c1/c1c1c1">
             </div>
             <div class="form-group">
-              <label class="control-label" for="title">Image Link</label>
+              <label class="control-label" for="imageUrl">Image Link</label>
               <input name="imageLink" size="30" type="text" ng-model="vm.book.imageUrl" id="imageLink" class="form-control" placeholder="ImageUrl">
             </div>
+            <br>
+            <div class="form-group">
+              <label class="control-label" for="review_link">Review Link</label>
+              <input name="reviewLink" size="30" type="text" ng-model="vm.book.reviewLink" id="reviewLink" class="form-control" placeholder="Review Link">
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="location">Location</label>
+              <select id="location" class="form-control" ng-model="vm.book.location">
+                <option value="1">Midtown-GF Floor</option>
+                <option value="2">Midtown-2nd Floor</option>
+                <option value="3">Midtown-3rd Floor</option>
+                <option value="4">Midtown-4th Floor</option>
+                <option value="4">Midtown-5th Floor</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12 form-group">
+            <button type="submit" class="btn btn-default">{{vm.book._id ? 'Update' : 'Create'}}</button>
           </div>
         </div>
+        </div>
+
       </fieldset>
     </form>
   </div>
-
-  <form class="form-horizontal">
-      <div class="row-fluid">
-        <div class="col-md-6">
-          <div class="control-group">
-            <label class="control-label" for="book_book_type_id">Book Type</label>
-            <div class="controls">
-              <select id="book_book_type_id" name="book[book_type_id]">
-                <option value="1">Fiction</option>
-                <option value="2">Non_Fiction</option>
-                <option value="3">Technical</option>
-                <option value="4">Magazine</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="book_link_for_review">Review Link</label>
-            <div class="controls">
-              <input id="book_link_for_review" label="Review Link" name="book[link_for_review]" size="30" title="Link that gives a reivew of this book" type="text">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="book_location_id">Location</label>
-            <div class="controls">
-              <select id="book_location_id" name="book[location_id]">
-                <option value="4">Midtown-2nd Floor</option>
-              </select>
-            </div>
-          </div>
-      </div>
-    </div>
-  </form>
 </section>
