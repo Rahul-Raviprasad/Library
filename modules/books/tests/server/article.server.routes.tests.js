@@ -5,7 +5,7 @@ var should = require('should'),
   path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  Article = mongoose.model('Article'),
+  Book = mongoose.model('Book'),
   express = require(path.resolve('./config/lib/express'));
 
 /**
@@ -15,12 +15,12 @@ var app,
   agent,
   credentials,
   user,
-  article;
+  book;
 
 /**
  * Article routes tests
  */
-describe('Article CRUD tests', function () {
+describe('Book CRUD tests', function () {
 
   before(function (done) {
     // Get application
@@ -50,16 +50,16 @@ describe('Article CRUD tests', function () {
 
     // Save a user to the test db and create new article
     user.save(function () {
-      article = {
-        title: 'Article Title',
-        content: 'Article Content'
+      book = {
+        title: 'Book Title',
+        desc: 'Book Description'
       };
 
       done();
     });
   });
 
-  it('should be able to save an article if logged in', function (done) {
+  it('should be able to save a book if logged in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -73,29 +73,29 @@ describe('Article CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        agent.post('/api/books')
+          .send(book)
           .expect(200)
-          .end(function (articleSaveErr, articleSaveRes) {
+          .end(function (bookSaveErr, bookSaveRes) {
             // Handle article save error
-            if (articleSaveErr) {
-              return done(articleSaveErr);
+            if (bookSaveErr) {
+              return done(bookSaveErr);
             }
 
             // Get a list of articles
-            agent.get('/api/articles')
-              .end(function (articlesGetErr, articlesGetRes) {
+            agent.get('/api/books')
+              .end(function (booksGetErr, booksGetRes) {
                 // Handle article save error
-                if (articlesGetErr) {
-                  return done(articlesGetErr);
+                if (booksGetErr) {
+                  return done(booksGetErr);
                 }
 
                 // Get articles list
-                var articles = articlesGetRes.body;
+                var books = booksGetRes.body;
 
                 // Set assertions
-                (articles[0].user._id).should.equal(userId);
-                (articles[0].title).should.match('Article Title');
+                (books[0].user._id).should.equal(userId);
+                (books[0].title).should.match('Book Title');
 
                 // Call the assertion callback
                 done();
@@ -105,18 +105,18 @@ describe('Article CRUD tests', function () {
   });
 
   it('should not be able to save an article if not logged in', function (done) {
-    agent.post('/api/articles')
-      .send(article)
+    agent.post('/api/books')
+      .send(book)
       .expect(403)
-      .end(function (articleSaveErr, articleSaveRes) {
+      .end(function (bookSaveErr, bookSaveRes) {
         // Call the assertion callback
-        done(articleSaveErr);
+        done(bookSaveErr);
       });
   });
 
-  it('should not be able to save an article if no title is provided', function (done) {
+  it('should not be able to save an book if no title is provided', function (done) {
     // Invalidate title field
-    article.title = '';
+    book.title = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -132,19 +132,19 @@ describe('Article CRUD tests', function () {
 
         // Save a new article
         agent.post('/api/articles')
-          .send(article)
+          .send(book)
           .expect(400)
-          .end(function (articleSaveErr, articleSaveRes) {
+          .end(function (bookSaveErr, bookSaveRes) {
             // Set message assertion
-            (articleSaveRes.body.message).should.match('Title cannot be blank');
+            (bookSaveRes.body.message).should.match('Title cannot be blank');
 
             // Handle article save error
-            done(articleSaveErr);
+            done(bookSaveErr);
           });
       });
   });
 
-  it('should be able to update an article if signed in', function (done) {
+  it('should be able to update a Book if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -158,31 +158,31 @@ describe('Article CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        agent.post('/api/books')
+          .send(Book)
           .expect(200)
-          .end(function (articleSaveErr, articleSaveRes) {
+          .end(function (bookSaveErr, bookSaveRes) {
             // Handle article save error
-            if (articleSaveErr) {
-              return done(articleSaveErr);
+            if (bookSaveErr) {
+              return done(bookSaveErr);
             }
 
             // Update article title
-            article.title = 'WHY YOU GOTTA BE SO MEAN?';
+            book.title = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing article
-            agent.put('/api/articles/' + articleSaveRes.body._id)
-              .send(article)
+            agent.put('/api/books/' + bookSaveRes.body._id)
+              .send(book)
               .expect(200)
-              .end(function (articleUpdateErr, articleUpdateRes) {
+              .end(function (bookUpdateErr, bookUpdateRes) {
                 // Handle article update error
-                if (articleUpdateErr) {
-                  return done(articleUpdateErr);
+                if (bookUpdateErr) {
+                  return done(bookUpdateErr);
                 }
 
                 // Set assertions
-                (articleUpdateRes.body._id).should.equal(articleSaveRes.body._id);
-                (articleUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (bookUpdateRes.body._id).should.equal(bookUpdateRes.body._id);
+                (bookUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -191,9 +191,9 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should be able to get a list of articles if not signed in', function (done) {
+  it('should be able to get a list of books if not signed in', function (done) {
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new Book(book);
 
     // Save the article
     articleObj.save(function () {
@@ -212,14 +212,14 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a single article if not signed in', function (done) {
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new Book(book);
 
     // Save the article
     articleObj.save(function () {
       request(app).get('/api/articles/' + articleObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', article.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', book.title);
 
           // Call the assertion callback
           done();
@@ -276,7 +276,7 @@ describe('Article CRUD tests', function () {
 
             // Delete an existing article
             agent.delete('/api/articles/' + articleSaveRes.body._id)
-              .send(article)
+              .send(book)
               .expect(200)
               .end(function (articleDeleteErr, articleDeleteRes) {
                 // Handle article error error
@@ -296,10 +296,10 @@ describe('Article CRUD tests', function () {
 
   it('should not be able to delete an article if not signed in', function (done) {
     // Set article user
-    article.user = user;
+    book.user = user;
 
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new Book(article);
 
     // Save the article
     articleObj.save(function () {
@@ -355,7 +355,7 @@ describe('Article CRUD tests', function () {
 
           // Save a new article
           agent.post('/api/articles')
-            .send(article)
+            .send(book)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
               // Handle article save error
@@ -563,7 +563,7 @@ describe('Article CRUD tests', function () {
 
   afterEach(function (done) {
     User.remove().exec(function () {
-      Article.remove().exec(done);
+      Book.remove().exec(done);
     });
   });
 });

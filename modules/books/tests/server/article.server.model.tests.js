@@ -6,13 +6,13 @@
 var should = require('should'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  Article = mongoose.model('Article');
+  Book = mongoose.model('Book');
 
 /**
  * Globals
  */
 var user,
-  article;
+  book;
 
 /**
  * Unit tests
@@ -30,9 +30,9 @@ describe('Article Model Unit Tests:', function () {
     });
 
     user.save(function () {
-      article = new Article({
-        title: 'Article Title',
-        content: 'Article Content',
+      book = new Book({
+        title: 'Book Title',
+        desc: 'Book Description',
         user: user
       });
 
@@ -43,16 +43,16 @@ describe('Article Model Unit Tests:', function () {
   describe('Method Save', function () {
     it('should be able to save without problems', function (done) {
       this.timeout(10000);
-      return article.save(function (err) {
+      return book.save(function (err) {
         should.not.exist(err);
         done();
       });
     });
 
     it('should be able to show an error when try to save without title', function (done) {
-      article.title = '';
+      book.title = '';
 
-      return article.save(function (err) {
+      return book.save(function (err) {
         should.exist(err);
         done();
       });
@@ -60,7 +60,7 @@ describe('Article Model Unit Tests:', function () {
   });
 
   afterEach(function (done) {
-    Article.remove().exec(function () {
+    book.remove().exec(function () {
       User.remove().exec(done);
     });
   });
