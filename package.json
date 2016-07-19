@@ -1,15 +1,11 @@
 {
-  "name": "meanjs",
-  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
-  "version": "0.5.0-beta",
+  "name": "Library Management System",
+  "description": "Online Library Management System using MEAN Stack",
+  "version": "0.6.0-beta",
   "meanjs-version": "0.5.0-beta",
   "private": false,
-  "author": "https://github.com/meanjs/mean/graphs/contributors",
+  "author": "Rahul Raviprasad, Anoop Goudar",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/meanjs/mean.git"
-  },
   "engines": {
     "node": ">=0.12.0",
     "npm": ">=2.0.0"
