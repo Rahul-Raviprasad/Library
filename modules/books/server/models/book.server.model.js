@@ -13,7 +13,8 @@ var BookSchema = new Schema({
   id: {
     type: Number,
     unique: true,
-    trim: true
+    trim: true,
+    required: 'Id cannot be blank'
   },
   title: {
     type: String,
@@ -58,22 +59,26 @@ var BookSchema = new Schema({
   },
   numberOfCopies: {
     type: Number,
-    default: 1
+    default: 1,
+    required: 'There should be a single copy atleast.'
   },
   condition: {
     type: String,
     default: 'new & good',
-    trim: true
+    trim: true,
+    required: 'condition cannot be blank'
   },
   location: {
     type: String,
     default: '2nd floor',
-    trim: true
+    trim: true,
+    required: 'Please tell the user where its available.'
   },
   contributedBy: {
     type: String,
     default: 'Admin',
-    trim: true
+    trim: true,
+    required: 'Contiributor name is mandatory.'
   },
   isActive: {
     type: Boolean,
@@ -87,7 +92,8 @@ var BookSchema = new Schema({
   imageUrl: {
     type: String,
     default: '',
-    trim: true
+    trim: true,
+    required: 'ImageUrl cannot be blank'
   },
   numberOfPages: {
     type: Number,
@@ -96,7 +102,8 @@ var BookSchema = new Schema({
   keywords: {
     type: String,
     default: '',
-    trim: true
+    trim: true,
+    required: 'comma seperated keywords are expected.'
   },
   language: {
     type: String,
@@ -110,12 +117,14 @@ var BookSchema = new Schema({
   createdBy: {
     type: String,
     default: '',
-    trim: true
+    trim: true,
+    required: 'Please enter the name of the creator.'
   },
   updatedBy: {
     type: String,
     default: '',
-    trim: true
+    trim: true,
+    required: 'Please enter the name of the person who updated.'
   },
   updatedOn: {
     type: Date,
