@@ -265,27 +265,27 @@ describe('Book CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        agent.post('/api/books')
+          .send(book)
           .expect(200)
-          .end(function (articleSaveErr, articleSaveRes) {
+          .end(function (bookSaveErr, bookSaveRes) {
             // Handle article save error
-            if (articleSaveErr) {
-              return done(articleSaveErr);
+            if (bookSaveErr) {
+              return done(bookSaveErr);
             }
 
             // Delete an existing article
-            agent.delete('/api/articles/' + articleSaveRes.body._id)
+            agent.delete('/api/books/' + bookSaveRes.body._id)
               .send(book)
               .expect(200)
-              .end(function (articleDeleteErr, articleDeleteRes) {
+              .end(function (bookDeleteErr, bookDeleteRes) {
                 // Handle article error error
-                if (articleDeleteErr) {
-                  return done(articleDeleteErr);
+                if (bookDeleteErr) {
+                  return done(bookDeleteErr);
                 }
 
                 // Set assertions
-                (articleDeleteRes.body._id).should.equal(articleSaveRes.body._id);
+                (bookDeleteRes.body._id).should.equal(bookSaveRes.body._id);
 
                 // Call the assertion callback
                 done();
@@ -299,7 +299,7 @@ describe('Book CRUD tests', function () {
     book.user = user;
 
     // Create new article model instance
-    var articleObj = new Book(article);
+    var articleObj = new Book(book);
 
     // Save the article
     articleObj.save(function () {
@@ -354,19 +354,19 @@ describe('Book CRUD tests', function () {
           var orphanId = orphan._id;
 
           // Save a new article
-          agent.post('/api/articles')
+          agent.post('/api/books')
             .send(book)
             .expect(200)
-            .end(function (articleSaveErr, articleSaveRes) {
+            .end(function (bookSaveErr, bookSaveRes) {
               // Handle article save error
-              if (articleSaveErr) {
-                return done(articleSaveErr);
+              if (bookSaveErr) {
+                return done(bookSaveErr);
               }
 
               // Set assertions on new article
-              (articleSaveRes.body.title).should.equal(article.title);
-              should.exist(articleSaveRes.body.user);
-              should.equal(articleSaveRes.body.user._id, orphanId);
+              (bookSaveRes.body.title).should.equal(book.title);
+              should.exist(bookSaveRes.body.user);
+              should.equal(bookSaveRes.body.user._id, orphanId);
 
               // force the article to have an orphaned user reference
               orphan.remove(function () {
@@ -380,8 +380,8 @@ describe('Book CRUD tests', function () {
                       return done(err);
                     }
 
-                    // Get the article
-                    agent.get('/api/articles/' + articleSaveRes.body._id)
+                    // Get the book
+                    agent.get('/api/books/' + bookSaveRes.body._id)
                       .expect(200)
                       .end(function (articleInfoErr, articleInfoRes) {
                         // Handle article error
@@ -390,8 +390,8 @@ describe('Book CRUD tests', function () {
                         }
 
                         // Set assertions
-                        (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                        (articleInfoRes.body.title).should.equal(article.title);
+                        (articleInfoRes.body._id).should.equal(bookSaveRes.body._id);
+                        (articleInfoRes.body.title).should.equal(book.title);
                         should.equal(articleInfoRes.body.user, undefined);
 
                         // Call the assertion callback
@@ -406,8 +406,8 @@ describe('Book CRUD tests', function () {
 
   it('should be able to get a single article if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
     // Create new article model instance
-    article.user = user;
-    var articleObj = new Article(article);
+    book.user = user;
+    var articleObj = new Book(book);
 
     // Save the article
     articleObj.save(function () {
@@ -425,7 +425,7 @@ describe('Book CRUD tests', function () {
 
           // Save a new article
           agent.post('/api/articles')
-            .send(article)
+            .send(book)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
               // Handle article save error
@@ -444,7 +444,7 @@ describe('Book CRUD tests', function () {
 
                   // Set assertions
                   (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                  (articleInfoRes.body.title).should.equal(article.title);
+                  (articleInfoRes.body.title).should.equal(book.title);
 
                   // Assert that the "isCurrentUserOwner" field is set to true since the current User created it
                   (articleInfoRes.body.isCurrentUserOwner).should.equal(true);
@@ -459,14 +459,14 @@ describe('Book CRUD tests', function () {
 
   it('should be able to get a single article if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new Book(book);
 
     // Save the article
     articleObj.save(function () {
       request(app).get('/api/articles/' + articleObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', article.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', book.title);
           // Assert the custom field "isCurrentUserOwner" is set to false for the un-authenticated User
           res.body.should.be.instanceof(Object).and.have.property('isCurrentUserOwner', false);
           // Call the assertion callback
@@ -514,7 +514,7 @@ describe('Book CRUD tests', function () {
 
           // Save a new article
           agent.post('/api/articles')
-            .send(article)
+            .send(book)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
               // Handle article save error
@@ -523,7 +523,7 @@ describe('Book CRUD tests', function () {
               }
 
               // Set assertions on new article
-              (articleSaveRes.body.title).should.equal(article.title);
+              (articleSaveRes.body.title).should.equal(book.title);
               should.exist(articleSaveRes.body.user);
               should.equal(articleSaveRes.body.user._id, userId);
 
@@ -548,7 +548,7 @@ describe('Book CRUD tests', function () {
 
                       // Set assertions
                       (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                      (articleInfoRes.body.title).should.equal(article.title);
+                      (articleInfoRes.body.title).should.equal(book.title);
                       // Assert that the custom field "isCurrentUserOwner" is set to false since the current User didn't create it
                       (articleInfoRes.body.isCurrentUserOwner).should.equal(false);
 
