@@ -10,12 +10,6 @@ var mongoose = require('mongoose'),
  * Book Schema
  */
 var BookSchema = new Schema({
-  id: {
-    type: Number,
-    unique: true,
-    trim: true,
-    required: 'Id cannot be blank'
-  },
   title: {
     type: String,
     default: '',
@@ -59,26 +53,22 @@ var BookSchema = new Schema({
   },
   numberOfCopies: {
     type: Number,
-    default: 1,
-    required: 'There should be a single copy atleast.'
+    default: 1
   },
   condition: {
     type: String,
     default: 'new & good',
-    trim: true,
-    required: 'condition cannot be blank'
+    trim: true
   },
   location: {
     type: String,
     default: '2nd floor',
-    trim: true,
-    required: 'Please tell the user where its available.'
+    trim: true
   },
   contributedBy: {
     type: String,
     default: 'Admin',
-    trim: true,
-    required: 'Contiributor name is mandatory.'
+    trim: true
   },
   isActive: {
     type: Boolean,
@@ -92,8 +82,7 @@ var BookSchema = new Schema({
   imageUrl: {
     type: String,
     default: '',
-    trim: true,
-    required: 'ImageUrl cannot be blank'
+    trim: true
   },
   numberOfPages: {
     type: Number,
@@ -102,8 +91,7 @@ var BookSchema = new Schema({
   keywords: {
     type: String,
     default: '',
-    trim: true,
-    required: 'comma seperated keywords are expected.'
+    trim: true
   },
   language: {
     type: String,
@@ -117,14 +105,12 @@ var BookSchema = new Schema({
   createdBy: {
     type: String,
     default: '',
-    trim: true,
-    required: 'Please enter the name of the creator.'
+    trim: true
   },
   updatedBy: {
     type: String,
     default: '',
-    trim: true,
-    required: 'Please enter the name of the person who updated.'
+    trim: true
   },
   updatedOn: {
     type: Date,
