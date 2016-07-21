@@ -9,6 +9,10 @@
   max-height: 140px;
 }
 
+.book-list .book-action {
+  padding-top: 60px; 
+}
+
 .book-form .mln {
   margin-left: 20px;
 }

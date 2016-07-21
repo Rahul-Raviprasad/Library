@@ -31,25 +31,25 @@
           <div class="col-md-6">
             <h4 ng-bind="book.title"></h4>
             <h5 ng-bind="book.subtitle"></h5>
-            <h5>Author: {{book.author}} </h5>
-            <span>Publication: {{book.publications}}</span>
-            <span>Category: {{book.category}}</span>
-            <span>Location: {{book.location}}</span>
-            <a class="btn btn-primary">9 reviews</a>
-            <a class="btn btn-primary">goodbooks review link</a>
+            <h5>Author: {{book.author}}</h5>
+            <div>Publication: {{book.publications}}</div>
+            <div>Category: {{book.category}}</div>
+            <div>Location: {{book.location}}</div>
+    <!--        <a class="btn btn-primary">9 reviews</a>
+            <a class="btn btn-primary">goodbooks review link</a> -->
 
 
           </div>
           <div class="col-md-3">
-            <p ng-bind="book.content"></p>
+            <h5>Description: </h5>
+            <p ng-bind="book.desc"></p>
           </div>
           <!--Action buttons should exist seperately-->
           <div class="col-md-3">
-            <a class="btn btn-primary" href="#">View Book Details <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-            <a class="btn btn-primary" href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a class="btn btn-success" href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a class="btn btn-danger" href="#">Not Available!</a>
+            <div class="book-action">
+              <a class="btn btn-primary" ng-show="book.status == 'issued'" href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-success" ng-show="book.status == 'available'" href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
           </div>
         </div>
       </div>

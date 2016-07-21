@@ -40,10 +40,9 @@ var BookSchema = new Schema({
     trim: true,
     required: 'Category cannot be blank'
   },
-  state: {
-    type: Boolean,
-    default: false,
-    required: 'Title cannot be blank'
+  status: {
+    type: String,
+    default: 'available'
   },
   isbn: {
     type: String,

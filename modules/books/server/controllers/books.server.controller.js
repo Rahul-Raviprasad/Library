@@ -14,7 +14,6 @@ var path = require('path'),
 exports.create = function (req, res) {
   var book = new Book(req.body);
   book.user = req.user;
-
   book.save(function (err) {
     if (err) {
       return res.status(400).send({
