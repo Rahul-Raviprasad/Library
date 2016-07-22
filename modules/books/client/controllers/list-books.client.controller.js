@@ -12,9 +12,14 @@
     vm.chooseCategory = chooseCategory;
     vm.opener = false;
     vm.selectedItem = 'Choose Category';
-    vm.categories = ['Fiction', 'Non Fictional', 'Technical', 'Magzine'];
+    vm.categories = [];
 
-    vm.books = BooksService.query();
+    vm.books = BooksService.query(function() {
+      angular.forEach(vm.books, function(book, key) {
+        console.log(book.category);
+        vm.categories.push(book.category);
+      });
+    });
 
     function chooseCategory(category) {
       vm.selectedItem = category;

@@ -9,7 +9,7 @@
            {{vm.selectedItem}} <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" >
-          <li ng-model="category" ng-click="vm.chooseCategory(category)" ng-repeat="category in vm.categories"><a href="#">{{category}}</a></li>
+          <li ng-model="category" ng-click="vm.chooseCategory(category)" ng-repeat="category in vm.categories track by $index"><a href="#">{{category}}</a></li>
         </ul>
       </div>
     </div>
