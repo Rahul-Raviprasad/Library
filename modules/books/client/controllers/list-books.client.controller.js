@@ -14,9 +14,12 @@
     vm.selectedItem = 'All';
     vm.categories = [];
     vm.categories.push('All');
+    vm.filterCategories = filterCategories;
     vm.books = BooksService.query(function() {
-      angular.forEach(vm.books, function(book, key) {
-        vm.categories.push(book.category);
+      angular.forEach(vm.books, function(book) {
+        if (vm.categories.indexOf(book.category) === -1) {
+          vm.categories.push(book.category);
+        }
       });
     });
     vm.filteredBooks = vm.books;
@@ -32,6 +35,9 @@
     }
     function filterBooks(book) {
       return book.category === vm.selectedItem;
+    }
+    function filterCategories(category) {
+      return category !== vm.selectedItem;
     }
   }
 }());
