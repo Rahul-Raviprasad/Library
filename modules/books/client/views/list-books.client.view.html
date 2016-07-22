@@ -2,17 +2,14 @@
   <div class="page-header">
     <!--Filters for Books-->
     <div class="page-filters"> <!-- todo write styles for page-filters class-->
-      <div class="dropdown" ng-class="{open: opener}">
+      <div class="dropdown" ng-class="{open: vm.opener}">
         <a href="#" class="btn btn-primary dropdown-toggle"
            data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false"
-           ng-click="opener= !opener">
-           Choose Category <span class="caret"></span>
+           aria-expanded="false" ng-click="vm.opener= !vm.opener">
+           {{vm.selectedItem}} <span class="caret"></span>
         </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Fiction</a></li>
-          <li><a href="#">Technical</a></li>
-          <li><a href="#">Something else here</a></li>
+        <ul class="dropdown-menu" >
+          <li ng-model="category" ng-click="vm.chooseCategory(category)" ng-repeat="category in vm.categories"><a href="#">{{category}}</a></li>
         </ul>
       </div>
     </div>
