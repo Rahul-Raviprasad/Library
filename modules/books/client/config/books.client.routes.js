@@ -29,7 +29,7 @@
         controller: 'BooksController',
         controllerAs: 'vm',
         resolve: {
-          bookResolve: newArticle
+          bookResolve: newBook
         },
         data: {
           roles: ['user', 'admin'],
@@ -42,7 +42,7 @@
         controller: 'BooksController',
         controllerAs: 'vm',
         resolve: {
-          bookResolve: getArticle
+          bookResolve: getBook
         },
         data: {
           roles: ['user', 'admin'],
@@ -55,7 +55,7 @@
         controller: 'BooksController',
         controllerAs: 'vm',
         resolve: {
-          bookResolve: getArticle
+          bookResolve: getBook
         },
         data: {
           pageTitle: 'Book {{ bookResolve.title }}'
@@ -63,17 +63,17 @@
       });
   }
 
-  getArticle.$inject = ['$stateParams', 'BooksService'];
+  getBook.$inject = ['$stateParams', 'BooksService'];
 
-  function getArticle($stateParams, BooksService) {
+  function getBook($stateParams, BooksService) {
     return BooksService.get({
       bookId: $stateParams.bookId
     }).$promise;
   }
 
-  newArticle.$inject = ['BooksService'];
+  newBook.$inject = ['BooksService'];
 
-  function newArticle(BooksService) {
+  function newBook(BooksService) {
     return new BooksService();
   }
 }());

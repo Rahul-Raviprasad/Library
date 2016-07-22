@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', '$state', 'bookResolve', '$window', 'Authentication'];
+  BooksController.$inject = ['$scope', '$state', 'bookResolve', '$window', '$location', 'Authentication'];
 
-  function BooksController($scope, $state, book, $window, Authentication) {
+  function BooksController($scope, $state, book, $window, $location, Authentication) {
     var vm = this;
 
     vm.book = book;
@@ -16,6 +16,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.goToViewBook = goToViewBook;
 
     // Remove existing Article
     function remove() {
@@ -24,6 +25,9 @@
       }
     }
 
+    function goToViewBook() {
+      $location.url('/books');
+    }
     // Save Article
     function save(isValid) {
       if (!isValid) {
