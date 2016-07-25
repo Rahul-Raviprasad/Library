@@ -73,6 +73,11 @@ var BookSchema = new Schema({
     type: Boolean,
     default: true
   },
+  issuedTo: {
+    type: String,
+    default: '',
+    trim: true
+  },
   reviewLink: {
     type: String,
     default: '',

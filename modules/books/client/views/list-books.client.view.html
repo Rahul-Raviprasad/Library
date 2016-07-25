@@ -33,10 +33,6 @@
             <div>Publication: {{book.publications}}</div>
             <div>Category: {{book.category}}</div>
             <div>Location: {{book.location}}</div>
-    <!--        <a class="btn btn-primary">9 reviews</a>
-            <a class="btn btn-primary">goodbooks review link</a> -->
-
-
           </div>
           <div class="col-md-3">
             <h5>Description: </h5>
@@ -45,8 +41,14 @@
           <!--Action buttons should exist seperately-->
           <div class="col-md-3">
             <div class="book-action">
-              <a class="btn btn-primary" ng-show="book.status == 'issued'" href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
-              <a class="btn btn-success" ng-show="book.status == 'available'" href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-primary"
+                ng-show="book.status == 'issued' && book.issuedTo !== vm.Authentication.user.displayName"
+                href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-success" ng-click="vm.issueBook(book)"
+                ng-show="book.status == 'available'"
+                href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
+              <h5 ng-show="book.status == 'issued' && book.issuedTo === vm.Authentication.user.displayName">
+                Issued to {{ vm.Authentication.user.displayName }}</h5>
             </div>
           </div>
         </div>
