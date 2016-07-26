@@ -42,7 +42,7 @@
           <div class="col-md-3">
             <div class="book-action">
               <a class="btn btn-primary"
-                ng-show="book.status == 'issued' && book.issuedTo !== vm.Authentication.user.displayName"
+                ng-show="book.status == 'issued' && book.issuedTo !== vm.userName"
                 href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
               <a class="btn btn-success" ng-click="vm.issueBook(book)"
                 ng-show="book.status == 'available'"
