@@ -47,10 +47,10 @@
               <a class="btn btn-success" ng-click="vm.issueBook(book)"
                 ng-show="book.status == 'available'"
                 href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
-              <h5 ng-show="book.status == 'issued' && book.issuedTo === vm.Authentication.user.displayName">
+              <h5 ng-show="book.status == 'issued' && book.issuedTo === vm.userName">
                 Issued to you</h5>
-              <h5 ng-show="book.status == 'issued' && book.issuedTo !== vm.Authentication.user.displayName">
-                Issued to {{ vm.Authentication.user.displayName }}</h5>
+              <h5 ng-show="book.status == 'issued' && book.issuedTo !== vm.userName">
+                Issued to {{ book.issuedTo }}</h5>
             </div>
           </div>
         </div>

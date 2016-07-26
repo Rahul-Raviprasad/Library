@@ -24,7 +24,7 @@
       });
     });
     vm.filteredBooks = vm.books;
-    vm.Authentication = Authentication;
+    vm.userName = Authentication.user.displayName;
 
     function chooseCategory(category) {
       vm.selectedItem = category;
