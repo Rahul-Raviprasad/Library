@@ -42,15 +42,15 @@
           <div class="col-md-3">
             <div class="book-action">
               <a class="btn btn-primary"
-                ng-show="book.status == 'issued' && book.issuedTo !== vm.userName"
+                ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail"
                 href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
               <a class="btn btn-success" ng-click="vm.issueBook(book)"
                 ng-show="book.status == 'available'"
                 href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
-              <h5 ng-show="book.status == 'issued' && book.issuedTo === vm.userName">
+              <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail">
                 Issued to you</h5>
-              <h5 ng-show="book.status == 'issued' && book.issuedTo !== vm.userName">
-                Issued to {{ book.issuedTo }}</h5>
+              <h5 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail">
+                Issued to {{ book.userName }}</h5>
             </div>
           </div>
         </div>

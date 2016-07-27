@@ -73,7 +73,12 @@ var BookSchema = new Schema({
     type: Boolean,
     default: true
   },
-  issuedTo: {
+  userName: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  userEmail: {
     type: String,
     default: '',
     trim: true

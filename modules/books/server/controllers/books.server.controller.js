@@ -48,7 +48,8 @@ exports.update = function (req, res) {
   book.title = req.body.title;
   book.content = req.body.content;
   book.status = req.body.status;
-  book.issuedTo = req.body.issuedTo;
+  book.userEmail = req.body.userEmail;
+  book.userName = req.body.userName;
   book.save(function (err) {
     if (err) {
       return res.status(400).send({

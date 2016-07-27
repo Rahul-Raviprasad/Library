@@ -25,6 +25,7 @@
     });
     vm.filteredBooks = vm.books;
     vm.userName = Authentication.user.displayName;
+    vm.userEmail = Authentication.user.email;
 
     function chooseCategory(category) {
       vm.selectedItem = category;
@@ -44,7 +45,8 @@
     function issueBook(book) {
       if (window.confirm('Do you really read this book ?')) {
         book.status = 'issued';
-        book.issuedTo = vm.Authentication.user.displayName;
+        book.userName = vm.userName;
+        book.userEmail = vm.userEmail;
         BooksService.update({ bookId: book._id }, book);
       }
     }
