@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <a class="btn btn-primary pull-right" ng-click="vm.showBookDetails(book)"
+    <a class="btn btn-primary pull-right" ng-click="vm.goToViewBooks()"
       href="#"><span class="glyphicon glyphicon-chevron-left"></span>View Books</a>
     <h1 ng-bind="vm.book.Title"></h1>
   </div>
@@ -28,5 +28,4 @@
   <div class="pull-left book-img">
     <img ng-src="modules/books/client/img/head_first_javascript.jpg" alt="Yet to be uploaded"></img>
   </div>
-  <p class="lead" ng-bind="vm.book.desc"></p>
 </section>
