@@ -1,5 +1,7 @@
 <section>
   <div class="page-header">
+    <a class="btn btn-primary pull-right" ng-click="vm.showBookDetails(book)"
+      href="#"><span class="glyphicon glyphicon-chevron-left"></span>View Books</a>
     <h1 ng-bind="vm.book.Title"></h1>
   </div>
   <div class="pull-left book-details">
@@ -15,13 +17,16 @@
   <div class="pull-left book-details">
     <div class="field"><b>Condition : </b>{{ vm.book.Condition }}</div>
     <div class="field"><b>Review Link : </b><a target="_blank" /
-      href="{{ vm.book['Review Link'] }}"> 
+      href="{{ vm.book['Review Link'] }}">
       {{ vm.book['Review Link'] }}</a></div>
     <div class="field"><b>Location : </b>{{ vm.book.location }}</div>
     <div class="field"><b>Contributed By : </b>{{ vm.book.contributedBy }}</div>
     <div class="field"><b>Book ID : </b>{{ vm.book._id }}</div>
     <div class="field"><b>Updated On : </b>{{ vm.book.updatedOn }}</div>
     <div class="field"><b>Updated By : </b>{{ vm.book.updatedBy }}</div>
+  </div>
+  <div class="pull-left book-img">
+    <img ng-src="modules/books/client/img/head_first_javascript.jpg" alt="Yet to be uploaded"></img>
   </div>
   <p class="lead" ng-bind="vm.book.desc"></p>
 </section>

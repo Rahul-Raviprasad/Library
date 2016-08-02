@@ -17,10 +17,18 @@
   margin-left: 20px;
 }
 .book-details {
-  margin-left: 20px;
+  /*margin-left: 20px;*/
   /*border: 1px solid black;*/
   width: 30%;
   overflow: scroll;
+}
+.book-img {
+  margin-left: 10%;
+  /*border: 1px solid black;*/
+  width: 18%;
+  height: 230px;
+  background-size: cover;
+  background: no-repeat center center fixed;
 }
 .book-details .field {
   line-height: 25px;
