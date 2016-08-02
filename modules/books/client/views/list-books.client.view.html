@@ -41,6 +41,8 @@
           <!--Action buttons should exist seperately-->
           <div class="col-md-3">
             <div class="book-action">
+              <a class="btn btn-primary" ng-click="vm.showBookDetails(book)"
+                href="#">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
               <a class="btn btn-primary"
                 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail"
                 href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>

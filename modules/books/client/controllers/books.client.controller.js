@@ -16,7 +16,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    vm.goToViewBook = goToViewBook;
+    vm.goToViewBooks = goToViewBooks;
 
     // Remove existing Article
     function remove() {
@@ -25,7 +25,7 @@
       }
     }
 
-    function goToViewBook() {
+    function goToViewBooks() {
       $location.url('/books');
     }
     // Save Article

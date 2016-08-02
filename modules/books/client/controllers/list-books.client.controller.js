@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksListController', BooksListController);
 
-  BooksListController.$inject = ['BooksService', 'Authentication'];
+  BooksListController.$inject = ['BooksService', 'Authentication', '$location'];
 
-  function BooksListController(BooksService, Authentication) {
+  function BooksListController(BooksService, Authentication, $location) {
     var vm = this;
     vm.chooseCategory = chooseCategory;
     vm.opener = false;
@@ -16,6 +16,7 @@
     vm.categories.push('All');
     vm.issueBook = issueBook;
     vm.filterCategories = filterCategories;
+    vm.showBookDetails = showBookDetails;
     vm.books = BooksService.query(function() {
       angular.forEach(vm.books, function(book) {
         if (vm.categories.indexOf(book.category) === -1) {
@@ -26,6 +27,11 @@
     vm.filteredBooks = vm.books;
     vm.userName = Authentication.user.displayName;
     vm.userEmail = Authentication.user.email;
+
+    function showBookDetails(book) {
+      var bookId = book._id;
+      $location.url('/books/' + bookId);
+    }
 
     function chooseCategory(category) {
       vm.selectedItem = category;

@@ -10,9 +10,16 @@
 }
 
 .book-list .book-action {
-  padding-top: 60px; 
+  padding-top: 60px;
 }
 
 .book-form .mln {
   margin-left: 20px;
+}
+.book-details {
+  margin-left: 20px;
+  width: 300px;
+}
+.book-details .field {
+  line-height: 25px;
 }
