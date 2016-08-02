@@ -18,7 +18,9 @@
 }
 .book-details {
   margin-left: 20px;
-  width: 300px;
+  /*border: 1px solid black;*/
+  width: 30%;
+  overflow: scroll;
 }
 .book-details .field {
   line-height: 25px;

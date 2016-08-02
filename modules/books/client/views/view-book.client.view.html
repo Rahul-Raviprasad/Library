@@ -14,7 +14,9 @@
   </div>
   <div class="pull-left book-details">
     <div class="field"><b>Condition : </b>{{ vm.book.Condition }}</div>
-    <div class="field"><b>Review Link : </b>{{ vm.book['Review Link'] }}</div>
+    <div class="field"><b>Review Link : </b><a target="_blank" /
+      href="{{ vm.book['Review Link'] }}"> 
+      {{ vm.book['Review Link'] }}</a></div>
     <div class="field"><b>Location : </b>{{ vm.book.location }}</div>
     <div class="field"><b>Contributed By : </b>{{ vm.book.contributedBy }}</div>
     <div class="field"><b>Book ID : </b>{{ vm.book._id }}</div>
