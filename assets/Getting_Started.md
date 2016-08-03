@@ -95,3 +95,23 @@ col_reviews
 col_transaction
 col_users
 ```
+##3) Importing the database
+
+* 1) Use the following command to import the data from the csv format.
+Syntax is as follows:
+```
+mongoimport --db <databaseName> --collection <collectionName> --type csv --headerline --file <path>
+```
+Example is as shown below:
+```
+mongoimport --db myDb --collection myCollection --type csv --headerline --file anoopg/Downloads/Books\ List1.csv
+
+```
+
+
+* 2) Run the below query to change the fields in the mongodb
+
+```
+db.books.updateMany({},{$rename:{"Review Link":"reviewLink", "Condition":"condition", "Possessor":"possessor","State":"state","Publication":"publications","Title":"title","Type":"category"}})
+
+```
