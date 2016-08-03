@@ -2,23 +2,23 @@
   <div class="page-header">
     <a class="btn btn-primary pull-right" ng-click="vm.goToViewBooks()"
       href="#"><span class="glyphicon glyphicon-chevron-left"></span>View Books</a>
-    <h1 ng-bind="vm.book.Title"></h1>
+    <h1 ng-bind="vm.book.title"></h1>
   </div>
   <div class="pull-left book-details">
     <div class="field"><b>Author : </b>{{ vm.book.author }}</div>
-    <div class="field"><b>Publications : </b>{{ vm.book.Publication }}</div>
+    <div class="field"><b>Publications : </b>{{ vm.book.publication }}</div>
     <div class="field"><b>Category : </b>{{ vm.book.category }}</div>
-    <div class="field"><b>State : </b>{{ vm.book.State }}</div>
+    <div class="field"><b>State : </b>{{ vm.book.state }}</div>
     <div class="field"><b>ISBN : </b>{{ vm.book.isbn }}</div>
-    <div class="field"><b>Possessor : </b>{{ vm.book.Possessor }}</div>
+    <div class="field"><b>Possessor : </b>{{ vm.book.possessor }}</div>
     <div class="field"><b>Created On : </b>{{ vm.book.createdOn }}</div>
     <div class="field"><b>Created By : </b>{{ vm.book.createdBy }}</div>
   </div>
   <div class="pull-left book-details">
-    <div class="field"><b>Condition : </b>{{ vm.book.Condition }}</div>
+    <div class="field"><b>Condition : </b>{{ vm.book.condition }}</div>
     <div class="field"><b>Review Link : </b><a target="_blank" /
-      href="{{ vm.book['Review Link'] }}">
-      {{ vm.book['Review Link'] }}</a></div>
+      href="{{ vm.book.reviewLink }}">
+      {{ vm.book.reviewLink }}</a></div>
     <div class="field"><b>Location : </b>{{ vm.book.location }}</div>
     <div class="field"><b>Contributed By : </b>{{ vm.book.contributedBy }}</div>
     <div class="field"><b>Book ID : </b>{{ vm.book._id }}</div>
