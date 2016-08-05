@@ -47,7 +47,8 @@
                 Issued to {{ book.userName }}</h5>
               <a class="btn btn-primary" ng-click="vm.showBookDetails(book)"
                 href="#">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
-              <a class="btn btn-primary"
+                <!--breaks the UI making ng-hide=true temporarily-->
+              <a class="btn btn-primary" ng-hide="true"
                 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail"
                 href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
               <a class="btn btn-success" ng-click="vm.issueBook(book)"
