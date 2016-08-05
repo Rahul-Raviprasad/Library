@@ -50,6 +50,20 @@ exports.update = function (req, res) {
   book.status = req.body.status;
   book.userEmail = req.body.userEmail;
   book.userName = req.body.userName;
+  book.author = req.body.author;
+  book.publications = req.body.publications;
+  book.category = req.body.category;
+  book.isbn = req.body.isbn;
+  book.possessor = req.body.possessor;
+  book.createdOn = req.body.createdOn;
+  book.createdBy = req.body.createdBy;
+  book.condition = req.body.condition;
+  book.reviewLink = req.body.reviewLink;
+  book.location = req.body.location;
+  book.desc = req.body.desc;
+  book.contributedBy = req.body.contributedBy;
+  book.updatedOn = req.body.updatedOn;
+  book.updatedBy = req.body.updatedBy;
   book.save(function (err) {
     if (err) {
       return res.status(400).send({

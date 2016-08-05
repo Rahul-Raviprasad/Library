@@ -55,9 +55,9 @@
               <label class="control-label" for="contribution">Contributed By</label>
               <input name="contributedBy" size="30" type="text" ng-model="vm.book.contributedBy" id="contributedBy" class="form-control" placeholder="Contributed By">
             </div>
-            <div class="form-group">
-              <label class="control-label" for="content">Description</label>
-              <textarea name="content" data-ng-model="vm.book.desc" id="content" class="form-control" cols="10" rows="10" placeholder="Content"></textarea>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="desc">Description</label>
+              <textarea name="desc" data-ng-model="vm.book.desc" id="desc" class="form-control" cols="10" rows="10" placeholder="Description"></textarea>
             </div>
             <div ng-show="vm.error" class="text-danger">
               <strong ng-bind="vm.error"></strong>

@@ -19,8 +19,7 @@ var BookSchema = new Schema({
   desc: {
     type: String,
     default: '',
-    trim: true,
-    required: 'Description cannot be blank'
+    trim: true
   },
   author: {
     type: String,

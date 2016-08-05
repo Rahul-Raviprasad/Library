@@ -17,6 +17,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.goToViewBooks = goToViewBooks;
+    vm.edit = false;
 
     // Remove existing Article
     function remove() {

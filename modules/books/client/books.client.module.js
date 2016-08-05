@@ -5,4 +5,5 @@
   app.registerModule('books.services');
   app.registerModule('books.routes', ['ui.router', 'core.routes', 'books.services']);
   app.registerModule('users.services');
+  app.registerModule('books.component');
 }(ApplicationConfiguration));
