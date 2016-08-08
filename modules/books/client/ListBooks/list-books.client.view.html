@@ -1,0 +1,65 @@
+<section class="book-list">
+  <div class="page-header">
+    <!--Filters for Books-->
+    <div class="page-filters"> <!-- todo write styles for page-filters class-->
+      <div class="dropdown" ng-class="{open: vm.opener}">
+        <a href="#" class="btn btn-primary dropdown-toggle"
+           data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false" ng-click="vm.opener= !vm.opener">
+           {{vm.selectedItem}} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" >
+          <li ng-model="category" ng-click="vm.chooseCategory(category)" \
+            ng-repeat="category in vm.categories | filter:vm.filterCategories"><a href="#">{{category}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--List of Books-->
+  <div class="list-group">
+
+      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks">
+        <div class="col-md-2">
+            <a href="#">
+                <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
+            </a>
+        </div>
+        <div class="col-md-10">
+          <div class="col-md-6">
+            <h4 ng-bind="book.title"></h4>
+            <h5 ng-bind="book.subtitle"></h5>
+            <h5>Author: {{book.author}}</h5>
+            <div>Publication: {{book.publications}}</div>
+            <div>Category: {{book.category}}</div>
+            <div>Location: {{book.location}}</div>
+          </div>
+          <div class="col-md-3">
+            <h5>Description: </h5>
+            <p ng-bind="book.desc"></p>
+          </div>
+          <!--Action buttons should exist seperately-->
+          <div class="col-md-3">
+            <div class="book-action">
+              <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail">
+                Issued to you</h5>
+              <h5 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail">
+                Issued to {{ book.userName }}</h5>
+              <a class="btn btn-primary" ng-click="vm.showBookDetails(book)"
+                href="#">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <!--breaks the UI making ng-hide=true temporarily-->
+              <a class="btn btn-primary" ng-hide="true"
+                ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail"
+                href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-success" ng-click="vm.issueBook(book)"
+                ng-show="book.status == 'available'"
+                href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.books.$resolved && !vm.books.length">
+    No books yet, why don't you <a ui-sref="books.create">create one</a>?
+  </div>
+</section>

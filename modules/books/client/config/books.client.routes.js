@@ -16,7 +16,7 @@
       })
       .state('books.list', {
         url: '',
-        templateUrl: 'modules/books/client/views/list-books.client.view.html',
+        templateUrl: 'modules/books/client/listBooks/list-books.client.view.html',
         controller: 'BooksListController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('books.create', {
         url: '/create',
-        templateUrl: 'modules/books/client/views/form-book.client.view.html',
+        templateUrl: 'modules/books/client/createViewEditBooks/createBook/form-book.client.view.html',
         controller: 'BooksController',
         controllerAs: 'vm',
         resolve: {
@@ -36,22 +36,22 @@
           pageTitle: 'Book Create'
         }
       })
-      .state('books.edit', {
-        url: '/:bookId/edit',
-        templateUrl: 'modules/books/client/views/form-book.client.view.html',
-        controller: 'BooksController',
-        controllerAs: 'vm',
-        resolve: {
-          bookResolve: getBook
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Edit Book {{ bookResolve.title }}'
-        }
-      })
+      // .state('books.edit', {
+      //   url: '/:bookId/edit',
+      //   templateUrl: 'modules/books/client/createEditBooks/form-book.client.view.html',
+      //   controller: 'BooksController',
+      //   controllerAs: 'vm',
+      //   resolve: {
+      //     bookResolve: getBook
+      //   },
+      //   data: {
+      //     roles: ['user', 'admin'],
+      //     pageTitle: 'Edit Book {{ bookResolve.title }}'
+      //   }
+      // })
       .state('books.view', {
         url: '/:bookId',
-        templateUrl: 'modules/books/client/views/view-book.client.view.html',
+        templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/view-book.client.view.html',
         controller: 'BooksController',
         controllerAs: 'vm',
         resolve: {
