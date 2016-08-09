@@ -17,21 +17,21 @@
   BookDetailsEditCtrl.inject = [];
 
   function BookDetailsEditCtrl() {
-
-    this.save = function(book) {
-      if (this.book._id) {
-        this.book.$update(successCallback, errorCallback);
-        this.edit = false;
+    var vm = this;
+    vm.save = function(book) {
+      if (vm.book._id) {
+        vm.book.$update(successCallback, errorCallback);
+        vm.edit = false;
       } else {
-        this.book.$save(successCallback, errorCallback);
+        vm.book.$save(successCallback, errorCallback);
       }
 
       function successCallback(res) {
-        console.log(res);
+        alert('Changes has been saved successfully');
       }
 
       function errorCallback(res) {
-        console.log(res);
+        alert('Sorry, your changes could not be saved for some reasons. Please try after sometime.');
       }
     };
   }
