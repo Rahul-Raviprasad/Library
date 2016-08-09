@@ -15,6 +15,7 @@
     vm.categories = [];
     vm.categories.push('All');
     vm.issueBook = issueBook;
+    vm.submitBook = submitBook;
     vm.filterCategories = filterCategories;
     vm.showBookDetails = showBookDetails;
     vm.books = BooksService.query(function() {
@@ -53,6 +54,15 @@
         book.status = 'issued';
         book.userName = vm.userName;
         book.userEmail = vm.userEmail;
+        BooksService.update({ bookId: book._id }, book);
+      }
+    }
+
+    function submitBook(book) {
+      if (window.confirm('Are you sure you are done reading the book ?')) {
+        book.status = 'available';
+        book.userName = '';
+        book.userEmail = '';
         BooksService.update({ bookId: book._id }, book);
       }
     }
