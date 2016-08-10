@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksListController', BooksListController);
 
-  BooksListController.$inject = ['BooksService', 'Authentication', '$location'];
+  BooksListController.$inject = ['BooksService', 'Authentication', '$location', '$scope'];
 
-  function BooksListController(BooksService, Authentication, $location) {
+  function BooksListController(BooksService, Authentication, $location, $scope) {
     var vm = this;
     vm.chooseCategory = chooseCategory;
     vm.opener = false;
@@ -34,6 +34,18 @@
       $location.url('/books/' + bookId);
     }
 
+    $scope.$watch(function() {return vm.selectedItem;},
+              function(newValue, oldValue) {
+                if (newValue === 'All') {
+                  vm.filteredBooks = vm.books;
+                } else {
+                  vm.filteredBooks = vm.books.filter(filterBooks);
+                }
+              }
+             );
+    function filterBooks(book) {
+      return book.category === vm.selectedItem;
+    }
     function chooseCategory(category) {
       vm.selectedItem = category;
       vm.opener = false;
@@ -43,9 +55,7 @@
         vm.filteredBooks = vm.books.filter(filterBooks);
       }
     }
-    function filterBooks(book) {
-      return book.category === vm.selectedItem;
-    }
+
     function filterCategories(category) {
       return category !== vm.selectedItem;
     }

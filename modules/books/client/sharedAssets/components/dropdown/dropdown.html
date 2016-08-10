@@ -1,0 +1,12 @@
+<div class="dropdown" ng-class="{open: vm.opener}">
+  <a href="#" class="btn btn-primary dropdown-toggle"
+     ng-blur="!vm.opener"
+     data-toggle="dropdown" role="button" aria-haspopup="true"
+     aria-expanded="false" ng-click="vm.opener= !vm.opener">
+     {{ vm.selectedItem }} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" ng-focus="vm.opener" ng-blur="vm.opener=false">
+    <li ng-model="value" ng-click="vm.chooseValue(value)" \
+      ng-repeat="value in vm.src | filter:vm.filterValues"><a href="#">{{value}}</a></li>
+  </ul>
+</div>
