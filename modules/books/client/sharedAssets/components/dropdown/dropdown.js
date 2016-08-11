@@ -16,8 +16,8 @@
       templateUrl: 'modules/books/client/sharedAssets/components/dropdown/dropdown.html'
     });
 
-  DropdownController.inject = ['$document'];
-  function DropdownController($document) {
+  DropdownController.inject = [];
+  function DropdownController() {
     var vm = this;
     vm.filterValues = filterValues;
     vm.chooseValue = chooseValue;
@@ -29,9 +29,6 @@
       vm.selectedItem = value;
       vm.opener = false;
     }
-    $document.on('click', function (e) {
-      console.log(e.target);
-    });
     function filterBooks(book) {
       return book.category === vm.selectedItem;
     }

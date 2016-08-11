@@ -64,6 +64,9 @@ exports.update = function (req, res) {
   book.contributedBy = req.body.contributedBy;
   book.updatedOn = req.body.updatedOn;
   book.updatedBy = req.body.updatedBy;
+  book.queueList = req.body.queueList;
+  book.loggedUserRequested = req.body.loggedUserRequested;
+  book.loggedUserQueueNumber = req.body.loggedUserQueueNumber;
   book.save(function (err) {
     if (err) {
       return res.status(400).send({

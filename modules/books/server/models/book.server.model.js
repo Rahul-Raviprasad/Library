@@ -128,7 +128,27 @@ var BookSchema = new Schema({
   updatedOn: {
     type: Date,
     default: Date.now
-  }
+  },
+  queueList: [
+    {
+      requesterName: {
+        type: String,
+        default: '',
+        trim: true
+      },
+      requesterEmail: {
+        type: String,
+        default: '',
+        trim: true
+      },
+      queueNumber: Number
+    }
+  ],
+  loggedUserRequested: {
+    type: Boolean,
+    default: false
+  },
+  loggedUserQueueNumber: Number
 });
 
 mongoose.model('Book', BookSchema);
