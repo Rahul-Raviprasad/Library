@@ -42,20 +42,22 @@
     });
 
     function cancelRequest(book) {
-      if (book._id) {
-        var index = book.queueList.findIndex(
-          function(queueItem) {
-            return queueItem.requesterEmail === vm.userEmail;
+      if (window.confirm('Are you sure you want to leave the queue? You may have to stand in the end of the queue once you leave!')) {
+        if (book._id) {
+          var index = book.queueList.findIndex(
+            function(queueItem) {
+              return queueItem.requesterEmail === vm.userEmail;
+            }
+          );
+          if (index >= 0) {
+            book.loggedUserRequested = false;
+            book.loggedUserQueueNumber = 0;
+            book.queueList.splice(index, 1);
+            for (var i = index; i <= book.queueList.length - 1; i++) {
+              book.queueList[i].queueNumber--;
+            }
+            book.$update(successCallback, errorCallback);
           }
-        );
-        if (index >= 0) {
-          book.loggedUserRequested = false;
-          book.loggedUserQueueNumber = 0;
-          book.queueList.splice(index, 1);
-          for (var i = index; i <= book.queueList.length - 1; i++) {
-            book.queueList[i].queueNumber--;
-          }
-          book.$update(successCallback, errorCallback);
         }
       }
       function successCallback(res) {
@@ -67,17 +69,19 @@
     }
 
     function requestBook(book) {
-      if (book._id) {
-        var reqObj = {};
-        reqObj = {
-          requesterName: vm.userName,
-          requesterEmail: vm.userEmail,
-          queueNumber: book.queueList.length > 0 ? (book.queueList.length + 1) : 1
-        };
-        book.queueList.push(reqObj);
-        book.loggedUserRequested = true;
-        book.loggedUserQueueNumber = reqObj.queueNumber;
-        book.$update(successCallback, errorCallback);
+      if (window.confirm('Do you want to stand in the queue among the other readers ?')) {
+        if (book._id) {
+          var reqObj = {};
+          reqObj = {
+            requesterName: vm.userName,
+            requesterEmail: vm.userEmail,
+            queueNumber: book.queueList.length > 0 ? (book.queueList.length + 1) : 1
+          };
+          book.queueList.push(reqObj);
+          book.loggedUserRequested = true;
+          book.loggedUserQueueNumber = reqObj.queueNumber;
+          book.$update(successCallback, errorCallback);
+        }
       }
       function successCallback(res) {
         alert('Your request has been successfully placed!');
