@@ -54,14 +54,19 @@
                 ng-click="vm.requestBook(book)"
                 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.loggedUserRequested === false"
                 href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
-              <p ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.loggedUserRequested === true">
-                Your request for this book is submitted and you stand
-                {{ book.loggedUserQueueNumber }}<span ng-show="book.loggedUserQueueNumber === 1">st
-                </span><span ng-show="book.loggedUserQueueNumber === 2">nd
-                </span><span ng-show="book.loggedUserQueueNumber === 3">rd
-                </span><span ng-show="book.loggedUserQueueNumber > 3">th</span>
-                in queue.
-              </p>
+              <div ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.loggedUserRequested === true">
+                <a class="btn btn-danger" ng-click="vm.cancelRequest(book)"
+                  href="#">Cancel Request<span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+                <p>
+                  Your request for this book is submitted and you stand
+                  {{ book.loggedUserQueueNumber }}<span ng-show="book.loggedUserQueueNumber === 1">st
+                  </span><span ng-show="book.loggedUserQueueNumber === 2">nd
+                  </span><span ng-show="book.loggedUserQueueNumber === 3">rd
+                  </span><span ng-show="book.loggedUserQueueNumber > 3">th</span>
+                  in queue.
+                </p>
+              </div>
               <a class="btn btn-success" ng-click="vm.issueBook(book)"
                 ng-show="book.status == 'available'"
                 href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>

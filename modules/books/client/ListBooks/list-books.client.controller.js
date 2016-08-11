@@ -15,6 +15,13 @@
     vm.issueBook = issueBook;
     vm.submitBook = submitBook;
     vm.showBookDetails = showBookDetails;
+    vm.filteredBooks = vm.books;
+    vm.userName = Authentication.user.displayName;
+    vm.userEmail = Authentication.user.email;
+    vm.requestBook = requestBook;
+    vm.requested = false;
+    vm.cancelRequest = cancelRequest;
+
     vm.books = BooksService.query(function() {
       angular.forEach(vm.books, function(book) {
         var index = book.queueList.findIndex(
@@ -33,11 +40,31 @@
         }
       });
     });
-    vm.filteredBooks = vm.books;
-    vm.userName = Authentication.user.displayName;
-    vm.userEmail = Authentication.user.email;
-    vm.requestBook = requestBook;
-    vm.requested = false;
+
+    function cancelRequest(book) {
+      if (book._id) {
+        var index = book.queueList.findIndex(
+          function(queueItem) {
+            return queueItem.requesterEmail === vm.userEmail;
+          }
+        );
+        if (index >= 0) {
+          book.loggedUserRequested = false;
+          book.loggedUserQueueNumber = 0;
+          book.queueList.splice(index, 1);
+          for (var i = index; i <= book.queueList.length - 1; i++) {
+            book.queueList[i].queueNumber--;
+          }
+          book.$update(successCallback, errorCallback);
+        }
+      }
+      function successCallback(res) {
+        alert('Your request has been cancelled!');
+      }
+      function errorCallback(res) {
+        alert('Unable to cancel your request, please contact admin for more details.');
+      }
+    }
 
     function requestBook(book) {
       if (book._id) {

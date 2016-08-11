@@ -1,6 +1,6 @@
 .book-list .row {
   border: 1px solid;
-  height: 150px;
+  height: 170px;
 }
 
 .book-list .row .col-md-2 img {
@@ -9,9 +9,9 @@
   max-height: 140px;
 }
 
-.book-list .book-action {
+/*.book-list .book-action {
   padding-top: 30px;
-}
+}*/
 
 .book-form .mln {
   margin-left: 20px;
