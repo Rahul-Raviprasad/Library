@@ -43,18 +43,18 @@
           <!--Action buttons should exist seperately-->
           <div class="col-md-4">
             <div class="book-action">
-              <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail">
+              <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail && book.userName !== 'admin'">
                 Issued to you</h5>
-              <h5 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail">
+              <h5 ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.userName !== 'admin'">
                 Issued to {{ book.userName }}</h5>
-              <h5 ng-show="book.status === 'submitted' && book.userEmail === vm.userEmail">
+              <h5 ng-show="book.userName === 'admin'">
                 You have submitted the book for approval.</h5>
               <a class="btn btn-primary" ng-click="vm.showBookDetails(book)"
                 href="#">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
                 <!--breaks the UI making ng-hide=true temporarily-->
               <a class="btn btn-primary"
                 ng-click="vm.requestBook(book)"
-                ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.loggedUserRequested === false"
+                ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.loggedUserRequested === false && book.userName !== 'admin'"
                 href="#">Request for Queue<span class="glyphicon glyphicon-chevron-right"></span></a>
               <div ng-show="book.status == 'issued' && book.userEmail !== vm.userEmail && book.loggedUserRequested === true">
                 <a class="btn btn-danger" ng-click="vm.cancelRequest(book)"
@@ -73,7 +73,7 @@
                 ng-show="book.status == 'available'"
                 href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
               <a class="btn btn-success" ng-click="vm.submitBook(book)"
-                ng-show="book.status == 'issued' && book.userEmail === vm.userEmail"
+                ng-show="book.status == 'issued' && book.userEmail === vm.userEmail && book.userName !== 'admin' "
                 href="#">Submit <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
           </div>

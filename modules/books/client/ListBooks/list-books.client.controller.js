@@ -22,6 +22,10 @@
     vm.requestBook = requestBook;
     vm.requested = false;
     vm.cancelRequest = cancelRequest;
+    vm.approve = approve;
+    vm.reject = reject;
+    vm.requesters = requesters;
+    vm.showApproveReject = true;
 
     vm.books = BooksService.query(function() {
       angular.forEach(vm.books, function(book) {
@@ -43,7 +47,7 @@
       vm.submittedBooks = vm.books.filter(submittedBooks);
 
       function submittedBooks(book) {
-        return book.status === 'submitted';
+        return book.userName === 'admin';
       }
     });
 
@@ -130,9 +134,43 @@
 
     function submitBook(book) {
       if (window.confirm('Are you sure you are done reading the book ?')) {
-        book.status = 'submitted';
+        book.userName = 'admin';
+        book.userEmail = 'admin@admin.com';
         BooksService.update({ bookId: book._id }, book);
       }
+    }
+
+    function approve(book) {
+      if (window.confirm('Are you sure you want to approve ?')) {
+        if (book.queueList.length <= 0) {
+          book.status = 'available';
+          book.userName = vm.userName;
+          book.userEmail = vm.userEmail;
+          BooksService.update({ bookId: book._id }, book);
+        } else {
+          book.status = 'reserved';
+          BooksService.update({ bookId: book._id }, book);
+          // vm.requesters = requesters(book);
+          vm.showApproveReject = false;
+          // send Email to the first person in the queue.
+        }
+      }
+    }
+
+    function reject() {
+      if (window.confirm('Are you sure you want to reject ?')) {
+        // send email to the current book user with admin comments.
+        alert('user is sent with the admin comments.');
+      }
+    }
+
+    function requesters(book) {
+      var requesters = [];
+      for (var i = 0; i < book.queueList.length; i++) {
+        requesters.push(book.queueList[i].requesterName);
+      }
+      vm.selectedRequester = requesters[0];
+      return requesters;
     }
   }
 }());

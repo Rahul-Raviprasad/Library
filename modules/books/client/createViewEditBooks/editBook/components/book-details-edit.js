@@ -18,7 +18,7 @@
 
   function BookDetailsEditCtrl() {
     var vm = this;
-    vm.save = function(book) {
+    vm.save = function() {
       if (vm.book._id) {
         vm.book.$update(successCallback, errorCallback);
         vm.edit = false;
