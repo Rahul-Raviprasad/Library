@@ -33,3 +33,11 @@
 .book-details .field {
   line-height: 25px;
 }
+
+/* tablets and mobiles*/
+@media only screen and (max-device-width: 1024px) {
+  .list-group > .row {
+    height: auto
+  }
+
+}
