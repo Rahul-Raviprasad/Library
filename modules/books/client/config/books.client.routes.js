@@ -36,6 +36,15 @@
           pageTitle: 'Book Create'
         }
       })
+      .state('books.submit', {
+        url: '/submitted',
+        templateUrl: 'modules/books/client/listBooks/list-submitted-books.client.view.html',
+        controller: 'BooksListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Books List'
+        }
+      })
       // .state('books.edit', {
       //   url: '/:bookId/edit',
       //   templateUrl: 'modules/books/client/createEditBooks/form-book.client.view.html',

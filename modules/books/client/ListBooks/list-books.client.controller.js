@@ -16,6 +16,7 @@
     vm.submitBook = submitBook;
     vm.showBookDetails = showBookDetails;
     vm.filteredBooks = vm.books;
+    vm.submittedBooks = vm.books;
     vm.userName = Authentication.user.displayName;
     vm.userEmail = Authentication.user.email;
     vm.requestBook = requestBook;
@@ -39,6 +40,11 @@
           vm.categories.push(book.category);
         }
       });
+      vm.submittedBooks = vm.books.filter(submittedBooks);
+
+      function submittedBooks(book) {
+        return book.status === 'submitted';
+      }
     });
 
     function cancelRequest(book) {
@@ -109,6 +115,10 @@
       return book.category === vm.selectedItem;
     }
 
+    function submittedBooks(book) {
+      return book.category === vm.selectedItem;
+    }
+
     function issueBook(book) {
       if (window.confirm('Do you really read this book ?')) {
         book.status = 'issued';
@@ -120,9 +130,7 @@
 
     function submitBook(book) {
       if (window.confirm('Are you sure you are done reading the book ?')) {
-        book.status = 'available';
-        book.userName = '';
-        book.userEmail = '';
+        book.status = 'submitted';
         BooksService.update({ bookId: book._id }, book);
       }
     }

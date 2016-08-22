@@ -1,0 +1,50 @@
+<section class="book-list">
+  <div class="page-header">
+    <!--Filters for Books-->
+    <!-- <div class="page-filters"> -->
+       <!-- todo write styles for page-filters class-->
+      <!-- <div class="dropdown" ng-class="{open: vm.opener}">
+        <a href="#" class="btn btn-primary dropdown-toggle"
+           data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false" ng-click="vm.opener= !vm.opener">
+           {{vm.selectedItem}} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" >
+          <li ng-model="category" ng-click="vm.chooseCategory(category)" \
+            ng-repeat="category in vm.categories | filter:vm.filterCategories"><a href="#">{{category}}</a></li>
+        </ul>
+      </div> -->
+      <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height=""></dropdown>
+    <!-- </div> -->
+  </div>
+
+  <div class="list-group">
+
+      <div class="row row-eq-height" ng-repeat="book in vm.submittedBooks">
+        <div class="col-md-2">
+            <a href="#">
+                <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
+            </a>
+        </div>
+        <div class="col-md-10">
+          <div class="col-md-4">
+            <h4 ng-bind="book.title"></h4>
+            <h5 ng-bind="book.subtitle"></h5>
+            <h5>Author: {{book.author}}</h5>
+            <div>Publication: {{book.publications}}</div>
+            <div>Category: {{book.category}}</div>
+            <div>Location: {{book.location}}</div>
+          </div>
+          <div class="col-md-4">
+            <h5>Description: </h5>
+            <p ng-bind="book.desc"></p>
+          </div>
+          <!--Action buttons should exist seperately-->
+          <a class="btn btn-success" ng-click=""
+            href="#">Aprrove <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a class="btn btn-danger" ng-click=""            
+            href="#">Reject<span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+      </div>
+  </div>
+</section>

@@ -27,5 +27,12 @@
       state: 'books.create',
       roles: ['user']
     });
+
+    // Add the dropdown create item
+    menuService.addSubMenuItem('topbar', 'books', {
+      title: 'Submitted Books',
+      state: 'books.submit',
+      roles: ['user']
+    });
   }
 }());
