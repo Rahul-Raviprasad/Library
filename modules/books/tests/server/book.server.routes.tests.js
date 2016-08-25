@@ -20,7 +20,7 @@ var app,
 /**
  * Article routes tests
  */
-describe('Book CRUD tests', function () {
+xdescribe('Book CRUD tests', function () {
 
   before(function (done) {
     // Get application

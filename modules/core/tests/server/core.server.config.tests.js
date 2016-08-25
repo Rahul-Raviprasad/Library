@@ -23,7 +23,7 @@ var user1,
   adminFromSeedConfig,
   originalLogConfig;
 
-describe('Configuration Tests:', function () {
+xdescribe('Configuration Tests:', function () {
 
   describe('Testing default seedDB', function () {
     before(function(done) {

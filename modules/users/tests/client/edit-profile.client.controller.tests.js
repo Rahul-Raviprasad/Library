@@ -1,7 +1,7 @@
 ﻿(function () {
   'use strict';
 
-  describe('Edit Profile Controller Tests', function () {
+  xdescribe('Edit Profile Controller Tests', function () {
     // Initialize global variables
     var EditProfileController,
       $scope,

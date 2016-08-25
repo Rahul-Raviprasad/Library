@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  describe('Articles Controller Tests', function () {
+  xdescribe('Articles Controller Tests', function () {
     // Initialize global variables
     var ArticlesController,
       $scope,

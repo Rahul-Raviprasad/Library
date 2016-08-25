@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  describe('Menus', function() {
+  xdescribe('Menus', function() {
     // Initialize global variables
     var scope,
       menuService;
