@@ -17,14 +17,14 @@
 
     beforeEach(module('books'));
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
+    beforeEach(module('mock.BookService'));
 
-    beforeEach(inject(function(_$rootScope_, _$controller_, _$location_, _$state_) {
+    beforeEach(inject(function(_$rootScope_, _$controller_, _$state_) {
       $scope = _$rootScope_.$new();
       $rootScope = _$rootScope_;
       $state = _$state_;
       BooksListController = _$controller_('BooksListController', {
         $scope: $scope,
-        $location: _$location_,
         Authentication: fakeAuthentication
       });
     }));
