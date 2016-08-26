@@ -1,7 +1,8 @@
 <section>
   <div class="page-header">
-    <a class="btn btn-primary pull-right" ng-click="vm.goToViewBooks()"
-      href="#"><span class="glyphicon glyphicon-chevron-left"></span>View Books</a>
+    <a class="btn btn-primary pull-right" href="/books">
+      <span class="glyphicon glyphicon-chevron-left"></span>View Books
+    </a>
     <h1>{{ vm.book.title }}</h1>
   </div>
   <book-details-view ng-show="!vm.edit" edit="vm.edit" book="vm.book"></book-details-view>
