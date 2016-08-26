@@ -9,7 +9,8 @@
         selectedItem: '=',
         width: '=',
         height: '=',
-        multiselect: '='
+        multiselect: '=',
+        onChange: '&'
       },
       controller: DropdownController,
       controllerAs: 'vm',
@@ -28,9 +29,10 @@
     function chooseValue(value) {
       vm.selectedItem = value;
       vm.opener = false;
+      vm.onChange({ selectedItem: vm.selectedItem });
     }
-    function filterBooks(book) {
-      return book.category === vm.selectedItem;
-    }
+    // function filterBooks(book) {
+    //   return book.category === vm.selectedItem;
+    // }
   }
 }());

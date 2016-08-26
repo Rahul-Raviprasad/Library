@@ -14,7 +14,7 @@
             ng-repeat="category in vm.categories | filter:vm.filterCategories"><a href="#">{{category}}</a></li>
         </ul>
       </div> -->
-      <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height=""></dropdown>
+      <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
     <!-- </div> -->
   </div>
 

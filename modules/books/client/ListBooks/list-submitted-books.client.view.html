@@ -44,7 +44,8 @@
             href="#">Aprrove <span class="glyphicon glyphicon-chevron-right"></span></a>
           <a class="btn btn-danger" ng-click="vm.reject(book)" ng-show="book.status === 'issued'"
             href="#">Reject<span class="glyphicon glyphicon-chevron-right"></span></a>
-          <!-- <dropdown ng-show="book.status === 'reserved'" src="vm.requesters(book)" selected-item="vm.selectedRequester" width="100" height=""></dropdown> -->
+          <dropdown ng-show="book.status === 'reserved'" src="vm.requesters(book)" selected-item="vm.selectedRequester" \
+            width="100" height="" on-change="vm.changeSelectedRequester" ></dropdown>
         </div>
       </div>
   </div>

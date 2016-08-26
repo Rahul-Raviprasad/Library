@@ -26,9 +26,23 @@
     vm.reject = reject;
     vm.requesters = requesters;
     vm.showApproveReject = true;
+    vm.changeSelectedBook = changeSelectedBook;
+    var msg = { msg: 'aaa' };
+    function changeSelectedBook(selectedItem) {
+      vm.selectedItem = selectedItem;
+      if (vm.selectedItem === 'All') {
+        vm.filteredBooks = vm.books;
+      } else {
+        vm.filteredBooks = vm.books.filter(filterBooks);
+      }
+    }
+    function filterBooks(book) {
+      return book.category === vm.selectedItem;
+    }
 
     vm.books = BooksService.query(function() {
       angular.forEach(vm.books, function(book) {
+        vm.filteredBooks = vm.books;
         var index = book.queueList.findIndex(
           function(queueItem) {
             return queueItem.requesterEmail === vm.userEmail;
@@ -104,19 +118,6 @@
     function showBookDetails(book) {
       var bookId = book._id;
       $location.url('/books/' + bookId);
-    }
-
-    $scope.$watch(function() {return vm.selectedItem;},
-              function(newValue, oldValue) {
-                if (newValue === 'All') {
-                  vm.filteredBooks = vm.books;
-                } else {
-                  vm.filteredBooks = vm.books.filter(filterBooks);
-                }
-              }
-             );
-    function filterBooks(book) {
-      return book.category === vm.selectedItem;
     }
 
     function submittedBooks(book) {
