@@ -5,16 +5,15 @@
     .module('books')
     .controller('BooksListController', BooksListController);
 
-  BooksListController.$inject = ['BooksService', 'Authentication', '$location', '$scope'];
+  BooksListController.$inject = ['BooksService', 'Authentication', '$scope'];
 
-  function BooksListController(BooksService, Authentication, $location, $scope) {
+  function BooksListController(BooksService, Authentication, $scope) {
     var vm = this;
     vm.selectedItem = 'All';
     vm.categories = [];
     vm.categories.push('All');
     vm.issueBook = issueBook;
     vm.submitBook = submitBook;
-    vm.showBookDetails = showBookDetails;
     vm.filteredBooks = vm.books;
     vm.submittedBooks = vm.books;
     vm.userName = Authentication.user.displayName;
@@ -113,11 +112,6 @@
       function errorCallback(res) {
         alert('Unable to place your request, please contact admin for more details.');
       }
-    }
-
-    function showBookDetails(book) {
-      var bookId = book._id;
-      $location.url('/books/' + bookId);
     }
 
     function submittedBooks(book) {

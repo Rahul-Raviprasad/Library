@@ -49,8 +49,8 @@
                 Issued to {{ book.userName }}</h5>
               <h5 ng-show="book.userName === 'admin'">
                 You have submitted the book for approval.</h5>
-              <a class="btn btn-primary" ng-click="vm.showBookDetails(book)"
-                href="#">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-primary"
+                ng-href="/books/{{book._id}}">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
                 <!--breaks the UI making ng-hide=true temporarily-->
               <a class="btn btn-primary"
                 ng-click="vm.requestBook(book)"
