@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksListController', BooksListController);
 
-  BooksListController.$inject = ['BooksService', 'Authentication', '$scope'];
+  BooksListController.$inject = ['BooksService', 'Authentication'];
 
-  function BooksListController(BooksService, Authentication, $scope) {
+  function BooksListController(BooksService, Authentication) {
     var vm = this;
     vm.selectedItem = 'All';
     vm.categories = [];
@@ -23,10 +23,24 @@
     vm.cancelRequest = cancelRequest;
     vm.approve = approve;
     vm.reject = reject;
-    vm.requesters = requesters;
-    vm.showApproveReject = true;
-    vm.changeSelectedBook = changeSelectedBook;
-    var msg = { msg: 'aaa' };
+    vm.assignBookToSelectedUser = assignBookToSelectedUser;
+
+    function assignBookToSelectedUser(requester, book) {
+      var index = vm.submittedBooks.findIndex(
+        function(subBook) {
+          return subBook === book;
+        }
+      );
+      if (index >= 0) {
+        vm.submittedBooks.splice(index, 1);
+      }
+      book.status = 'issued';
+      book.userName = requester.requesterName;
+      book.userEmail = requester.requesterEmail;
+      // BooksService.update({ bookId: book._id }, book);
+      removeUserFromQueue(book, requester.requesterEmail);
+    }
+
     function changeSelectedBook(selectedItem) {
       vm.selectedItem = selectedItem;
       if (vm.selectedItem === 'All') {
@@ -34,9 +48,14 @@
       } else {
         vm.filteredBooks = vm.books.filter(filterBooks);
       }
+      vm.submittedBooks = vm.filteredBooks.filter(submittedBooks);
     }
     function filterBooks(book) {
       return book.category === vm.selectedItem;
+    }
+
+    function submittedBooks(book) {
+      return book.userName === 'admin';
     }
 
     vm.books = BooksService.query(function() {
@@ -56,39 +75,49 @@
         if (vm.categories.indexOf(book.category) === -1) {
           vm.categories.push(book.category);
         }
+
+        book.requesters = [{ requesterName: '--Select--' }];
+        for (var i = 0; i < book.queueList.length; i++) {
+          book.requesters.push(book.queueList[i]);
+        }
+        book.selectedRequester = book.requesters[0];
+
       });
       vm.submittedBooks = vm.books.filter(submittedBooks);
-
-      function submittedBooks(book) {
-        return book.userName === 'admin';
-      }
     });
+
 
     function cancelRequest(book) {
       if (window.confirm('Are you sure you want to leave the queue? You may have to stand in the end of the queue once you leave!')) {
-        if (book._id) {
-          var index = book.queueList.findIndex(
-            function(queueItem) {
-              return queueItem.requesterEmail === vm.userEmail;
-            }
-          );
-          if (index >= 0) {
-            book.loggedUserRequested = false;
-            book.loggedUserQueueNumber = 0;
-            book.queueList.splice(index, 1);
-            for (var i = index; i <= book.queueList.length - 1; i++) {
-              book.queueList[i].queueNumber--;
-            }
-            book.$update(successCallback, errorCallback);
+        var userEmail = vm.userEmail;
+        removeUserFromQueue(book, userEmail);
+      }
+    }
+
+    function removeUserFromQueue(book, userEmail) {
+      if (book._id) {
+        var index = book.queueList.findIndex(
+          function(queueItem) {
+            return queueItem.requesterEmail === userEmail;
           }
+        );
+        if (index >= 0) {
+          book.loggedUserRequested = false;
+          book.loggedUserQueueNumber = 0;
+          book.queueList.splice(index, 1);
+          for (var i = index; i <= book.queueList.length - 1; i++) {
+            book.queueList[i].queueNumber--;
+          }
+          book.$update(successCallback, errorCallback);
         }
       }
-      function successCallback(res) {
-        alert('Your request has been cancelled!');
-      }
-      function errorCallback(res) {
-        alert('Unable to cancel your request, please contact admin for more details.');
-      }
+    }
+
+    function successCallback(res) {
+      alert('Done!');
+    }
+    function errorCallback(res) {
+      alert('Couldn\'t do');
     }
 
     function requestBook(book) {
@@ -112,10 +141,6 @@
       function errorCallback(res) {
         alert('Unable to place your request, please contact admin for more details.');
       }
-    }
-
-    function submittedBooks(book) {
-      return book.category === vm.selectedItem;
     }
 
     function issueBook(book) {
@@ -146,7 +171,6 @@
           book.status = 'reserved';
           BooksService.update({ bookId: book._id }, book);
           // vm.requesters = requesters(book);
-          vm.showApproveReject = false;
           // send Email to the first person in the queue.
         }
       }
@@ -157,15 +181,6 @@
         // send email to the current book user with admin comments.
         alert('user is sent with the admin comments.');
       }
-    }
-
-    function requesters(book) {
-      var requesters = [];
-      for (var i = 0; i < book.queueList.length; i++) {
-        requesters.push(book.queueList[i].requesterName);
-      }
-      vm.selectedRequester = requesters[0];
-      return requesters;
     }
   }
 }());

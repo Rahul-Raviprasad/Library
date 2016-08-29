@@ -24,15 +24,16 @@
     vm.chooseValue = chooseValue;
 
     function filterValues(value) {
-      return value !== vm.selectedItem;
+      if (typeof(value) === 'object') {
+        return value.requesterName !== vm.selectedItem.requesterName;
+      } else if (typeof(value) === 'string') {
+        return value !== vm.selectedItem;
+      }
     }
     function chooseValue(value) {
       vm.selectedItem = value;
       vm.opener = false;
       vm.onChange({ selectedItem: vm.selectedItem });
     }
-    // function filterBooks(book) {
-    //   return book.category === vm.selectedItem;
-    // }
   }
 }());

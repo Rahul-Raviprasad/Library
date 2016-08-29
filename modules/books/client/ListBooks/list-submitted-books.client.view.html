@@ -14,7 +14,7 @@
             ng-repeat="category in vm.categories | filter:vm.filterCategories"><a href="#">{{category}}</a></li>
         </ul>
       </div> -->
-      <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height=""></dropdown>
+      <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
     <!-- </div> -->
   </div>
 
@@ -41,11 +41,17 @@
           </div>
           <!--Action buttons should exist seperately-->
           <a class="btn btn-success" ng-click="vm.approve(book)" ng-show="book.status === 'issued'"
-            href="#">Aprrove <span class="glyphicon glyphicon-chevron-right"></span></a>
+            href="#">Approve <span class="glyphicon glyphicon-chevron-right"></span></a>
           <a class="btn btn-danger" ng-click="vm.reject(book)" ng-show="book.status === 'issued'"
             href="#">Reject<span class="glyphicon glyphicon-chevron-right"></span></a>
-          <dropdown ng-show="book.status === 'reserved'" src="vm.requesters(book)" selected-item="vm.selectedRequester" \
-            width="100" height="" on-change="vm.changeSelectedRequester" ></dropdown>
+          <p ng-show="book.status === 'reserved'">Assign to:
+            <dropdown src="book" selected-item="book.selectedRequester" \
+            width="100" height="" on-change="vm.assignBookToSelectedUser(selectedItem, book)" ></dropdown>
+          </p>
+          <!-- <div>
+            <a ng-show="book.status === 'reserved'" class="btn btn-success" ng-click=""
+              href="#">Assign <span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div> -->
         </div>
       </div>
   </div>
