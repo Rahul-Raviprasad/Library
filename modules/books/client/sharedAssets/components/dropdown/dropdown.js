@@ -20,6 +20,7 @@
   DropdownController.inject = [];
   function DropdownController() {
     var vm = this;
+    vm.source = vm.src.requesters || vm.src;
     vm.filterValues = filterValues;
     vm.chooseValue = chooseValue;
 

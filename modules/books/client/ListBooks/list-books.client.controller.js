@@ -23,6 +23,7 @@
     vm.cancelRequest = cancelRequest;
     vm.approve = approve;
     vm.reject = reject;
+    vm.changeSelectedBook = changeSelectedBook;
     vm.assignBookToSelectedUser = assignBookToSelectedUser;
 
     function assignBookToSelectedUser(requester, book) {
