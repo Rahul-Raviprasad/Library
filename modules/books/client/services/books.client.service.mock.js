@@ -69,11 +69,29 @@
         'desc': 'Algo book best!!',
         'title': 'Introduction to Algorithms'
       }];
-    return svc;
-    // ---------///////////////////////////////
 
-    function query() {
+    svc.getBooks = getBooks;
+    svc.createBook = createBook;
+    svc.getBookDetails = getBookDetails;
+    svc.updateBookDetails = updateBookDetails;
+    svc.deleteBook = deleteBook;
+    return svc;
+
+    // ---------------------------------------------------------------------
+    function getBooks() {
       return $q.when(books);
+    }
+    function createBook(book) {
+      return $q.when(book[0]);
+    }
+    function getBookDetails(bookId) {
+      return $q.when(books[0]);
+    }
+    function updateBookDetails(bookId, book) {
+      return $q.when(true);
+    }
+    function deleteBook(bookId) {
+      return $q.when(true);
     }
   }
 
