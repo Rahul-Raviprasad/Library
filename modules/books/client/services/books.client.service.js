@@ -13,6 +13,7 @@
     svc.createBook = createBook;
     svc.getBookDetails = getBookDetails;
     svc.updateBookDetails = updateBookDetails;
+    svc.deleteBook = deleteBook;
 
     return svc;
 
@@ -34,6 +35,11 @@
     }
     function updateBookDetails(bookId, book) {
       return $http.put('api/books/' + bookId, book).then(function successHandler(response) {
+        return response.data;
+      });
+    }
+    function deleteBook(bookId) {
+      return $http.delete('api/books/' + bookId).then(function successHandler(response) {
         return response.data;
       });
     }

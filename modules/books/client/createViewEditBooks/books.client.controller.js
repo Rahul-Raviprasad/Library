@@ -14,9 +14,9 @@
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
-    vm.remove = remove;
     vm.save = save;
     vm.edit = false;
+    vm.deleteBook = deleteBook;
 
     if ($stateParams.bookId) {
       BooksService.getBookDetails($stateParams.bookId).then(successfullFetchingBookDetails);
@@ -24,17 +24,8 @@
 
     function successfullFetchingBookDetails(data) {
       vm.book = data;
-      console.log(data._id);
-    }
-    // Remove existing Article
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.book.$remove($state.go('books.list'));
-      }
     }
 
-
-    // Save Article
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.bookForm');
@@ -50,6 +41,19 @@
       }
       function failureCreatingBook(res) {
         vm.error = res.data.message;
+      }
+    }
+
+    function deleteBook(book) {
+      if (window.confirm('Are you sure you want to remove this book from shelf permanently ?')) {
+        BooksService.deleteBook(book._id).then(successfullyDeleted, errorDeleting);
+      }
+      function successfullyDeleted(data) {
+        alert('Book has been removed successfully from the shelf');
+        $state.go('books.list');
+      }
+      function errorDeleting(data) {
+        alert('Cannot delete this book, you may need it in future! ');
       }
     }
   }
