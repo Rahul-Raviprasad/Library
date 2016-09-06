@@ -14,19 +14,17 @@
 
     });
 
-  BookDetailsEditCtrl.inject = [];
+  BookDetailsEditCtrl.inject = ['BooksService'];
 
-  function BookDetailsEditCtrl() {
+  function BookDetailsEditCtrl(BooksService) {
     var vm = this;
     vm.save = function() {
       if (vm.book._id) {
-        vm.book.$update(successCallback, errorCallback);
-        vm.edit = false;
-      } else {
-        vm.book.$save(successCallback, errorCallback);
+        BooksService.updateBookDetails(vm.book._id, vm.book).then(successCallback, errorCallback);
       }
 
       function successCallback(res) {
+        vm.edit = false;
         alert('Changes has been saved successfully');
       }
 

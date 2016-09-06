@@ -12,6 +12,7 @@
     svc.getBooks = getBooks;
     svc.createBook = createBook;
     svc.getBookDetails = getBookDetails;
+    svc.updateBookDetails = updateBookDetails;
 
     return svc;
 
@@ -28,6 +29,11 @@
     }
     function getBookDetails(bookId) {
       return $http.get('api/books/' + bookId).then(function successHandler(response) {
+        return response.data;
+      });
+    }
+    function updateBookDetails(bookId, book) {
+      return $http.put('api/books/' + bookId, book).then(function successHandler(response) {
         return response.data;
       });
     }
