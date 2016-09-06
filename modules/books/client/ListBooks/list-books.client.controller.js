@@ -121,7 +121,7 @@
 
 
     function cancelRequest(book) {
-      if (window.confirm('Are you sure you want to leave the queue? You may have to stand in the end of the queue once you leave!')) {
+      if (window.confirm('Are you sure you want to leave the queue? You may have to stand at the end of the queue once you leave!')) {
         var userEmail = vm.userEmail;
         removeUserFromQueue(book, userEmail);
       }
@@ -141,7 +141,7 @@
           for (var i = index; i <= book.queueList.length - 1; i++) {
             book.queueList[i].queueNumber--;
           }
-          book.$update(successCallback, errorCallback);
+          BooksService.updateBookDetails(book._id, book).then(successCallback, errorCallback);
         }
       }
     }
@@ -165,7 +165,7 @@
           book.queueList.push(reqObj);
           book.loggedUserRequested = true;
           book.loggedUserQueueNumber = reqObj.queueNumber;
-          book.$update(successCallback, errorCallback);
+          BooksService.updateBookDetails(book._id, book).then(successCallback, errorCallback);
         }
       }
       function successCallback(res) {
