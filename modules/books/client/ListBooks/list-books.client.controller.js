@@ -27,6 +27,15 @@
     vm.assignBookToSelectedUser = assignBookToSelectedUser;
 
     function assignBookToSelectedUser(requester, book) {
+      removeFromSubmittedBooks(book);
+      book.status = 'issued';
+      book.userName = requester.requesterName;
+      book.userEmail = requester.requesterEmail;
+      // BooksService.update({ bookId: book._id }, book);
+      removeUserFromQueue(book, requester.requesterEmail);
+    }
+
+    function removeFromSubmittedBooks(book) {
       var index = vm.submittedBooks.findIndex(
         function(subBook) {
           return subBook === book;
@@ -35,11 +44,6 @@
       if (index >= 0) {
         vm.submittedBooks.splice(index, 1);
       }
-      book.status = 'issued';
-      book.userName = requester.requesterName;
-      book.userEmail = requester.requesterEmail;
-      // BooksService.update({ bookId: book._id }, book);
-      removeUserFromQueue(book, requester.requesterEmail);
     }
 
     function changeSelectedBook(selectedItem) {
@@ -199,13 +203,13 @@
           book.status = 'available';
           book.userName = vm.userName;
           book.userEmail = vm.userEmail;
-          BooksService.updateBookDetails(book._id, book);
+          removeFromSubmittedBooks(book);
         } else {
           book.status = 'reserved';
-          BooksService.updateBookDetails(book._id, book);
           // vm.requesters = requesters(book);
           // send Email to the first person in the queue.
         }
+        BooksService.updateBookDetails(book._id, book);
       }
     }
 
