@@ -181,7 +181,7 @@
         book.status = 'issued';
         book.userName = vm.userName;
         book.userEmail = vm.userEmail;
-        BooksService.update({ bookId: book._id }, book);
+        BooksService.updateBookDetails(book._id, book);
       }
     }
 
@@ -189,7 +189,7 @@
       if (window.confirm('Are you sure you are done reading the book ?')) {
         book.userName = 'admin';
         book.userEmail = 'admin@admin.com';
-        BooksService.update({ bookId: book._id }, book);
+        BooksService.updateBookDetails(book._id, book);
       }
     }
 
@@ -199,10 +199,10 @@
           book.status = 'available';
           book.userName = vm.userName;
           book.userEmail = vm.userEmail;
-          BooksService.update({ bookId: book._id }, book);
+          BooksService.updateBookDetails(book._id, book);
         } else {
           book.status = 'reserved';
-          BooksService.update({ bookId: book._id }, book);
+          BooksService.updateBookDetails(book._id, book);
           // vm.requesters = requesters(book);
           // send Email to the first person in the queue.
         }
