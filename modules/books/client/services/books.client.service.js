@@ -17,31 +17,25 @@
 
     return svc;
 
-    // ///----/////
+    // ---------------------------------------------------------------------
     function getBooks() {
-      return $http.get('api/books').then(function successHandler(response) {
-        return response.data;
-      });
+      return $http.get('api/books').then(successHandler);
     }
     function createBook(book) {
-      return $http.post('api/books', book).then(function successHandler(response) {
-        return response.data;
-      });
+      return $http.post('api/books', book).then(successHandler);
     }
     function getBookDetails(bookId) {
-      return $http.get('api/books/' + bookId).then(function successHandler(response) {
-        return response.data;
-      });
+      return $http.get('api/books/' + bookId).then(successHandler);
     }
     function updateBookDetails(bookId, book) {
-      return $http.put('api/books/' + bookId, book).then(function successHandler(response) {
-        return response.data;
-      });
+      return $http.put('api/books/' + bookId, book).then(successHandler);
     }
     function deleteBook(bookId) {
-      return $http.delete('api/books/' + bookId).then(function successHandler(response) {
-        return response.data;
-      });
+      return $http.delete('api/books/' + bookId).then(successHandler);
+    }
+
+    function successHandler(response) {
+      return response.data;
     }
   }
 }());
