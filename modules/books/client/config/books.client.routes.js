@@ -28,9 +28,9 @@
         templateUrl: 'modules/books/client/createViewEditBooks/createBook/form-book.client.view.html',
         controller: 'BooksController',
         controllerAs: 'vm',
-        resolve: {
-          bookResolve: newBook
-        },
+        // resolve: {
+        //   bookResolve: newBook
+        // },
         data: {
           roles: ['user', 'admin'],
           pageTitle: 'Book Create'
@@ -63,26 +63,26 @@
         templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/view-book.client.view.html',
         controller: 'BooksController',
         controllerAs: 'vm',
-        resolve: {
-          bookResolve: getBook
-        },
+        // resolve: {
+        //   bookResolve: getBook
+        // },
         data: {
           pageTitle: 'Book {{ bookResolve.title }}'
         }
       });
   }
-
-  getBook.$inject = ['$stateParams', 'BooksService'];
-
-  function getBook($stateParams, BooksService) {
-    return BooksService.get({
-      bookId: $stateParams.bookId
-    }).$promise;
-  }
-
-  newBook.$inject = ['BooksService'];
-
-  function newBook(BooksService) {
-    return new BooksService();
-  }
+  //
+  // getBook.$inject = ['$stateParams', 'BooksService'];
+  //
+  // function getBook($stateParams, BooksService) {
+  //   return BooksService.get({
+  //     bookId: $stateParams.bookId
+  //   }).$promise;
+  // }
+  //
+  // newBook.$inject = ['BooksService'];
+  //
+  // function newBook(BooksService) {
+  //   return new BooksService();
+  // }
 }());
