@@ -12,7 +12,7 @@ angular
 AddReviewController.inject = [];
 function AddReviewController() {
   var vm = this;
-  vm.newReview = 'test';
+  vm.newReview = '';
   vm.addReview = addReview;
 
   function addReview() {

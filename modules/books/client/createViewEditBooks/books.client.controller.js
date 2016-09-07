@@ -21,10 +21,15 @@
 
     if ($stateParams.bookId) {
       BooksService.getBookDetails($stateParams.bookId).then(successfullFetchingBookDetails);
+      ReviewsService.getReviewsForBook($stateParams.bookId).then(successfullFetchingReviews);
     }
 
     function successfullFetchingBookDetails(data) {
       vm.book = data;
+    }
+
+    function successfullFetchingReviews(data) {
+      vm.allReviews = data[0].reviews;
     }
 
     function createReview(newReview, book) {

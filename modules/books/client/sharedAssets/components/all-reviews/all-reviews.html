@@ -35,4 +35,14 @@
        I don't Care !
     </div>
   </div>
+
+  <div ng-repeat="review in vm.src" class="row row-eq-height">
+    <div class="col-md-2">
+       {{ review.displayName }}
+    </div>
+    <div class="col-md-4">
+       {{ review.comments }}
+    </div>
+  </div>
+
 </div>

@@ -2,7 +2,7 @@ angular
   .module('books.component')
   .component('allReviews', {
     bindings: {
-
+      src: "="
     },
     controller: function () {
     },

@@ -86,25 +86,27 @@ exports.update = function (req, res) {
 /**
  * Delete a Review
  */
-exports.delete = function (req, res) {
-  var review = req.review;
-
-  review.find({ bookId: req.bookId }, { reviews: { $elemMatch: { reviewId: req.reviewId } } }).remove(function (err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.json(review);
-    }
-  });
-};
+// exports.delete = function (req, res) {
+//   var review = req.review;
+//
+//   review.find({ bookId: req.bookId }, { reviews: { $elemMatch: { reviewId: req.reviewId } } }).remove(function (err) {
+//     if (err) {
+//       return res.status(400).send({
+//         message: errorHandler.getErrorMessage(err)
+//       });
+//     } else {
+//       res.json(review);
+//     }
+//   });
+// };
 
 /**
  * List of Books
  */
 exports.list = function (req, res) {
-  Review.find({ bookId: req.bookId }).sort('-created').populate('user', 'displayName').exec(function (err, reviews) {
+  console.log(req.book);
+  // console.log(req.params.bookId);
+  Review.find({ bookId: req.params.bookId }).exec(function (err, reviews) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -116,19 +118,19 @@ exports.list = function (req, res) {
 };
 
 exports.findOneAndUpdate = function(req, res) {
-  console.log('Anoop......');
-  // console.log(req);
-  console.log(req.body);
+  // console.log('Anoop......');
+  // // console.log(req);
+  // console.log(req.body);
   // var bookId = mongoose.Types.ObjectId(req.book._id);
   Review.findOneAndUpdate({ bookId: req.body.bookId },
   { $push: { 'reviews': { comments: req.body.comments } } },
   { safe: true, upsert: true, new: true },
     function(err, model) {
       if (err) {
-        console.log(err);
+        // console.log(err);
       } else {
-        console.log(model);
-        console.log('done');
+        // console.log(model);
+        // console.log('done');
         res.status(200).send(model);
       }
     }

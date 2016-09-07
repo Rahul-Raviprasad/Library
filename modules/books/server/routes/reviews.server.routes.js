@@ -16,9 +16,9 @@ module.exports = function (app) {
     // .post(reviews.create);
 
   // Single book routes
-  app.route('/api/reviews/:bookReview')
-    // .get(reviews.findByIdAndUpdate)
-    .delete(reviews.delete);
+  app.route('/api/reviews/:bookId')
+    .get(reviews.list);
+    // .delete(reviews.delete);
     // .put(reviews.findOneAndUpdate);
 
 

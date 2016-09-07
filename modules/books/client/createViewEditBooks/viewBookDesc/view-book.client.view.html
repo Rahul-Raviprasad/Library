@@ -12,5 +12,5 @@
   </div>
   <div class="pull-left" ng-show="!vm.edit"><a class="btn btn-primary pull-right" ng-click="vm.deleteBook(vm.book)" ng-show="!edit" href="#">Delete Book</a></div>
   <add-review create-review="vm.createReview(newReview, vm.book)"></add-review>
-  <all-reviews class="col-md-12" src=""></all-reviews>
+  <all-reviews src="vm.allReviews" class="col-md-12" src=""></all-reviews>
 </section>
