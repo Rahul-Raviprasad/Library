@@ -22,13 +22,13 @@
   <div class="list-group">
 
       <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks">
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             <a href="#">
                 <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
             </a>
         </div>
-        <div class="col-md-10">
-          <div class="col-md-4">
+        <div class="col-md-10 col-sm-10">
+          <div class="col-md-4 col-sm-4">
             <h4 ng-bind="book.title"></h4>
             <h5 ng-bind="book.subtitle"></h5>
             <h5>Author: {{book.author}}</h5>
@@ -36,12 +36,12 @@
             <div>Category: {{book.category}}</div>
             <div>Location: {{book.location}}</div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4">
             <h5>Description: </h5>
             <p ng-bind="book.desc"></p>
           </div>
           <!--Action buttons should exist seperately-->
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4">
             <div class="book-action">
               <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail && book.userName !== 'admin'">
                 Issued to you</h5>
