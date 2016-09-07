@@ -119,11 +119,12 @@ exports.list = function (req, res) {
 
 exports.findOneAndUpdate = function(req, res) {
   // console.log('Anoop......');
-  // // console.log(req);
+  // console.log(req);
+  // console.log(req.user);
   // console.log(req.body);
   // var bookId = mongoose.Types.ObjectId(req.book._id);
   Review.findOneAndUpdate({ bookId: req.body.bookId },
-  { $push: { 'reviews': { comments: req.body.comments } } },
+  { $push: { 'reviews': { comments: req.body.comments, reviewerName: req.user.displayName, reviewerEmail: req.user.email } } },
   { safe: true, upsert: true, new: true },
     function(err, model) {
       if (err) {
