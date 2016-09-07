@@ -36,6 +36,7 @@
       ReviewsService.pushReviewToList(newReview, book).then(successfullBookReview, errorBookReview);
       function successfullBookReview(data) {
         alert('Thanks for your valuable review !');
+        vm.allReviews = data.reviews;
       }
       function errorBookReview(data) {
         alert('Could not add your review, kindly try after sometime.');
