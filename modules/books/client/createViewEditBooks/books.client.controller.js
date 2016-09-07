@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', '$state', 'BooksService', '$window', 'Authentication', '$stateParams'];
+  BooksController.$inject = ['$scope', '$state', 'BooksService', '$window', 'Authentication', '$stateParams', 'ReviewsService'];
 
-  function BooksController($scope, $state, BooksService, $window, Authentication, $stateParams) {
+  function BooksController($scope, $state, BooksService, $window, Authentication, $stateParams, ReviewsService) {
     var vm = this;
 
     // vm.book = book;
@@ -17,6 +17,7 @@
     vm.save = save;
     vm.edit = false;
     vm.deleteBook = deleteBook;
+    vm.createReview = createReview;
 
     if ($stateParams.bookId) {
       BooksService.getBookDetails($stateParams.bookId).then(successfullFetchingBookDetails);
@@ -24,6 +25,18 @@
 
     function successfullFetchingBookDetails(data) {
       vm.book = data;
+    }
+
+    function createReview(newReview, book) {
+      ReviewsService.pushReviewToList(newReview, book).then(successfullBookReview, errorBookReview);
+      function successfullBookReview(data) {
+        alert('Thanks for your valuable review !');
+      }
+      function errorBookReview(data) {
+        alert('Could not add your review, kindly try after sometime.');
+        // ReviewsService.createReview(newReview, book);
+      }
+      // ReviewsService.createReview(newReview, book);
     }
 
     function save(isValid) {
