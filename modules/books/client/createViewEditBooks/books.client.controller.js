@@ -29,7 +29,9 @@
     }
 
     function successfullFetchingReviews(data) {
-      vm.allReviews = data[0].reviews;
+      if (data.length) {
+        vm.allReviews = data[0].reviews;
+      }
     }
 
     function createReview(newReview, book) {
