@@ -17,5 +17,6 @@ function AddReviewController() {
 
   function addReview() {
     vm.createReview({ newReview: vm.newReview });
+    vm.newReview = '';
   }
 }
