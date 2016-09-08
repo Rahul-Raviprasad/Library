@@ -145,13 +145,16 @@
           for (var i = index; i <= book.queueList.length - 1; i++) {
             book.queueList[i].queueNumber--;
           }
-          BooksService.updateBookDetails(book._id, book).then(successCallback, errorCallback);
+          BooksService.updateBookDetails(book._id, book).then(updateBookHistoryAfterAssigning, errorCallback);
         }
       }
     }
 
-    function successCallback(res) {
+    function updateBookHistoryAfterAssigning(book) {
       alert('Done!');
+      var actionTaken = 'Book state has been changed to ' + book.status;
+      var comments = 'Book is assigned to ' + book.userName + ' who was in queue.';
+      BookHistoryService.pushTransactionToList(actionTaken, comments, book);
     }
     function errorCallback(res) {
       alert('Couldn\'t do');
@@ -193,7 +196,7 @@
       if (window.confirm('Are you sure you are done reading the book ?')) {
         book.userName = 'admin';
         book.userEmail = 'admin@admin.com';
-        BooksService.updateBookDetails(book._id, book);
+        BooksService.updateBookDetails(book._id, book).then(updateBookHistoryAfterSubmission);
       }
     }
 
@@ -232,6 +235,11 @@
     function updateBookHistoryAfterApproval(book) {
       var actionTaken = 'Book state has been changed to ' + book.status;
       var comments = 'Submit Request for the book is approved by ' + vm.userName;
+      BookHistoryService.pushTransactionToList(actionTaken, comments, book);
+    }
+    function updateBookHistoryAfterSubmission(book) {
+      var actionTaken = 'Book state has been changed to ' + book.status;
+      var comments = 'Book is submitted by ' + vm.userName;
       BookHistoryService.pushTransactionToList(actionTaken, comments, book);
     }
   }
