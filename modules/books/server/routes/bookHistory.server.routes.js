@@ -6,9 +6,9 @@
 var history = require('../controllers/reviews.server.controller');
 
 module.exports = function (app) {
-  app.route('/api/reviews')
+  app.route('/api/bookHistory')
     .put(history.findOneAndUpdate);
 
-  app.route('/api/reviews/:bookId')
+  app.route('/api/bookHistory/:bookId')
     .get(history.list);
 };
