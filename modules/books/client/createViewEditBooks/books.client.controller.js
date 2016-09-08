@@ -36,7 +36,11 @@
     }
 
     function createReview(newReview, book) {
-      ReviewsService.pushReviewToList(newReview, book).then(successfullBookReview, errorBookReview);
+      if (newReview.trim() !== '') {
+        ReviewsService.pushReviewToList(newReview, book).then(successfullBookReview, errorBookReview);
+      } else {
+        alert('Review cannot be empty! ');
+      }
       function successfullBookReview(data) {
         alert('Thanks for your valuable review !');
         vm.allReviews = data.reviews;
