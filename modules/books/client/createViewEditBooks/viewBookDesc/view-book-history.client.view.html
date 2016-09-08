@@ -1,0 +1,27 @@
+<div class="pull-left col-md-12">
+  <h3> Book History </h3>
+  <div class="row row-eq-height">
+    <div class="col-md-2">
+      <h4>Action</h5>
+    </div>
+    <div class="col-md-2">
+      <h4>Comments</h5>
+    </div>
+    <div class="col-md-4">
+      <h4>Date</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="item in vm.bookHistory" class="row row-eq-height">
+    <div class="col-md-2">
+       {{ item.action }}
+    </div>
+    <div class="col-md-2">
+       {{ item.comments }}
+    </div>
+    <div class="col-md-4">
+       {{ item.date }}
+    </div>
+  </div>
+
+</div>

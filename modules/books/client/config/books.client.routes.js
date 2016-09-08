@@ -69,6 +69,13 @@
         data: {
           pageTitle: 'Book {{ bookResolve.title }}'
         }
+      })
+      .state('books.history', {
+        url: '/history/:historyId',
+        params: { bookHistory: null },
+        templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/view-book-history.client.view.html',
+        controller: 'BooksController',
+        controllerAs: 'vm'
       });
   }
   //

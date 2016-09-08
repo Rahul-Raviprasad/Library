@@ -19,10 +19,14 @@
     vm.deleteBook = deleteBook;
     vm.createReview = createReview;
     vm.fileSelected = fileSelected;
+    vm.loadBookHistory = loadBookHistory;
+    // vm.bookHistory = [{ action: 'test', comments: 'NA', date: 'today' }, { action: 'test1', comments: 'NA', date: 'tomorrow' }];
 
     if ($stateParams.bookId) {
       BooksService.getBookDetails($stateParams.bookId).then(successfullFetchingBookDetails);
       ReviewsService.getReviewsForBook($stateParams.bookId).then(successfullFetchingReviews);
+    } else if ($stateParams.historyId) {
+      vm.bookHistory = $stateParams.bookHistory;
     }
 
     function successfullFetchingBookDetails(data) {
@@ -129,5 +133,22 @@
       oReader.readAsDataURL(oFile);
 
     }
+
+    function loadBookHistory(book) {
+      BookHistoryService.getBookHistoryForBook(book._id).then(successfullFetchingHistory);
+    }
+
+    function successfullFetchingHistory(bookHistory) {
+      if (bookHistory.length) {
+        vm.bookHistory = bookHistory[0].history;
+        $state.go('books.history', {
+          historyId: bookHistory[0]._id,
+          bookHistory: vm.bookHistory
+        });
+      } else {
+        alert('This book dont have any history');
+      }
+    }
+
   }
 }());
