@@ -14,9 +14,9 @@
 
     });
 
-  BookDetailsEditCtrl.inject = ['BooksService'];
+  BookDetailsEditCtrl.inject = ['BooksService', 'BookHistoryService'];
 
-  function BookDetailsEditCtrl(BooksService) {
+  function BookDetailsEditCtrl(BooksService, BookHistoryService) {
     var vm = this;
     vm.save = function() {
       if (vm.book._id) {
@@ -25,6 +25,9 @@
 
       function successCallback(res) {
         vm.edit = false;
+        var actionTaken = 'Book details got updated';
+        var comments = 'NA';
+        BookHistoryService.pushTransactionToList(actionTaken, comments, vm.book);
         alert('Changes has been saved successfully');
       }
 
