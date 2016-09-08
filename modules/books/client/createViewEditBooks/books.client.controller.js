@@ -18,6 +18,7 @@
     vm.edit = false;
     vm.deleteBook = deleteBook;
     vm.createReview = createReview;
+    vm.fileSelected = fileSelected;
 
     if ($stateParams.bookId) {
       BooksService.getBookDetails($stateParams.bookId).then(successfullFetchingBookDetails);
@@ -76,6 +77,50 @@
       function errorDeleting(data) {
         alert('Cannot delete this book, you may need it in future! ');
       }
+    }
+
+    function fileSelected() {
+      // get selected file element
+      var oFile = document.getElementById('book_cover').files[0];
+
+      // filter for image files
+      var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
+      if (! rFilter.test(oFile.type)) {
+        // Tech debt: throw error as image file file is not of supported format
+        return;
+      }
+
+      var iMaxFilesize = 1048576; // 1MB -Allow file to be only as big as 1MB
+      // little test for filesize
+      if (oFile.size > iMaxFilesize) {
+        document.getElementById('warnsize').style.display = 'block';
+        return;
+      }
+
+
+      var oImage = document.getElementById('book_image');
+
+      // prepare HTML5 FileReader
+      var oReader = new FileReader();
+      oReader.onload = function(e) {
+
+      // e.target.result contains the DataURL which we will use as a source of the image
+        oImage.src = e.target.result;
+
+        oImage.onload = function () { // binding onload event
+
+          // we are going to display some custom image information here
+          vm.oFile = oFile;
+          // 'Name: ' + oFile.name;
+          // 'Size: ' + oFile.size;
+          // 'Type: ' + oFile.type;
+          // 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
+        };
+      };
+
+      // read selected file as DataURL
+      oReader.readAsDataURL(oFile);
+
     }
   }
 }());

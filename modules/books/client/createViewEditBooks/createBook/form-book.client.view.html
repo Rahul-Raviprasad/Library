@@ -67,6 +67,7 @@
             <div class="mln">
               <div class="">
                 <img alt="Book Image" id="book_image" src="http://placehold.it/300x300/c1c1c1/c1c1c1">
+                <div><input type="file" name="book_cover" ng-model="vm.file" id="book_cover" onchange="angular.element(this).scope().vm.fileSelected()" /></div>
               </div>
               <div class="form-group">
                 <label class="control-label" for="imageUrl">Image Link</label>
