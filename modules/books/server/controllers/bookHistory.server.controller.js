@@ -26,13 +26,14 @@ exports.list = function (req, res) {
 
 exports.findOneAndUpdate = function(req, res) {
   BookHistory.findOneAndUpdate({ bookId: req.body.bookId },
-  { $push: { 'histroy': { action: req.body.comments, comments: req.user.displayName } } },
+  { $push: { 'history': { action: req.body.actionTaken, comments: req.body.comments } } },
   { safe: true, upsert: true, new: true },
     function(err, model) {
       if (err) {
+        console.log('error');
         console.log(err);
       } else {
-        // console.log(model);
+        console.log(model);
         // console.log('done');
         res.status(200).send(model);
       }

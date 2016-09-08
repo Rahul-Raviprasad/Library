@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', '$state', 'BooksService', '$window', 'Authentication', '$stateParams', 'ReviewsService'];
+  BooksController.$inject = ['$scope', '$state', 'BooksService', '$window', 'Authentication', '$stateParams', 'ReviewsService', 'BookHistoryService'];
 
-  function BooksController($scope, $state, BooksService, $window, Authentication, $stateParams, ReviewsService) {
+  function BooksController($scope, $state, BooksService, $window, Authentication, $stateParams, ReviewsService, BookHistoryService) {
     var vm = this;
 
     // vm.book = book;
@@ -61,6 +61,9 @@
 
       function successfullCreateBook(data) {
         vm.book = data;
+        var actionTaken = 'Book got created';
+        var comments = 'NA';
+        BookHistoryService.pushTransactionToList(actionTaken, comments, vm.book);
         $state.go('books.view', {
           bookId: data._id
         });

@@ -17,11 +17,12 @@ function BookHistoryService($http) {
     return $http.get('/api/bookHistory/' + bookId).then(successHandler);
   }
 
-  function pushTransactionToList(comments, book) {
-    var objReview = {};
-    objReview.bookId = book._id;
-    objReview.comments = comments;
-    return $http.put('api/bookHistory/', objReview).then(successHandler);
+  function pushTransactionToList(actionTaken, comments, book) {
+    var objHistory = {};
+    objHistory.bookId = book._id;
+    objHistory.comments = comments;
+    objHistory.actionTaken = actionTaken;
+    return $http.put('api/bookHistory/', objHistory).then(successHandler);
   }
 
   function successHandler(response) {

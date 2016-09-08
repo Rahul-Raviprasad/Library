@@ -3,7 +3,7 @@
 /**
  * Module dependencies
  */
-var history = require('../controllers/reviews.server.controller');
+var history = require('../controllers/bookHistory.server.controller');
 
 module.exports = function (app) {
   app.route('/api/bookHistory')
