@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksListController', BooksListController);
 
-  BooksListController.$inject = ['BooksService', 'Authentication'];
+  BooksListController.$inject = ['BooksService', 'Authentication', 'BookHistoryService'];
 
-  function BooksListController(BooksService, Authentication) {
+  function BooksListController(BooksService, Authentication, BookHistoryService) {
     var vm = this;
     vm.selectedItem = 'All';
     vm.categories = [];
@@ -185,7 +185,7 @@
         book.status = 'issued';
         book.userName = vm.userName;
         book.userEmail = vm.userEmail;
-        BooksService.updateBookDetails(book._id, book);
+        BooksService.updateBookDetails(book._id, book).then(updateBookHistory);
       }
     }
 
@@ -218,6 +218,12 @@
         // send email to the current book user with admin comments.
         alert('user is sent with the admin comments.');
       }
+    }
+
+    function updateBookHistory(data) {
+      var actionTaken = 'Book state has been changed to issued';
+      var comments = 'Book is issued to ' + vm.userName;
+      BookHistoryService.pushTransactionToList(actionTaken, comments, data);
     }
   }
 }());
