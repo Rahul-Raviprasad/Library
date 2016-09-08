@@ -209,14 +209,17 @@
           // vm.requesters = requesters(book);
           // send Email to the first person in the queue.
         }
-        BooksService.updateBookDetails(book._id, book);
+        BooksService.updateBookDetails(book._id, book).then(updateBookHistoryAfterApproval);
       }
     }
 
-    function reject() {
+    function reject(book) {
       if (window.confirm('Are you sure you want to reject ?')) {
         // send email to the current book user with admin comments.
         alert('user is sent with the admin comments.');
+        var actionTaken = 'Book submit request is rejected.';
+        var comments = 'Book is rejected by ' + vm.userName + ' and ' + book.userName + ' is summoned for clarification.';
+        BookHistoryService.pushTransactionToList(actionTaken, comments, book);
       }
     }
 
@@ -224,6 +227,12 @@
       var actionTaken = 'Book state has been changed to issued';
       var comments = 'Book is issued to ' + vm.userName;
       BookHistoryService.pushTransactionToList(actionTaken, comments, data);
+    }
+
+    function updateBookHistoryAfterApproval(book) {
+      var actionTaken = 'Book state has been changed to ' + book.status;
+      var comments = 'Submit Request for the book is approved by ' + vm.userName;
+      BookHistoryService.pushTransactionToList(actionTaken, comments, book);
     }
   }
 }());
