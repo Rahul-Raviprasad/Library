@@ -63,3 +63,9 @@ a:hover .header-profile-image {
 .row {
   background-color: #272d2d
 }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+}
