@@ -1,7 +1,6 @@
 {
-  "name": "meanjs",
-  "description": "Fullstack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
-  "homepage": "http://meanjs.org/",
+  "name": "library",
+  "description": "Fullstack JavaScript library",
   "license": "MIT",
   "dependencies": {
     "angular": "~1.5.0",
@@ -13,7 +12,8 @@
     "angular-resource": "~1.5.0",
     "angular-ui-router": "~0.2.18",
     "bootstrap": "~3.3.6",
-    "owasp-password-strength-test": "~1.3.0"
+    "owasp-password-strength-test": "~1.3.0",
+    "angular-carousel": "*"
   },
   "overrides": {
     "bootstrap": {
@@ -26,5 +26,8 @@
     "jquery": {
       "main": []
     }
+  },
+  "resolutions": {
+    "angular": "^1.5.0"
   }
 }
