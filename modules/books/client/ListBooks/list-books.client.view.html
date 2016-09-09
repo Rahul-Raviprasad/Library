@@ -78,7 +78,7 @@
                 ng-show="book.status == 'available'"
                 href="#">Issue <span class="glyphicon glyphicon-chevron-right"></span></a>
               <a class="btn btn-success" ng-click="vm.submitBook(book)"
-                ng-show="book.status == 'issued' && book.userEmail === vm.userEmail && book.userName !== 'admin' "
+                ng-show="book.status == 'issued' && book.userEmail === vm.userEmail"
                 href="#">Submit <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
           </div>
