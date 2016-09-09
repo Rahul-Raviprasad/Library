@@ -53,7 +53,7 @@ a:hover .header-profile-image {
   background-size: cover;
   -o-background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-position: center center;
   width: 100%;
   background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url(../img/header.jpg);
