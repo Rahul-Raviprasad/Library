@@ -45,3 +45,17 @@ a:hover .header-profile-image {
 .jumbotron.home {
   margin-top: 50px;
 }
+
+.cover {
+  min-height: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  width: 100%;
+  background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url(../img/header.jpg);
+  color: #fff;
+}
