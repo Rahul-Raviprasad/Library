@@ -19,7 +19,6 @@
     vm.deleteBook = deleteBook;
     vm.createReview = createReview;
     vm.fileSelected = fileSelected;
-    vm.loadBookHistory = loadBookHistory;
     // vm.bookHistory = [{ action: 'test', comments: 'NA', date: 'today' }, { action: 'test1', comments: 'NA', date: 'tomorrow' }];
 
     if ($stateParams.bookId) {
@@ -130,12 +129,6 @@
       // read selected file as DataURL
       oReader.readAsDataURL(oFile);
 
-    }
-
-    function loadBookHistory(book) {
-      $state.go('books.history', {
-        bookId: book._id
-      });
     }
 
   }
