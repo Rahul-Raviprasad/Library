@@ -85,3 +85,7 @@ html, body {
 .carousel-container .col-md-2.col-sm-2 {
   margin-top: 100px;
 }
+
+.carousel-container li img {
+  max-width: 200px;
+}
