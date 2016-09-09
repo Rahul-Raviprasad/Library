@@ -6,10 +6,10 @@ BookHistoryController.inject = ['$stateParams', 'BookHistoryService'];
 
 function BookHistoryController($stateParams, BookHistoryService) {
   var vm = this;
-  var bookId = $stateParams.bookId;
+  vm.bookId = $stateParams.bookId;
 
-  if (bookId) {
-    BookHistoryService.getBookHistoryForBook(bookId).then(successfullFetchingHistory);
+  if (vm.bookId) {
+    BookHistoryService.getBookHistoryForBook(vm.bookId).then(successfullFetchingHistory);
   }
 
   function successfullFetchingHistory(bookHistory) {
