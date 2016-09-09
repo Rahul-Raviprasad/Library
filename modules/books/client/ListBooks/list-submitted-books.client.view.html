@@ -1,21 +1,6 @@
-<section class="book-list">
+<section ng-show="vm.submittedBooks.length" class="book-list">
   <div class="page-header">
-    <!--Filters for Books-->
-    <!-- <div class="page-filters"> -->
-       <!-- todo write styles for page-filters class-->
-      <!-- <div class="dropdown" ng-class="{open: vm.opener}">
-        <a href="#" class="btn btn-primary dropdown-toggle"
-           data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false" ng-click="vm.opener= !vm.opener">
-           {{vm.selectedItem}} <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" >
-          <li ng-model="category" ng-click="vm.chooseCategory(category)" \
-            ng-repeat="category in vm.categories | filter:vm.filterCategories"><a href="#">{{category}}</a></li>
-        </ul>
-      </div> -->
-      <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
-    <!-- </div> -->
+    <dropdown src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
   </div>
 
   <div class="list-group">
@@ -56,3 +41,6 @@
       </div>
   </div>
 </section>
+<div ng-show="!vm.submittedBooks.length">
+  <h3>Users have not submitted any book till now !</h3>
+</div>
