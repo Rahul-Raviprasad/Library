@@ -67,6 +67,8 @@ exports.update = function (req, res) {
   book.queueList = req.body.queueList;
   book.loggedUserRequested = req.body.loggedUserRequested;
   book.loggedUserQueueNumber = req.body.loggedUserQueueNumber;
+  book.isBookWithAdmin = req.body.isBookWithAdmin;
+  book.submitRequestApproved = req.body.submitRequestApproved;
   book.save(function (err) {
     if (err) {
       return res.status(400).send({

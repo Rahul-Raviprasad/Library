@@ -31,6 +31,8 @@
       book.status = 'issued';
       book.userName = requester.requesterName;
       book.userEmail = requester.requesterEmail;
+      book.isBookWithAdmin = false;
+      book.submitRequestApproved = false;
       // BooksService.update({ bookId: book._id }, book);
       removeUserFromQueue(book, requester.requesterEmail);
     }
@@ -60,7 +62,7 @@
     }
 
     function submittedBooks(book) {
-      return book.userName === 'admin';
+      return book.status === 'reserved';
     }
 
     BooksService.getBooks().then(successfullGetBooksList);
@@ -194,22 +196,27 @@
 
     function submitBook(book) {
       if (window.confirm('Are you sure you are done reading the book ?')) {
-        book.userName = 'admin';
-        book.userEmail = 'admin@admin.com';
+        // book.userName = 'admin';
+        // book.userEmail = 'admin@admin.com';
+        book.status = 'reserved';
+        book.isBookWithAdmin = true;
         BooksService.updateBookDetails(book._id, book).then(updateBookHistoryAfterSubmission);
       }
     }
 
     function approve(book) {
       if (window.confirm('Are you sure you want to approve ?')) {
+        book.userName = '';
+        book.userEmail = '';
+        book.submitRequestApproved = true;
         if (book.queueList.length <= 0) {
           book.status = 'available';
-          book.userName = vm.userName;
-          book.userEmail = vm.userEmail;
+          book.isBookWithAdmin = false;
+          book.submitRequestApproved = false;
           removeFromSubmittedBooks(book);
         } else {
           book.status = 'reserved';
-          // vm.requesters = requesters(book);
+          book.isBookWithAdmin = true;
           // send Email to the first person in the queue.
         }
         BooksService.updateBookDetails(book._id, book).then(updateBookHistoryAfterApproval);

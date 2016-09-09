@@ -30,10 +30,10 @@ exports.findOneAndUpdate = function(req, res) {
   { safe: true, upsert: true, new: true },
     function(err, model) {
       if (err) {
-        console.log('error');
+        // console.log('error');
         console.log(err);
       } else {
-        console.log(model);
+        // console.log(model);
         // console.log('done');
         res.status(200).send(model);
       }

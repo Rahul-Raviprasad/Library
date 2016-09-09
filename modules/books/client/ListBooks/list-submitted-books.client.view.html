@@ -40,11 +40,11 @@
             <p ng-bind="book.desc"></p>
           </div>
           <!--Action buttons should exist seperately-->
-          <a class="btn btn-success" ng-click="vm.approve(book)" ng-show="book.status === 'issued'"
+          <a class="btn btn-success" ng-click="vm.approve(book)" ng-show="!book.submitRequestApproved"
             href="#">Approve <span class="glyphicon glyphicon-chevron-right"></span></a>
-          <a class="btn btn-danger" ng-click="vm.reject(book)" ng-show="book.status === 'issued'"
+          <a class="btn btn-danger" ng-click="vm.reject(book)" ng-show="!book.submitRequestApproved"
             href="#">Reject<span class="glyphicon glyphicon-chevron-right"></span></a>
-          <p ng-show="book.status === 'reserved'">Assign to:
+          <p ng-show="!!book.submitRequestApproved">Assign to:
             <dropdown src="book" selected-item="book.selectedRequester" \
              width="100" height="" on-change="vm.assignBookToSelectedUser(selectedItem, book)" ></dropdown>
           </p>

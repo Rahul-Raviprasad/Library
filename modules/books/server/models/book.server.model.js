@@ -148,7 +148,15 @@ var BookSchema = new Schema({
     type: Boolean,
     default: false
   },
-  loggedUserQueueNumber: Number
+  loggedUserQueueNumber: Number,
+  isBookWithAdmin: {
+    type: Boolean,
+    default: false
+  },
+  submitRequestApproved: {
+    type: Boolean,
+    default: false
+  }
 });
 
 mongoose.model('Book', BookSchema);
