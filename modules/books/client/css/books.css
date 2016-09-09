@@ -44,3 +44,7 @@
 dropdown {
   display: inline-block;
 }
+.btn {
+  margin: 5px;
+  border-radius: 15px;
+}
