@@ -73,3 +73,15 @@ html, body {
 .popular-books {
   height: 300px;
 }
+
+.home .rn-carousel-control {
+  position: static;
+}
+
+.carousel-container {
+  margin: 0 auto;
+}
+
+.carousel-container .col-md-2.col-sm-2 {
+  margin-top: 100px;
+}
