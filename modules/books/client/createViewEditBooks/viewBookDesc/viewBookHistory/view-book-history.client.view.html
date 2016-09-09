@@ -1,4 +1,4 @@
-<div class="pull-left col-md-12">
+<div class="pull-left col-md-12" ng-show="vm.bookHistory.length">
   <h3> Book History </h3>
   <div class="row row-eq-height">
     <div class="col-md-2">
@@ -12,16 +12,19 @@
     </div>
   </div>
 
-  <div ng-repeat="item in vm.bookHistory" class="row row-eq-height">
+  <div ng-repeat="history in vm.bookHistory" class="row row-eq-height">
     <div class="col-md-2">
-       {{ item.action }}
+       {{ history.action }}
     </div>
     <div class="col-md-2">
-       {{ item.comments }}
+       {{ history.comments }}
     </div>
     <div class="col-md-4">
-       {{ item.date }}
+       {{ history.date }}
     </div>
   </div>
+</div>
 
+<div ng-show="!vm.bookHistory.length">
+  <h3>Transactions history for this book is not recorded yet !</h3>
 </div>

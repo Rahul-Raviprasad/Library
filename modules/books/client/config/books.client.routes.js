@@ -62,19 +62,12 @@
         url: '/:bookId',
         templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/view-book.client.view.html',
         controller: 'BooksController',
-        controllerAs: 'vm',
-        // resolve: {
-        //   bookResolve: getBook
-        // },
-        data: {
-          pageTitle: 'Book {{ bookResolve.title }}'
-        }
+        controllerAs: 'vm'
       })
       .state('books.history', {
-        url: '/history/:historyId',
-        params: { bookHistory: null },
-        templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/view-book-history.client.view.html',
-        controller: 'BooksController',
+        url: '/history/:bookId',
+        templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/viewBookHistory/view-book-history.client.view.html',
+        controller: 'BookHistoryController',
         controllerAs: 'vm'
       });
   }

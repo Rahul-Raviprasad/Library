@@ -25,8 +25,6 @@
     if ($stateParams.bookId) {
       BooksService.getBookDetails($stateParams.bookId).then(successfullFetchingBookDetails);
       ReviewsService.getReviewsForBook($stateParams.bookId).then(successfullFetchingReviews);
-    } else if ($stateParams.historyId) {
-      vm.bookHistory = $stateParams.bookHistory;
     }
 
     function successfullFetchingBookDetails(data) {
@@ -135,19 +133,9 @@
     }
 
     function loadBookHistory(book) {
-      BookHistoryService.getBookHistoryForBook(book._id).then(successfullFetchingHistory);
-    }
-
-    function successfullFetchingHistory(bookHistory) {
-      if (bookHistory.length) {
-        vm.bookHistory = bookHistory[0].history;
-        $state.go('books.history', {
-          historyId: bookHistory[0]._id,
-          bookHistory: vm.bookHistory
-        });
-      } else {
-        alert('This book dont have any history');
-      }
+      $state.go('books.history', {
+        bookId: book._id
+      });
     }
 
   }
