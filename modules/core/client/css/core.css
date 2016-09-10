@@ -42,7 +42,7 @@ a:hover .header-profile-image {
   display: inline;
 }
 
-.jumbotron.home {
+.home {
   margin-top: 50px;
 }
 
@@ -88,4 +88,8 @@ html, body {
 
 .carousel-container li img {
   max-width: 200px;
+}
+
+.home .lead {
+   padding-top: 1em;
 }
