@@ -1,15 +1,14 @@
 <div class="pull-left book-details">
-  <div class="field"><b>Book ID : </b>{{ vm.book._id }}</div>
   <div class="field"><b>Author : </b> {{ vm.book.author }}</div>
   <div class="field"><b>Publications : </b>{{ vm.book.publications }}</div>
   <div class="field"><b>Category : </b>{{ vm.book.category }}</div>
   <div class="field"><b>Status : </b>{{ vm.book.status }}</div>
   <div class="field"><b>ISBN : </b>{{ vm.book.isbn }}</div>
   <div class="field"><b>Possessor : </b>{{ vm.book.possessor }}</div>
+  <div class="field"><b>Condition : </b>{{ vm.book.condition }}</div>
   <div class="field"><b>Description : </b>{{ vm.book.desc }}</div>
 </div>
 <div class="pull-left book-details">
-  <div class="field"><b>Condition : </b>{{ vm.book.condition }}</div>
   <div class="field"><b>Review Link : </b><a target="_blank" /
     href="{{ vm.book.reviewLink }}">
     {{ vm.book.reviewLink }}</a></div>
