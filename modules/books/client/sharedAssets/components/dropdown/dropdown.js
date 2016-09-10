@@ -10,6 +10,7 @@
         width: '=',
         height: '=',
         multiselect: '=',
+        dropdownName: '@',
         onChange: '&'
       },
       controller: DropdownController,
