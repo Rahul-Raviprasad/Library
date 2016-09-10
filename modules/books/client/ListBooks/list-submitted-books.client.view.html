@@ -1,10 +1,9 @@
-<section ng-show="vm.submittedBooks.length" class="book-list">
+<section class="book-list">
   <div class="page-header">
     <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
   </div>
-
-  <div class="list-group">
-
+  <h3> Total number of books: {{ vm.submittedBooks.length }}</h3>
+  <div ng-show="vm.submittedBooks.length" class="list-group">
       <div class="row row-eq-height" ng-repeat="book in vm.submittedBooks">
         <div class="col-md-2">
             <a href="#">
@@ -40,7 +39,7 @@
         </div>
       </div>
   </div>
+  <div ng-show="!vm.submittedBooks.length">
+    <h3>No Books found !!!</h3>
+  </div>
 </section>
-<div ng-show="!vm.submittedBooks.length">
-  <h3>Users have not submitted any book till now !</h3>
-</div>
