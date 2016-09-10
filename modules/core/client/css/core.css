@@ -61,7 +61,9 @@ a:hover .header-profile-image {
 }
 
 .row {
-  background-color: #272d2d
+  background-color: #272d2d;
+  margin: 1%;
+  padding: 1%;
 }
 
 html, body {
