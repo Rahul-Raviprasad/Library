@@ -225,11 +225,19 @@
 
     function reject(book) {
       if (window.confirm('Are you sure you want to reject ?')) {
+        book.submitRequestApproved = false;
+        book.status = 'issued';
+        book.isBookWithAdmin = false;
+        BooksService.updateBookDetails(book._id, book).then(successfulRejection);
         // send email to the current book user with admin comments.
-        alert('user is sent with the admin comments.');
         var actionTaken = 'Book submit request is rejected.';
         var comments = 'Book is rejected by ' + vm.userName + ' and ' + book.userName + ' is summoned for clarification.';
         BookHistoryService.pushTransactionToList(actionTaken, comments, book);
+      }
+
+      function successfulRejection(data) {
+        removeFromSubmittedBooks(book);
+        alert('user is sent with the admin comments.');
       }
     }
 
