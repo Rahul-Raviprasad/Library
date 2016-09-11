@@ -1,29 +1,20 @@
 <section class="book-list">
   <div class="page-header">
     <!--Filters for Books-->
-    <!-- <div class="page-filters"> -->
-       <!-- todo write styles for page-filters class-->
-      <!-- <div class="dropdown" ng-class="{open: vm.opener}">
-        <a href="#" class="btn btn-primary dropdown-toggle"
-           data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false" ng-click="vm.opener= !vm.opener">
-           {{vm.selectedItem}} <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" >
-          <li ng-model="category" ng-click="vm.chooseCategory(category)" \
-            ng-repeat="category in vm.categories | filter:vm.filterCategories"><a href="#">{{category}}</a></li>
-        </ul>
-      </div> -->
-      <div>
-        <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
-      </div>
-    <!-- </div> -->
+      <div class="row book-filters">
+        <div class="col-md-6 col-sm-6">
+          <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <input type="text" class="search-box form-control" placeholder="Search for your favourite Book" ng-model="query">
+        </div>
+      </div><!--book filters-->
   </div>
 
   <!--List of Books-->
   <div class="list-group">
     <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
-      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks">
+      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | filter: query">
         <div class="col-md-2 col-sm-2">
             <a href="#">
                 <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
