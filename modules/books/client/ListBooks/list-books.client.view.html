@@ -29,12 +29,12 @@
             <div>Category: {{book.category}}</div>
             <div>Location: {{book.location}}</div>
           </div>
-          <div class="col-md-4 col-sm-4">
+          <div class="col-md-3 col-sm-4">
             <h5>Description: </h5>
             <p ng-bind="book.desc"></p>
           </div>
           <!--Action buttons should exist seperately-->
-          <div class="col-md-4 col-sm-4">
+          <div class="col-md-5 col-sm-4">
             <div class="book-action">
               <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail">
                 Issued to you</h5>
