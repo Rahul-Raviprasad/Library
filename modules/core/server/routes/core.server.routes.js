@@ -1,5 +1,8 @@
 'use strict';
 
+var cas = require('connect-cas');
+
+
 module.exports = function (app) {
   // Root routing
   var core = require('../controllers/core.server.controller');
@@ -11,5 +14,8 @@ module.exports = function (app) {
   app.route('/:url(api|modules|lib)/*').get(core.renderNotFound);
 
   // Define application route
-  app.route('/*').get(core.renderIndex);
+  // cas.ssout('/routename'), cas.serviceValidate(), cas.authenticate()
+  app.route('/*').get(cas.ssout('/routename'), cas.serviceValidate(), cas.authenticate(), core.renderIndex);
+  // core.renderIndex
+
 };

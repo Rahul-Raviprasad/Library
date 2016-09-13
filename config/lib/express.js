@@ -20,6 +20,7 @@ var config = require('../config'),
   path = require('path'),
   _ = require('lodash'),
   lusca = require('lusca');
+var cas = require('connect-cas');
 
 /**
  * Initialize local variables
@@ -46,6 +47,8 @@ module.exports.initLocalVariables = function (app) {
     res.locals.url = req.protocol + '://' + req.headers.host + req.originalUrl;
     next();
   });
+
+
 };
 
 /**
@@ -226,6 +229,26 @@ module.exports.configureSocketIO = function (app, db) {
 module.exports.init = function (db) {
   // Initialize express app
   var app = express();
+
+  app.use(session({
+    secret: 'keyboard cat',
+    cookie: {},
+    resave: true,
+    saveUninitialized: true
+  }));
+
+  cas.configure({
+    host: 'corridor.pramati.com',
+    protocol: 'https',
+    paths: {
+      validate: '/cas/validate',
+      serviceValidate: '/cas/p3/serviceValidate',
+      proxyValidate: '/cas/p3/proxyValidate',
+      proxy: '/cas/proxy',
+      login: '/cas/login',
+      logout: '/cas/logout'
+    }
+  });
 
   // Initialize local variables
   this.initLocalVariables(app);

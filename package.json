@@ -16,6 +16,7 @@
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {
+    "connect-cas": "git://github.com/uidev547/connect-cas.git",
     "acl": "~0.4.9",
     "async": "~1.5.2",
     "body-parser": "~1.15.0",

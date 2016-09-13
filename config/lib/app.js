@@ -8,6 +8,10 @@ var config = require('../config'),
   express = require('./express'),
   chalk = require('chalk'), // Terminal string styling
   seed = require('./seed');
+var session = require('express-session');
+var cas = require('connect-cas');
+
+//  var expressApp = express();
 
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
@@ -27,6 +31,7 @@ module.exports.init = function init(callback) {
   mongoose.connect(function (db) {
     // Initialize express
     var app = express.init(db);
+
     if (callback) callback(app, db, config);
 
   });

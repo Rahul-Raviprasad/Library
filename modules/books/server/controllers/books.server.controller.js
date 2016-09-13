@@ -101,6 +101,7 @@ exports.delete = function (req, res) {
  * List of Books
  */
 exports.list = function (req, res) {
+  console.log('Rahul and madhu says yo' + JSON.stringify(req.session));
   Book.find().sort('-created').populate('user', 'displayName').exec(function (err, books) {
     if (err) {
       return res.status(400).send({
