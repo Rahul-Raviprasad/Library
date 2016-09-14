@@ -13,6 +13,13 @@
 
   <!--List of Books-->
   <div class="list-group">
+    <!-- <div ng-show="vm.requestSuccessful" class="alert alert-success">
+      <strong>Success!</strong> Indicates a successful or positive action.
+    </div> -->
+    <!-- <div ng-show="vm.requestSuccessful" class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Success!</strong> Indicates a successful or positive action.
+    </div> -->
     <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
       <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | filter: query">
         <div class="col-md-2 col-sm-2">

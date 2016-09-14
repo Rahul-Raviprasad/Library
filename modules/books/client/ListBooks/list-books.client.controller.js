@@ -179,6 +179,7 @@
       }
       function successCallback(res) {
         alert('Your request has been successfully placed!');
+        // vm.requestSuccessful = true;
       }
       function errorCallback(res) {
         alert('Unable to place your request, please contact admin for more details.');
