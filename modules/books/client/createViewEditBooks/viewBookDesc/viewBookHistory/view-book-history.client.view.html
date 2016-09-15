@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div ng-repeat="history in vm.bookHistory" class="row row-eq-height">
+  <div ng-repeat="history in vm.bookHistory | orderBy: '-date'" class="row row-eq-height">
     <div class="col-md-4">
        {{ history.action }}
     </div>
