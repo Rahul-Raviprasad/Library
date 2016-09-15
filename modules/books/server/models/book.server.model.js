@@ -43,11 +43,11 @@ var BookSchema = new Schema({
     type: String,
     default: 'available'
   },
-  possessor: {
-    type: String,
-    trim: true,
-    default: 'admin'
-  },
+  // possessor: {
+  //   type: String,
+  //   trim: true,
+  //   default: 'admin'
+  // },
   isbn: {
     type: String,
     default: '',

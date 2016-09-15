@@ -5,11 +5,11 @@
   <div class="field"><b>Category : </b><input class="form-control" type="text" ng-model="vm.book.category" value="{{ vm.book.category }}"></input></div>
   <div class="field"><b>Status : </b><input class="form-control" type="text" ng-model="vm.book.status" value="{{ vm.book.status }}"></input></div>
   <div class="field"><b>ISBN : </b><input class="form-control" type="text" ng-model="vm.book.isbn" value="{{ vm.book.isbn }}"></input></div>
-  <div class="field"><b>Possessor : </b><input class="form-control" type="text" ng-model="vm.book.userName" value="{{ vm.book.possessor }}"></input></div>
   <div class="field"><b>Condition : </b><input class="form-control" type="text" ng-model="vm.book.condition" value="{{ vm.book.condition }}"></input></div>
   <div class="field"><b> Description : </b><input class="form-control" type="text" ng-model="vm.book.desc" value="{{ vm.book.desc }}"></input></div>
 </div>
 <div class="pull-left book-details">
+  <div class="field"><b>Possessor : </b>{{ vm.book.userName }}</div>
   <div class="field"><b>Review Link : </b>
     <input class="form-control" type="text" ng-model="vm.book.reviewLink" value="{{ vm.book.reviewLink }}"></input></div>
   <div class="field"><b>Location : </b><input class="form-control" type="text" ng-model="vm.book.location" value="{{ vm.book.location }}"></input></div>
