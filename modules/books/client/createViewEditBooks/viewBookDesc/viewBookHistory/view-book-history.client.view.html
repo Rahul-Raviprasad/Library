@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div ng-repeat="history in vm.bookHistory | orderBy: '-date'" class="row row-eq-height">
+  <div ng-repeat="history in vm.bookHistory | date:'MM/dd/yyyy' | orderBy: '-date'" class="row row-eq-height">
     <div class="col-md-4">
        {{ history.action }}
     </div>
@@ -29,7 +29,7 @@
        {{ history.comments }}
     </div>
     <div class="col-md-4">
-       {{ history.date }}
+       {{ history.date.substring(0, history.date.length - 14).trim() }}
     </div>
   </div>
 </div>
