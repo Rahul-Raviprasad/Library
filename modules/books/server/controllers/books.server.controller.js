@@ -54,6 +54,7 @@ exports.update = function (req, res) {
   book.publications = req.body.publications;
   book.category = req.body.category;
   book.isbn = req.body.isbn;
+  book.imageUrl = req.body.imageUrl;
   // book.possessor = req.body.possessor;
   book.createdOn = req.body.createdOn;
   book.createdBy = req.body.createdBy;
