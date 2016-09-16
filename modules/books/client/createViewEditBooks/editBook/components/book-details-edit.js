@@ -14,13 +14,18 @@
 
     });
 
-  BookDetailsEditCtrl.inject = ['BooksService', 'BookHistoryService'];
+  BookDetailsEditCtrl.inject = ['BooksService', 'BookHistoryService', '$scope'];
 
-  function BookDetailsEditCtrl(BooksService, BookHistoryService) {
+  function BookDetailsEditCtrl(BooksService, BookHistoryService, $scope) {
     var vm = this;
-    vm.save = function() {
-      if (vm.book._id) {
-        BooksService.updateBookDetails(vm.book._id, vm.book).then(successCallback, errorCallback);
+    vm.save = function(isValid) {
+      if (isValid) {
+        if (vm.book._id) {
+          BooksService.updateBookDetails(vm.book._id, vm.book).then(successCallback, errorCallback);
+        }
+      } else {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.bookForm');
+        return false;
       }
 
       function successCallback(res) {

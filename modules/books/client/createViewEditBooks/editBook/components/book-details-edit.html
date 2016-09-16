@@ -1,4 +1,4 @@
-<div class="pull-left book-details">
+<!-- <div class="pull-left book-details">
   <div class="field"><b> Title : </b><input class="form-control" type="text" ng-model="vm.book.title" value="{{ vm.book.title }}"></input></div>
   <div class="field"><b>Author : </b><input class="form-control" type="text" ng-model="vm.book.author" value="{{ vm.book.author }}"></input></div>
   <div class="field"><b>Publications : </b><input class="form-control" type="text" ng-model="vm.book.publications" value="{{ vm.book.publications }}"></input></div>
@@ -18,4 +18,111 @@
     <a class="btn btn-primary" ng-click="vm.save()" href="#">Save</a>
     <a class="btn btn-primary" ng-click="vm.edit=false" href="#">Cancel</a>
   </div>
-</div>
+</div> -->
+
+
+<form name="vm.form.bookForm" class="form-horizontal" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
+  <fieldset>
+    <div class="row-fluid">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="title">Category</label>
+          <select id="book_id" class="form-control" ng-model="vm.book.category">
+            <option value="Fiction">Fiction</option>
+            <option value="Non Fiction">Non Fiction</option>
+            <option value="Technical">Technical</option>
+            <option value="Magazine">Magazine</option>
+          </select>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" size="30" type="text" ng-model="vm.book.title" id="title" class="form-control" placeholder="Title" required>
+          <div ng-messages="vm.form.bookForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Book title is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="author">Author</label>
+          <input name="author" size="30" type="text" ng-model="vm.book.author" id="author" class="form-control" placeholder="Author" required>
+          <div ng-messages="vm.form.bookForm.author.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Author name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="publication">Publication</label>
+          <input name="publication" size="30" type="text" ng-model="vm.book.publications" id="publication" class="form-control" placeholder="Publication" required>
+          <div ng-messages="vm.form.bookForm.publication.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Publication name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="condition">Condition</label>
+          <input name="condition" size="30" type="text" ng-model="vm.book.condition" id="condition" class="form-control" placeholder="Condition" required>
+          <div ng-messages="vm.form.bookForm.condition.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Condition is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="isbn">ISBN</label>
+          <input name="isbn" size="30" type="text" ng-model="vm.book.isbn" id="isbn" class="form-control" placeholder="ISBN" required>
+          <div ng-messages="vm.form.bookForm.isbn.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">ISBN is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="contribution">Contributed By</label>
+          <input name="contributedBy" size="30" type="text" ng-model="vm.book.contributedBy" id="contributedBy" class="form-control" placeholder="Contributed By">
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="desc">Description</label>
+          <textarea name="desc" data-ng-model="vm.book.desc" id="desc" class="form-control" cols="10" rows="10" placeholder="Description"></textarea>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mln">
+          <div class="">
+            <img alt="Book Image" id="book_image" src="http://placehold.it/300x300/c1c1c1/c1c1c1">
+            <div><input type="file" name="book_cover" ng-model="vm.file" id="book_cover" onchange="angular.element(this).scope().vm.fileSelected()" /></div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="imageUrl">Image Link</label>
+            <input required name="imageLink" size="30" type="url" ng-model="vm.book.imageUrl" id="imageLink" class="form-control" placeholder="ImageUrl">
+            <div ng-messages="vm.form.bookForm.imageLink.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Image Link is required.</p>
+            </div>
+          </div>
+          <br>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="review_link">Review Link</label>
+            <input required name="reviewLink" size="30" type="url" ng-model="vm.book.reviewLink" id="reviewLink" class="form-control" placeholder="Review Link">
+            <div ng-messages="vm.form.bookForm.reviewLink.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Review Link is required.</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="location">Location</label>
+            <select id="location" class="form-control" ng-model="vm.book.location">
+              <option value="Midtown-GF Floor">Midtown-GF Floor</option>
+              <option value="Midtown-2nd Floor">Midtown-2nd Floor</option>
+              <option value="Midtown-3rd Floor">Midtown-3rd Floor</option>
+              <option value="Midtown-4th Floor">Midtown-4th Floor</option>
+              <option value="Midtown-5th Floor">Midtown-5th Floor</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-12 form-group">
+        <button type="submit" class="btn btn-default">Create</button>
+      </div> -->
+      <div >
+        <button type="submit" class="btn btn-default">Update</button>
+        <!-- <a type="submit" class="btn btn-primary" ng-click="vm.save()" href="#">Save</a> -->
+        <a class="btn btn-primary" ng-click="vm.edit=false" href="#">Cancel</a>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
