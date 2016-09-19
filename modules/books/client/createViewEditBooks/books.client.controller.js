@@ -19,6 +19,14 @@
     vm.deleteBook = deleteBook;
     vm.createReview = createReview;
     vm.fileSelected = fileSelected;
+    vm.editBook = editBook;
+
+    function editBook() {
+      vm.edit = true;
+      $state.go('books.edit', {
+        bookId: vm.book._id
+      });
+    }
     // vm.bookHistory = [{ action: 'test', comments: 'NA', date: 'today' }, { action: 'test1', comments: 'NA', date: 'tomorrow' }];
 
     if ($stateParams.bookId) {

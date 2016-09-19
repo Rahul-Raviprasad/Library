@@ -64,6 +64,12 @@
         controller: 'BooksController',
         controllerAs: 'vm'
       })
+      .state('books.edit', {
+        url: '/edit/:bookId',
+        templateUrl: 'modules/books/client/createViewEditBooks/editBook/components/book-details-edit.html',
+        controller: 'BookDetailsEditCtrl',
+        controllerAs: 'vm'
+      })
       .state('books.history', {
         url: '/history/:bookId',
         templateUrl: 'modules/books/client/createViewEditBooks/viewBookDesc/viewBookHistory/view-book-history.client.view.html',

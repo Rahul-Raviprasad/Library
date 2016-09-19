@@ -9,11 +9,11 @@
     <h1>{{ vm.book.title }}</h1>
   </div>
   <book-details-view ng-show="!vm.edit" book="vm.book"></book-details-view>
-  <book-details-edit ng-show="vm.edit" edit="vm.edit" book="vm.book"></book-details-edit>
+  <book-details-edit ng-show="vm.edit" edit="vm.edit"></book-details-edit>
   <div ng-show="!vm.edit" class="pull-left book-img">
     <img ng-src="modules/books/client/img/head_first_javascript.jpg" alt="Yet to be uploaded"></img>
   </div>
-  <div class="pull-left"><a class="btn btn-primary pull-right" ng-click="vm.edit=true" ng-show="!vm.edit" href="#">Edit Book</a></div>
+  <div class="pull-left"><a class="btn btn-primary pull-right" ng-click="vm.editBook()" ng-show="!vm.edit" href="#">Edit Book</a></div>
   <div class="pull-left" ng-show="!vm.edit"><a class="btn btn-primary pull-right" ng-click="vm.deleteBook(vm.book)" ng-show="!edit" href="#">Delete Book</a></div>
   <div ng-show="!vm.edit">
     <add-review create-review="vm.createReview(newReview, vm.book)"></add-review>
