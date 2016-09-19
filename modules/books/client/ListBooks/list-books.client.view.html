@@ -21,7 +21,7 @@
       <strong>Success!</strong> Indicates a successful or positive action.
     </div> -->
     <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
-      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | orderBy:'title'">
+      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | filter: query | orderBy:'title'">
         <div class="col-md-2 col-sm-2">
             <a href="#">
                 <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
