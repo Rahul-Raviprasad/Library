@@ -66,7 +66,7 @@
       })
       .state('books.edit', {
         url: '/edit/:bookId',
-        templateUrl: 'modules/books/client/createViewEditBooks/editBook/components/book-details-edit.html',
+        templateUrl: 'modules/books/client/createViewEditBooks/editBook/book-details-edit.html',
         controller: 'BookDetailsEditCtrl',
         controllerAs: 'vm'
       })
