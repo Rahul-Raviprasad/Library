@@ -8,7 +8,7 @@
     </a>
     <h1>{{ vm.book.title }}</h1>
   </div>
-  <book-details-view ng-show="!vm.edit" edit="vm.edit" book="vm.book"></book-details-view>
+  <book-details-view ng-show="!vm.edit" book="vm.book"></book-details-view>
   <book-details-edit ng-show="vm.edit" edit="vm.edit" book="vm.book"></book-details-edit>
   <div ng-show="!vm.edit" class="pull-left book-img">
     <img ng-src="modules/books/client/img/head_first_javascript.jpg" alt="Yet to be uploaded"></img>

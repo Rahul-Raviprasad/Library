@@ -18,6 +18,11 @@
 
   function BookDetailsEditCtrl(BooksService, BookHistoryService, $scope) {
     var vm = this;
+    // vm.tempBook = vm.book;
+    vm.cancel = function() {
+      vm.edit = false;
+      // vm.book = vm.tempBook;
+    };
     vm.save = function(isValid) {
       if (isValid) {
         if (vm.book._id) {

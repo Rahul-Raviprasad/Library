@@ -5,8 +5,7 @@
     .module('books.component')
     .component('bookDetailsView', {
       bindings: {
-        book: '=',
-        edit: '='
+        book: '='
       },
       controller: function () {
       },
