@@ -15,6 +15,12 @@
       roles: ['*']
     });
 
+    menuService.addMenuItem('topbar', {
+      title: 'My Books',
+      state: 'myBooks',
+      roles: ['*']
+    });
+
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'books', {
       title: 'List Books',

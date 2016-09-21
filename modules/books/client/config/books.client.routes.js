@@ -14,6 +14,15 @@
         url: '/books',
         template: '<ui-view/>'
       })
+      .state('myBooks', {
+        url: '/myBooks',
+        templateUrl: 'modules/books/client/MyBooks/my-books.client.view.html',
+        controller: 'MyBooksController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'My Books'
+        }
+      })
       .state('books.list', {
         url: '',
         templateUrl: 'modules/books/client/listBooks/list-books.client.view.html',
