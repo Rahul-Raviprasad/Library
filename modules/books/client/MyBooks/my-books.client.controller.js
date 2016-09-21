@@ -2,15 +2,16 @@ angular
   .module('books')
   .controller('MyBooksController', MyBooksController);
 
-MyBooksController.$inject = ['BooksService', 'Authentication'];
+MyBooksController.$inject = ['BooksService', 'Authentication', 'BookHistoryService'];
 
-function MyBooksController(BooksService, Authentication) {
+function MyBooksController(BooksService, Authentication, BookHistoryService) {
   var vm = this;
   vm.myBooks = [];
   vm.categories = [];
   vm.categories.push('All');
   vm.selectedItem = 'All';
   vm.userEmail = Authentication.user.email;
+  vm.submitBook = submitBook;
 
   BooksService.getBooks().then(successfullGetBooksList);
 
@@ -27,5 +28,21 @@ function MyBooksController(BooksService, Authentication) {
     }
     return false;
     // return book.userEmail === Authentication.user.email;
+  }
+
+  function submitBook(book) {
+    if (window.confirm('Are you sure you are done reading the book ?')) {
+      // book.userName = 'admin';
+      // book.userEmail = 'admin@admin.com';
+      book.status = 'reserved';
+      book.isBookWithAdmin = true;
+      BooksService.updateBookDetails(book._id, book).then(updateBookHistoryAfterSubmission);
+    }
+  }
+
+  function updateBookHistoryAfterSubmission(book) {
+    var actionTaken = 'Book state has been changed to ' + book.status;
+    var comments = 'Book is submitted by ' + vm.userName;
+    BookHistoryService.pushTransactionToList(actionTaken, comments, book);
   }
 }
