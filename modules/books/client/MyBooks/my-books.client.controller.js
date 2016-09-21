@@ -12,11 +12,13 @@ function MyBooksController(BooksService, Authentication, BookHistoryService) {
   vm.selectedItem = 'All';
   vm.userEmail = Authentication.user.email;
   vm.submitBook = submitBook;
+  vm.changeSelectedBook = changeSelectedBook;
 
   BooksService.getBooks().then(successfullGetBooksList);
 
   function successfullGetBooksList(bookList) {
     vm.myBooks = bookList.filter(myBooks);
+    vm.filteredBooks = vm.myBooks;
   }
 
   function myBooks(book) {
@@ -44,5 +46,17 @@ function MyBooksController(BooksService, Authentication, BookHistoryService) {
     var actionTaken = 'Book state has been changed to ' + book.status;
     var comments = 'Book is submitted by ' + vm.userName;
     BookHistoryService.pushTransactionToList(actionTaken, comments, book);
+  }
+
+  function changeSelectedBook(selectedItem) {
+    vm.selectedItem = selectedItem;
+    if (vm.selectedItem === 'All') {
+      vm.filteredBooks = vm.myBooks;
+    } else {
+      vm.filteredBooks = vm.myBooks.filter(filterBooks);
+    }
+  }
+  function filterBooks(book) {
+    return book.category === vm.selectedItem;
   }
 }

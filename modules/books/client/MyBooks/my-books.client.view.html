@@ -2,9 +2,9 @@
   <div class="page-header">
     <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
   </div>
-  <h3> Total number of books: {{ vm.myBooks.length }}</h3>
-  <div ng-show="vm.myBooks.length" class="list-group">
-      <div class="row row-eq-height" ng-repeat="book in vm.myBooks | orderBy:'title'">
+  <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
+  <div ng-show="vm.filteredBooks.length" class="list-group">
+      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | orderBy:'title'">
         <div class="col-md-2">
             <a href="#">
                 <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
@@ -53,7 +53,7 @@
         </div>
       </div>
   </div>
-  <div ng-show="!vm.myBooks.length">
+  <div ng-show="!vm.filteredBooks.length">
     <h3>No Books found !!!</h3>
   </div>
 </section>
