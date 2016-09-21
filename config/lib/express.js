@@ -20,6 +20,7 @@ var config = require('../config'),
   path = require('path'),
   _ = require('lodash'),
   lusca = require('lusca');
+  // cas authentication
 var cas = require('connect-cas');
 
 /**

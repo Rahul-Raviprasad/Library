@@ -9,6 +9,7 @@ var path = require('path'),
   passport = require('passport'),
   User = mongoose.model('User');
 
+// Not required for CAS
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
   '/authentication/signin',

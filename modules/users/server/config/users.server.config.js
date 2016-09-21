@@ -26,10 +26,11 @@ module.exports = function (app, db) {
     });
   });
 
+  // Currently not supporting authentication using OAuth
   // Initialize strategies
-  config.utils.getGlobbedPaths(path.join(__dirname, './strategies/**/*.js')).forEach(function (strategy) {
-    require(path.resolve(strategy))(config);
-  });
+  // config.utils.getGlobbedPaths(path.join(__dirname, './strategies/**/*.js')).forEach(function (strategy) {
+  //   require(path.resolve(strategy))(config);
+  // });
 
   // Add passport's middleware
   app.use(passport.initialize());
