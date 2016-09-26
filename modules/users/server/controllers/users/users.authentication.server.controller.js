@@ -153,23 +153,23 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
         if (!user) {
           var possibleUsername = providerUserProfile.username || ((providerUserProfile.email) ? providerUserProfile.email.split('@')[0] : '');
 
-          User.findUniqueUsername(possibleUsername, null, function (availableUsername) {
-            user = new User({
-              firstName: providerUserProfile.firstName,
-              lastName: providerUserProfile.lastName,
-              username: availableUsername,
-              displayName: providerUserProfile.displayName,
-              email: providerUserProfile.email,
-              profileImageURL: providerUserProfile.profileImageURL,
-              provider: providerUserProfile.provider,
-              providerData: providerUserProfile.providerData
-            });
-
-            // And save the user
-            user.save(function (err) {
-              return done(err, user);
-            });
-          });
+          // User.findUniqueUsername(possibleUsername, null, function (availableUsername) {
+          //   user = new User({
+          //     firstName: providerUserProfile.firstName,
+          //     lastName: providerUserProfile.lastName,
+          //     username: availableUsername,
+          //     displayName: providerUserProfile.displayName,
+          //     email: providerUserProfile.email,
+          //     profileImageURL: providerUserProfile.profileImageURL,
+          //     provider: providerUserProfile.provider,
+          //     providerData: providerUserProfile.providerData
+          //   });
+          //
+          //   // And save the user // this need to be from CAS
+          //   user.save(function (err) {
+          //     return done(err, user);
+          //   });
+          // });
         } else {
           return done(err, user);
         }

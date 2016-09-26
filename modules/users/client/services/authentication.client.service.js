@@ -19,7 +19,8 @@
         '_id': '57e2e87b9756d7029216025f',
         'created': '2016-09-21T20:07:23.390Z',
         'roles': [
-          'user'
+          'user',
+          'admin'
         ],
         'profileImageURL': 'modules/users/client/img/profile/default.png',
         'email': 'rahul@gmail.com',

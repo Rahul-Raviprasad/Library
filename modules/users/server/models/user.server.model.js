@@ -13,16 +13,16 @@ var mongoose = require('mongoose'),
 /**
  * A Validation function for local strategy properties
  */
-var validateLocalStrategyProperty = function (property) {
-  return ((this.provider !== 'local' && !this.updated) || property.length);
-};
+// var validateLocalStrategyProperty = function (property) {
+//   return ((this.provider !== 'local' && !this.updated) || property.length);
+// };
 
 /**
  * A Validation function for local strategy email
  */
-var validateLocalStrategyEmail = function (email) {
-  return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }));
-};
+// var validateLocalStrategyEmail = function (email) {
+//   return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }));
+// };
 
 /**
  * User Schema
@@ -31,14 +31,12 @@ var UserSchema = new Schema({
   firstName: {
     type: String,
     trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your first name']
+    default: ''
   },
   lastName: {
     type: String,
     trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your last name']
+    default: ''
   },
   displayName: {
     type: String,
@@ -52,13 +50,10 @@ var UserSchema = new Schema({
     },
     lowercase: true,
     trim: true,
-    default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
+    default: ''
   },
   username: {
     type: String,
-    unique: 'Username already exists',
-    required: 'Please fill in a username',
     lowercase: true,
     trim: true
   },
@@ -151,24 +146,24 @@ UserSchema.methods.authenticate = function (password) {
 /**
  * Find possible not used username
  */
-UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
-  var _this = this;
-  var possibleUsername = username.toLowerCase() + (suffix || '');
-
-  _this.findOne({
-    username: possibleUsername
-  }, function (err, user) {
-    if (!err) {
-      if (!user) {
-        callback(possibleUsername);
-      } else {
-        return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
-      }
-    } else {
-      callback(null);
-    }
-  });
-};
+// UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
+//   var _this = this;
+//   var possibleUsername = username.toLowerCase() + (suffix || '');
+//
+//   _this.findOne({
+//     username: possibleUsername
+//   }, function (err, user) {
+//     if (!err) {
+//       if (!user) {
+//         callback(possibleUsername);
+//       } else {
+//         return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+//       }
+//     } else {
+//       callback(null);
+//     }
+//   });
+// };
 
 /**
 * Generates a random passphrase that passes the owasp test
