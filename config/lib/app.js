@@ -8,10 +8,7 @@ var config = require('../config'),
   // express here represents express file used for initializing the express app and not express npm module
   express = require('./express'),
   chalk = require('chalk'), // Terminal string styling
-  seed = require('./seed'),
-  // session ans cas added for cas authentication
-  session = require('express-session'),
-  cas = require('connect-cas');
+  seed = require('./seed');
 
 /**
  * Seeds the Database
