@@ -64,6 +64,7 @@ a:hover .header-profile-image {
   background-color: #272d2d;
   margin: 1%;
   padding: 1%;
+  border: 1px solid;
 }
 
 html, body {
