@@ -7,7 +7,7 @@
       <div class="row row-eq-height" ng-repeat="book in vm.submittedBooks | orderBy:'title'">
         <div class="col-md-2">
             <a href="#">
-                <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
+                <img class="img-responsive" ng-src="{{ book.imageURL }}" />
             </a>
         </div>
         <div class="col-md-10">
