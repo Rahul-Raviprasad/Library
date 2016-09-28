@@ -5,9 +5,14 @@
   <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
   <div ng-show="vm.filteredBooks.length" class="list-group">
       <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | orderBy:'title'">
-        <div class="col-md-2">
+        <div ng-show="!!book.imageURL" class="col-md-2">
             <a href="#">
                 <img class="img-responsive" ng-src="{{ book.imageURL }}" />
+            </a>
+        </div>
+        <div ng-show="!book.imageURL" class="col-md-2 col-sm-2">
+            <a href="#">
+                <img class="img-responsive" ng-src="modules/books/client/img/default_book.jpeg" alt="Yet to be uploaded"></img>
             </a>
         </div>
         <div class="col-md-10">
