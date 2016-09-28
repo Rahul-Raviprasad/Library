@@ -57,31 +57,6 @@ describe('User CRUD tests', function () {
     });
   });
 
-  it('should be able to register a new user', function (done) {
-
-    _user.username = 'register_new_user';
-    _user.email = 'register_new_user_@test.com';
-
-    agent.post('/api/auth/signup')
-      .send(_user)
-      .expect(200)
-      .end(function (signupErr, signupRes) {
-        // Handle signpu error
-        if (signupErr) {
-          return done(signupErr);
-        }
-
-        signupRes.body.username.should.equal(_user.username);
-        signupRes.body.email.should.equal(_user.email);
-        // Assert a proper profile image has been set, even if by default
-        signupRes.body.profileImageURL.should.not.be.empty();
-        // Assert we have just the default 'user' role
-        signupRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
-        signupRes.body.roles.indexOf('user').should.equal(0);
-        return done();
-      });
-  });
-
   it('should be able to login successfully and logout successfully', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)

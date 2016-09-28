@@ -116,35 +116,6 @@
           expect(scope.vm.error).toEqual('Unknown user');
         });
       });
-
-      describe('$scope.signup()', function () {
-        it('should register with correct data', function () {
-          // Test expected GET request
-          scope.vm.authentication.user = 'Fred';
-          $httpBackend.when('POST', '/api/auth/signup').respond(200, 'Fred');
-
-          scope.vm.signup(true);
-          $httpBackend.flush();
-
-          // test scope value
-          expect(scope.vm.authentication.user).toBe('Fred');
-          expect(scope.vm.error).toEqual(null);
-          expect($location.url()).toBe('/');
-        });
-
-        it('should fail to register with duplicate Username', function () {
-          // Test expected POST request
-          $httpBackend.when('POST', '/api/auth/signup').respond(400, {
-            'message': 'Username already exists'
-          });
-
-          scope.vm.signup(true);
-          $httpBackend.flush();
-
-          // Test scope value
-          expect(scope.vm.error).toBe('Username already exists');
-        });
-      });
     });
 
     describe('Logged in user', function () {

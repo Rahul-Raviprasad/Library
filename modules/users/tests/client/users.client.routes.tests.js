@@ -156,25 +156,6 @@
         });
       });
 
-      describe('Signup Route', function () {
-        var signupstate;
-        beforeEach(inject(function ($state) {
-          signupstate = $state.get('authentication.signup');
-        }));
-
-        it('Should have the correct URL', function () {
-          expect(signupstate.url).toEqual('/signup');
-        });
-
-        it('Should not be abstract', function () {
-          expect(signupstate.abstract).toBe(undefined);
-        });
-
-        it('Should have templateUrl', function () {
-          expect(signupstate.templateUrl).toBe('modules/users/client/views/authentication/signup.client.view.html');
-        });
-      });
-
       describe('Signin Route', function () {
         var signinstate;
         beforeEach(inject(function ($state) {
