@@ -5,15 +5,14 @@
     .module('users')
     .controller('PasswordController', PasswordController);
 
-  PasswordController.$inject = ['$scope', '$stateParams', '$http', '$location', 'Authentication', 'PasswordValidator'];
+  PasswordController.$inject = ['$scope', '$stateParams', '$http', '$location', 'Authentication'];
 
-  function PasswordController($scope, $stateParams, $http, $location, Authentication, PasswordValidator) {
+  function PasswordController($scope, $stateParams, $http, $location, Authentication) {
     var vm = this;
 
     vm.resetUserPassword = resetUserPassword;
     vm.askForPasswordReset = askForPasswordReset;
     vm.authentication = Authentication;
-    vm.getPopoverMsg = PasswordValidator.getPopoverMsg;
 
     // If user is signed in then redirect back home
     if (vm.authentication.user) {
