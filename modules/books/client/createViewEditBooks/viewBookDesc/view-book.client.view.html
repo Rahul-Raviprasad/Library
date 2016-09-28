@@ -12,7 +12,7 @@
   <book-details-edit ng-show="vm.edit" edit="vm.edit"></book-details-edit>
   <div ng-show="!vm.edit" class="pull-left book-img">
     <!-- <img ng-src="modules/books/client/img/head_first_javascript.jpg" alt="Yet to be uploaded"></img> -->
-    <img ng-src="{{vm.book.imageURL}}" alt="Yet to be uploaded"></img>
+    <img ng-src="{{vm.book.imageURL}}" alt="Yet to be uploaded" class="user-profile-picture"></img>
   </div>
   <div class="pull-left"><a class="btn btn-primary pull-right" ng-click="vm.editBook()" ng-show="!vm.edit" href="#">Edit Book</a></div>
   <div class="pull-left" ng-show="!vm.edit"><a class="btn btn-danger pull-right" ng-click="vm.deleteBook(vm.book)" ng-show="!edit" href="#">Delete Book</a></div>

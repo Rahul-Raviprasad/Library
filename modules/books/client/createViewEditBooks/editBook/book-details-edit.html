@@ -84,12 +84,15 @@
       <div class="col-md-6">
         <div class="mln">
           <div class="">
-            <img alt="Book Image" id="book_image" ng-src="{{ vm.book.imageURL }}">
-            <div><input type="file" name="book_cover" ng-model="vm.file" id="book_cover" onchange="angular.element(this).scope().vm.fileSelected()" /></div>
+            <img alt="Book Image" id="book_image" ng-src="{{ vm.book.imageURL }}" class="user-profile-picture">
+            <div>
+              <!-- <input type="file" name="book_cover" ng-model="vm.file" id="book_cover" onchange="angular.element(this).scope().vm.fileSelected()" /> -->
+              <input type="file" nv-file-select uploader="vm.uploader">
+            </div>
           </div>
           <div class="form-group" show-errors>
             <label class="control-label" for="imageUrl">Image Link</label>
-            <input required name="imageLink" size="30" type="url" ng-model="vm.book.imageURL" id="imageLink" class="form-control" placeholder="ImageUrl">
+            <input required name="imageLink" size="30" type="url" ng-model="vm.book.imageUrl" id="imageLink" class="form-control" placeholder="ImageUrl">
             <div ng-messages="vm.form.bookForm.imageLink.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Image Link is required.</p>
             </div>
