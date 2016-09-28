@@ -231,26 +231,6 @@ module.exports.init = function (db) {
   // Initialize express app
   var app = express();
 
-  app.use(session({
-    secret: 'keyboard cat',
-    cookie: {},
-    resave: true,
-    saveUninitialized: true
-  }));
-
-  cas.configure({
-    host: 'corridor.pramati.com',
-    protocol: 'https',
-    paths: {
-      validate: '/cas/validate',
-      serviceValidate: '/cas/p3/serviceValidate',
-      proxyValidate: '/cas/p3/proxyValidate',
-      proxy: '/cas/proxy',
-      login: '/cas/login',
-      logout: '/cas/logout'
-    }
-  });
-
   // Initialize local variables
   this.initLocalVariables(app);
 
@@ -268,6 +248,19 @@ module.exports.init = function (db) {
 
   // Initialize Express session
   this.initSession(app, db);
+
+  cas.configure({
+    host: 'corridor.pramati.com',
+    protocol: 'https',
+    paths: {
+      validate: '/cas/validate',
+      serviceValidate: '/cas/p3/serviceValidate',
+      proxyValidate: '/cas/p3/proxyValidate',
+      proxy: '/cas/proxy',
+      login: '/cas/login',
+      logout: '/cas/logout'
+    }
+  });
 
   // Initialize Modules configuration
   this.initModulesConfiguration(app);

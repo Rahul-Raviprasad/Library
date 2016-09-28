@@ -9,6 +9,8 @@ var _ = require('lodash'),
 
 /**
  * User middleware
+ * Checks if the id is a valid ObjectId, then checks in DB whether based on id, if found sets req.profile to the user object returned, calls next()
+ * else calls by passing error next()
  */
 exports.userByID = function (req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
