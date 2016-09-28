@@ -57,24 +57,6 @@
         });
       });
 
-      describe('Picture Route', function () {
-        var picturestate;
-        beforeEach(inject(function ($state) {
-          picturestate = $state.get('settings.picture');
-        }));
-
-        it('Should have the correct URL', function () {
-          expect(picturestate.url).toEqual('/picture');
-        });
-
-        it('Should not be abstract', function () {
-          expect(picturestate.abstract).toBe(undefined);
-        });
-
-        it('Should have templateUrl', function () {
-          expect(picturestate.templateUrl).toBe('modules/users/client/views/settings/change-profile-picture.client.view.html');
-        });
-      });
     });
 
     describe('Authentication Route Config', function () {

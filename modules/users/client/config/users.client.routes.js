@@ -41,9 +41,6 @@
       })
       .state('settings.picture', {
         url: '/picture',
-        templateUrl: 'modules/users/client/views/settings/change-profile-picture.client.view.html',
-        controller: 'ChangeProfilePictureController',
-        controllerAs: 'vm',
         data: {
           pageTitle: 'Settings picture'
         }
