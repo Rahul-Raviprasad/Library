@@ -5,14 +5,14 @@
  */
 var config = require('../config'),
   mongoose = require('./mongoose'),
+  // express here represents express file used for initializing the express app and not express npm module
   express = require('./express'),
   chalk = require('chalk'), // Terminal string styling
   seed = require('./seed');
-var session = require('express-session');
-var cas = require('connect-cas');
 
-//  var expressApp = express();
-
+/**
+ * Seeds the Database
+ */
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
     console.log(chalk.bold.red('Warning:  Database seeding is turned on'));
