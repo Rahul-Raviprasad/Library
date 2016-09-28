@@ -38,44 +38,6 @@
         });
       });
 
-      describe('Profile Route', function () {
-        var profilestate;
-        beforeEach(inject(function ($state) {
-          profilestate = $state.get('settings.profile');
-        }));
-
-        it('Should have the correct URL', function () {
-          expect(profilestate.url).toEqual('/profile');
-        });
-
-        it('Should not be abstract', function () {
-          expect(profilestate.abstract).toBe(undefined);
-        });
-
-        it('Should have templateUrl', function () {
-          expect(profilestate.templateUrl).toBe('modules/users/client/views/settings/edit-profile.client.view.html');
-        });
-      });
-
-      describe('Password Route', function () {
-        var passwordstate;
-        beforeEach(inject(function ($state) {
-          passwordstate = $state.get('settings.password');
-        }));
-
-        it('Should have the correct URL', function () {
-          expect(passwordstate.url).toEqual('/password');
-        });
-
-        it('Should not be abstract', function () {
-          expect(passwordstate.abstract).toBe(undefined);
-        });
-
-        it('Should have templateUrl', function () {
-          expect(passwordstate.templateUrl).toBe('modules/users/client/views/settings/change-password.client.view.html');
-        });
-      });
-
       describe('Accounts Route', function () {
         var accountsstate;
         beforeEach(inject(function ($state) {
@@ -113,27 +75,6 @@
           expect(picturestate.templateUrl).toBe('modules/users/client/views/settings/change-profile-picture.client.view.html');
         });
       });
-
-      describe('Handle Trailing Slash', function () {
-        beforeEach(inject(function ($state, $rootScope, _Authentication_) {
-          Authentication.user = {
-            name: 'user',
-            roles: ['user']
-          };
-
-          $state.go('settings.profile');
-          $rootScope.$digest();
-        }));
-
-        it('Should remove trailing slash', inject(function ($state, $location, $rootScope) {
-          $location.path('settings/profile/');
-          $rootScope.$digest();
-
-          expect($location.path()).toBe('/settings/profile');
-          expect($state.current.templateUrl).toBe('modules/users/client/views/settings/edit-profile.client.view.html');
-        }));
-      });
-
     });
 
     describe('Authentication Route Config', function () {

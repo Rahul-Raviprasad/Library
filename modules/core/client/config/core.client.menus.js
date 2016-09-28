@@ -20,11 +20,6 @@
     });
 
     menuService.addSubMenuItem('account', 'settings', {
-      title: 'Edit Profile',
-      state: 'settings.profile'
-    });
-
-    menuService.addSubMenuItem('account', 'settings', {
       title: 'Edit Profile Picture',
       state: 'settings.picture'
     });
