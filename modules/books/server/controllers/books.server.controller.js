@@ -6,6 +6,8 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Book = mongoose.model('Book'),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -54,7 +56,7 @@ exports.update = function (req, res) {
   book.publications = req.body.publications;
   book.category = req.body.category;
   book.isbn = req.body.isbn;
-  book.imageUrl = req.body.imageUrl;
+  book.imageURL = req.body.imageURL;
   // book.possessor = req.body.possessor;
   book.createdOn = req.body.createdOn;
   book.createdBy = req.body.createdBy;
@@ -136,4 +138,73 @@ exports.bookByID = function (req, res, next, id) {
     req.book = book;
     next();
   });
+};
+
+exports.changeBookPicture = function (req, res) {
+  var user = req.user;
+  var upload = multer(config.uploads.bookImageUpload).single('newProfilePicture');
+  var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+  console.log('testttttttttt');
+  // console.log(req);
+  // console.log(req.user);
+  // console.log(req.body);
+  // Filtering to upload only images
+  upload.fileFilter = profileUploadFileFilter;
+  upload(req, res, function (uploadError) {
+    if (uploadError) {
+      return res.status(400).send({
+        message: 'Error occurred while uploading profile picture'
+      });
+    } else {
+      // user.profileImageURL = config.uploads.bookImageUpload.dest + req.file.filename;
+      res.json(config.uploads.bookImageUpload.dest + req.file.filename);
+
+     // user.save(function (saveError) {
+     //   if (saveError) {
+     //     return res.status(400).send({
+     //       message: errorHandler.getErrorMessage(saveError)
+     //     });
+     //   } else {
+     //     req.login(user, function (err) {
+     //       if (err) {
+     //         res.status(400).send(err);
+     //       } else {
+     //         res.json(user);
+     //       }
+     //     });
+     //   }
+     // });
+    }
+  });
+  // if (user) {
+  //   upload(req, res, function (uploadError) {
+  //     if (uploadError) {
+  //       return res.status(400).send({
+  //         message: 'Error occurred while uploading profile picture'
+  //       });
+  //     } else {
+  //       user.profileImageURL = config.uploads.bookImageUpload.dest + req.file.filename;
+  //
+  //       // user.save(function (saveError) {
+  //       //   if (saveError) {
+  //       //     return res.status(400).send({
+  //       //       message: errorHandler.getErrorMessage(saveError)
+  //       //     });
+  //       //   } else {
+  //       //     req.login(user, function (err) {
+  //       //       if (err) {
+  //       //         res.status(400).send(err);
+  //       //       } else {
+  //       //         res.json(user);
+  //       //       }
+  //       //     });
+  //       //   }
+  //       // });
+  //     }
+  //   });
+  // } else {
+  //   res.status(400).send({
+  //     message: 'User is not signed in'
+  //   });
+  // }
 };

@@ -92,7 +92,7 @@ var BookSchema = new Schema({
     default: '',
     trim: true
   },
-  imageUrl: {
+  imageURL: {
     type: String,
     default: '',
     trim: true

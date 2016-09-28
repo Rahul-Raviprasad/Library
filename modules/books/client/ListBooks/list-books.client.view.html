@@ -24,7 +24,7 @@
       <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | filter: query | orderBy:'title'">
         <div class="col-md-2 col-sm-2">
             <a href="#">
-                <img class="img-responsive" ng-src="modules/books/client/img/head_first_javascript.jpg" />
+                <img class="img-responsive" ng-src="{{ book.imageURL }}" />
             </a>
         </div>
         <div class="col-md-10 col-sm-10">

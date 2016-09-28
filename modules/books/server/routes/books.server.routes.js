@@ -18,6 +18,10 @@ module.exports = function (app) {
     .put(books.update)
     .delete(books.delete);
 
+  app.route('/api/book/picture')
+    // .all(booksPolicy.isAllowed)
+    .post(books.changeBookPicture);
+
   // Finish by binding the book middleware
   app.param('bookId', books.bookByID);
 };

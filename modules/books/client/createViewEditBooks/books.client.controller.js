@@ -5,9 +5,9 @@
     .module('books')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', '$state', 'BooksService', '$window', 'Authentication', '$stateParams', 'ReviewsService', 'BookHistoryService'];
+  BooksController.$inject = ['$scope', '$state', 'BooksService', '$window', 'Authentication', '$stateParams', 'ReviewsService', 'BookHistoryService', '$timeout', 'FileUploader'];
 
-  function BooksController($scope, $state, BooksService, $window, Authentication, $stateParams, ReviewsService, BookHistoryService) {
+  function BooksController($scope, $state, BooksService, $window, Authentication, $stateParams, ReviewsService, BookHistoryService, $timeout, FileUploader) {
     var vm = this;
 
     // vm.book = book;
@@ -18,8 +18,75 @@
     vm.edit = false;
     vm.deleteBook = deleteBook;
     vm.createReview = createReview;
-    vm.fileSelected = fileSelected;
+    // vm.fileSelected = fileSelected;
     vm.editBook = editBook;
+    vm.uploadBookPicture = uploadBookPicture;
+    vm.uploader = new FileUploader({
+      url: 'api/book/picture',
+      alias: 'newProfilePicture',
+      onAfterAddingFile: onAfterAddingFile,
+      onSuccessItem: onSuccessItem,
+      onErrorItem: onErrorItem
+    });
+
+    // Set file uploader image filter
+    vm.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    // Called after the user selected a new picture file
+    function onAfterAddingFile(fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            vm.imageURL = fileReaderEvent.target.result;
+          }, 0);
+        };
+      }
+    }
+
+    // Called after the user has successfully uploaded a new picture
+    function onSuccessItem(fileItem, response, status, headers) {
+      // Show success message
+      vm.success = true;
+      vm.book.imageURL = response;
+      BooksService.createBook(vm.book).then(successfullCreateBook, failureCreatingBook);
+      // Populate user object
+      // vm.user = Authentication.user = response;
+
+      // Clear upload buttons
+      cancelUpload();
+    }
+
+    function successfullCreateBook(data) {
+      vm.book = data;
+      var actionTaken = 'Book got created';
+      var comments = 'NA';
+      // uploadBookPicture();
+      BookHistoryService.pushTransactionToList(actionTaken, comments, vm.book);
+      $state.go('books.view', {
+        bookId: data._id
+      });
+    }
+    function failureCreatingBook(res) {
+      vm.error = res.data.message;
+    }
+
+    // Called after the user has failed to uploaded a new picture
+    function onErrorItem(fileItem, response, status, headers) {
+      // Clear upload buttons
+      cancelUpload();
+
+      // Show error message
+      vm.error = response.message;
+    }
 
     function editBook() {
       vm.edit = true;
@@ -66,20 +133,8 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.bookForm');
         return false;
       }
-      BooksService.createBook(vm.book).then(successfullCreateBook, failureCreatingBook);
-
-      function successfullCreateBook(data) {
-        vm.book = data;
-        var actionTaken = 'Book got created';
-        var comments = 'NA';
-        BookHistoryService.pushTransactionToList(actionTaken, comments, vm.book);
-        $state.go('books.view', {
-          bookId: data._id
-        });
-      }
-      function failureCreatingBook(res) {
-        vm.error = res.data.message;
-      }
+      uploadBookPicture();
+      // BooksService.createBook(vm.book).then(successfullCreateBook, failureCreatingBook);
     }
 
     function deleteBook(book) {
@@ -95,48 +150,63 @@
       }
     }
 
-    function fileSelected() {
-      // get selected file element
-      var oFile = document.getElementById('book_cover').files[0];
+    // function fileSelected() {
+    //   // get selected file element
+    //   var oFile = document.getElementById('book_cover').files[0];
+    //
+    //   // filter for image files
+    //   var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
+    //   if (! rFilter.test(oFile.type)) {
+    //     // Tech debt: throw error as image file file is not of supported format
+    //     return;
+    //   }
+    //
+    //   var iMaxFilesize = 1048576; // 1MB -Allow file to be only as big as 1MB
+    //   // little test for filesize
+    //   if (oFile.size > iMaxFilesize) {
+    //     document.getElementById('warnsize').style.display = 'block';
+    //     return;
+    //   }
+    //
+    //
+    //   var oImage = document.getElementById('book_image');
+    //
+    //   // prepare HTML5 FileReader
+    //   var oReader = new FileReader();
+    //   oReader.onload = function(e) {
+    //
+    //   // e.target.result contains the DataURL which we will use as a source of the image
+    //     oImage.src = e.target.result;
+    //
+    //     oImage.onload = function () { // binding onload event
+    //
+    //       // we are going to display some custom image information here
+    //       vm.oFile = oFile;
+    //       // 'Name: ' + oFile.name;
+    //       // 'Size: ' + oFile.size;
+    //       // 'Type: ' + oFile.type;
+    //       // 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
+    //     };
+    //   };
+    //
+    //   // read selected file as DataURL
+    //   oReader.readAsDataURL(oFile);
+    //
+    // }
 
-      // filter for image files
-      var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
-      if (! rFilter.test(oFile.type)) {
-        // Tech debt: throw error as image file file is not of supported format
-        return;
-      }
+    // Change user profile picture
+    function uploadBookPicture() {
+      // Clear messages
+      vm.success = vm.error = null;
 
-      var iMaxFilesize = 1048576; // 1MB -Allow file to be only as big as 1MB
-      // little test for filesize
-      if (oFile.size > iMaxFilesize) {
-        document.getElementById('warnsize').style.display = 'block';
-        return;
-      }
+      // Start upload
+      vm.uploader.uploadAll();
+    }
 
-
-      var oImage = document.getElementById('book_image');
-
-      // prepare HTML5 FileReader
-      var oReader = new FileReader();
-      oReader.onload = function(e) {
-
-      // e.target.result contains the DataURL which we will use as a source of the image
-        oImage.src = e.target.result;
-
-        oImage.onload = function () { // binding onload event
-
-          // we are going to display some custom image information here
-          vm.oFile = oFile;
-          // 'Name: ' + oFile.name;
-          // 'Size: ' + oFile.size;
-          // 'Type: ' + oFile.type;
-          // 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
-        };
-      };
-
-      // read selected file as DataURL
-      oReader.readAsDataURL(oFile);
-
+    // Cancel the upload process
+    function cancelUpload() {
+      vm.uploader.clearQueue();
+      vm.imageURL = vm.book.bookImageURL;
     }
 
   }
