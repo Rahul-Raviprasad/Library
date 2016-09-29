@@ -141,10 +141,9 @@ exports.bookByID = function (req, res, next, id) {
 };
 
 exports.changeBookPicture = function (req, res) {
-  var user = req.user;
+  // var user = req.user;
   var upload = multer(config.uploads.bookImageUpload).single('newProfilePicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-  console.log('testttttttttt');
   // console.log(req);
   // console.log(req.user);
   // console.log(req.body);

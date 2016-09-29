@@ -134,7 +134,12 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.bookForm');
         return false;
       }
-      uploadBookPicture();
+      if (vm.uploader.queue.length) {
+        uploadBookPicture();
+      } else {
+        vm.book.imageURL = vm.imageURL;
+        BooksService.createBook(vm.book).then(successfullCreateBook, failureCreatingBook);
+      }
       // BooksService.createBook(vm.book).then(successfullCreateBook, failureCreatingBook);
     }
 
