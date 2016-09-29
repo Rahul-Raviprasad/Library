@@ -6,7 +6,7 @@
           <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
         </div>
         <div class="col-md-6 col-sm-6">
-          <input type="text" class="search-box form-control" placeholder="Search for your favourite Book" ng-model="query">
+          <input type="text" class="search-box form-control" placeholder="Search for your favourite Book" ng-model="vm.query">
         </div>
       </div><!--book filters-->
   </div>
@@ -20,8 +20,8 @@
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong>Success!</strong> Indicates a successful or positive action.
     </div> -->
-    <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
-      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | filter: query | orderBy:'title'">
+    <h3> Total number of books: {{  vm.finalFilteredBooks.length }}</h3>
+      <div class="row row-eq-height" ng-repeat="book in vm.finalFilteredBooks = (vm.filteredBooks | filter: vm.filterQueriedBooks | orderBy:'title')">
         <div ng-show="!!book.imageURL" class="col-md-2 col-sm-2">
             <a href="#">
                 <img class="img-responsive" ng-src="{{ book.imageURL }}" />
