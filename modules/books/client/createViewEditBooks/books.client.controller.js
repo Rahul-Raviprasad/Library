@@ -20,7 +20,7 @@
     vm.createReview = createReview;
     // vm.fileSelected = fileSelected;
     vm.editBook = editBook;
-    vm.imageURL = 'modules/books/client/img/default_book.jpeg';
+    vm.imageURL = 'modules/books/client/img/default5.jpeg';
     vm.uploadBookPicture = uploadBookPicture;
     vm.uploader = new FileUploader({
       url: 'api/book/picture',
