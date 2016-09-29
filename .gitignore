@@ -16,9 +16,10 @@ app/tests/coverage/
 .idea/
 coverage/
 
-# MEAN.js app and assets
+# Library app and assets
 # ======================
 public/dist/
+modules/books/client/img/book/uploads
 modules/users/client/img/profile/uploads
 config/env/local.js
 config/env/local-*.js
