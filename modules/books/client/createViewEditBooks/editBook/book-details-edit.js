@@ -125,7 +125,11 @@
     function save(isValid) {
       if (isValid) {
         if (vm.book._id) {
-          uploadBookPicture();
+          if (vm.uploader.queue.length) {
+            uploadBookPicture();
+          } else {
+            BooksService.updateBookDetails(vm.book._id, vm.book).then(successCallback, errorCallback);
+          }
           // BooksService.updateBookDetails(vm.book._id, vm.book).then(successCallback, errorCallback);
         }
       } else {
