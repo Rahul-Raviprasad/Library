@@ -10,6 +10,7 @@ module.exports = function (app) {
   // app.route('/api/users/password').post(users.changePassword);
   // app.route('/api/users/picture').post(users.changeProfilePicture);
   app.route('/api/auth/getUserDetails').post(users.getDetails);
+  app.route('/api/auth/signout').post(users.getDetails);
 
   // Finish by binding the user middleware
   app.param('userId', users.userByID);

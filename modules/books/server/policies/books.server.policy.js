@@ -47,7 +47,6 @@ exports.invokeRolesPolicies = function () {
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['user']; // req.session.cas then check user in db if admin or not
-  console.log("madhu" + JSON.stringify(req.user));
 
   // If an book is being processed and the current user created it then allow any manipulation
   if (req.book && req.user && req.book.user && req.book.user.id === req.user.id) {
