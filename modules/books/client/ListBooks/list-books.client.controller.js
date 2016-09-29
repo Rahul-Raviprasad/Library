@@ -25,6 +25,17 @@
     vm.reject = reject;
     vm.changeSelectedBook = changeSelectedBook;
     vm.assignBookToSelectedUser = assignBookToSelectedUser;
+    vm.filterQueriedBooks = queryFilter;
+    vm.query = '';
+    vm.finalFilteredBooks = [];
+
+    function queryFilter(book) {
+      return book.title.toLowerCase().indexOf(vm.query.toLowerCase()) > -1
+        || book.author.toLowerCase().indexOf(vm.query.toLowerCase()) > -1
+        || book.publications.toLowerCase().indexOf(vm.query.toLowerCase()) > -1
+        || book.category.toLowerCase().indexOf(vm.query.toLowerCase()) > -1
+        || book.location.toLowerCase().indexOf(vm.query.toLowerCase()) > -1;
+    }
 
     function assignBookToSelectedUser(requester, book) {
       removeFromSubmittedBooks(book);
@@ -95,36 +106,6 @@
       });
       vm.submittedBooks = vm.books.filter(submittedBooks);
     }
-
-
-    // vm.books = BooksService.query(function() {
-      // angular.forEach(vm.books, function(book) {
-      //   vm.filteredBooks = vm.books;
-      //   var index = book.queueList.findIndex(
-      //     function(queueItem) {
-      //       return queueItem.requesterEmail === vm.userEmail;
-      //     }
-      //   );
-      //   if (index >= 0) {
-      //     book.loggedUserRequested = true;
-      //     book.loggedUserQueueNumber = book.queueList[index].queueNumber;
-      //   } else {
-      //     book.loggedUserRequested = false;
-      //   }
-      //   if (vm.categories.indexOf(book.category) === -1) {
-      //     vm.categories.push(book.category);
-      //   }
-      //
-      //   book.requesters = [{ requesterName: '--Select--' }];
-      //   for (var i = 0; i < book.queueList.length; i++) {
-      //     book.requesters.push(book.queueList[i]);
-      //   }
-      //   book.selectedRequester = book.requesters[0];
-      //
-      // });
-      // vm.submittedBooks = vm.books.filter(submittedBooks);
-    // });
-
 
     function cancelRequest(book) {
       if (window.confirm('Are you sure you want to leave the queue? You may have to stand at the end of the queue once you leave!')) {
