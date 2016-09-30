@@ -99,4 +99,9 @@ html, body {
 
 .feature-image {
   max-width: 100%;
+  padding: 5%;
+}
+
+.text-center {
+  text-align: center;
 }
