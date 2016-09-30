@@ -113,16 +113,10 @@ html, body {
 
 /* Ribbon to show over features not yet ready*/
 .wrapper {
-  margin: 50px auto;
-  width: 280px;
-  height: 370px;
-  background: white;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
   -moz-box-shadow:    0px 0px 8px rgba(0,0,0,0.3);
   box-shadow:         0px 0px 8px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 90;
 }
 
 .ribbon-wrapper-green {
@@ -145,7 +139,7 @@ html, body {
   -o-transform:      rotate(45deg);
   position: relative;
   padding: 7px 0;
-  left: -100px;
+  left: -55px;
   top: 35px;
   width: 300px;
   background-color: #BFDC7A;
