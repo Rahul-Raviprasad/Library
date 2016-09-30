@@ -96,3 +96,7 @@ html, body {
 .home .lead {
    padding-top: 1em;
 }
+
+.feature-image {
+  max-width: 100%;
+}
