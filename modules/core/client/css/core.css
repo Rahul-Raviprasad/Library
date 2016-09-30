@@ -176,3 +176,8 @@ html, body {
   right: 0;
 }
 /* Ribbon styles end */
+
+/* Features which are coming soon */
+.coming-soon {
+  opacity: 0.3
+}
