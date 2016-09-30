@@ -105,3 +105,8 @@ html, body {
 .text-center {
   text-align: center;
 }
+
+.feature-links {
+  text-decoration: none;
+  color: white;
+}
