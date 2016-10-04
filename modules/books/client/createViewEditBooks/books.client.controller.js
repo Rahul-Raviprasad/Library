@@ -145,7 +145,9 @@
 
     function deleteBook(book) {
       if (window.confirm('Are you sure you want to remove this book from shelf permanently ?')) {
-        BooksService.deleteBook(book._id).then(successfullyDeleted, errorDeleting);
+        // BooksService.deleteBook(book._id).then(successfullyDeleted, errorDeleting);
+        book.isActive = false;
+        BooksService.updateBookDetails(book._id, book).then(successfullyDeleted, errorDeleting);
       }
       function successfullyDeleted(data) {
         alert('Book has been removed successfully from the shelf');

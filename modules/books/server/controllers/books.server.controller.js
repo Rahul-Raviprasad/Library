@@ -57,7 +57,7 @@ exports.update = function (req, res) {
   book.category = req.body.category;
   book.isbn = req.body.isbn;
   book.imageURL = req.body.imageURL;
-  // book.possessor = req.body.possessor;
+  book.isActive = req.body.isActive;
   book.createdOn = req.body.createdOn;
   book.createdBy = req.body.createdBy;
   book.condition = req.body.condition;
@@ -104,7 +104,8 @@ exports.delete = function (req, res) {
  * List of Books
  */
 exports.list = function (req, res) {
-  Book.find().sort('-created').populate('user', 'displayName').exec(function (err, books) {
+  // Book.find().sort('-created').populate('user', 'displayName').exec(function (err, books) {
+  Book.find({ isActive: true }).sort('-created').exec(function (err, books) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
