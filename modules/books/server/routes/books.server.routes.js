@@ -15,8 +15,8 @@ module.exports = function (app) {
   // Single book routes
   app.route('/api/books/:bookId').all(booksPolicy.isAllowed)
     .get(books.read)
-    .put(books.update)
-    .delete(books.delete);
+    .put(books.update);
+    // .delete(books.delete);
 
   app.route('/api/book/picture')
     // .all(booksPolicy.isAllowed)

@@ -86,19 +86,19 @@ exports.update = function (req, res) {
 /**
  * Delete an book
  */
-exports.delete = function (req, res) {
-  var book = req.book;
-
-  book.remove(function (err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.json(book);
-    }
-  });
-};
+// exports.delete = function (req, res) {
+//   var book = req.book;
+//
+//   book.remove(function (err) {
+//     if (err) {
+//       return res.status(400).send({
+//         message: errorHandler.getErrorMessage(err)
+//       });
+//     } else {
+//       res.json(book);
+//     }
+//   });
+// };
 
 /**
  * List of Books
