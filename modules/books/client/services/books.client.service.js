@@ -15,6 +15,7 @@
     svc.updateBookDetails = updateBookDetails;
     svc.deleteBook = deleteBook;
     svc.getUnavialableBooks = getUnavialableBooks;
+    svc.makeAvailable = makeAvailable;
 
     return svc;
 
@@ -36,6 +37,9 @@
     }
     function getUnavialableBooks() {
       return $http.get('api/unavailableBooks').then(successHandler);
+    }
+    function makeAvailable(book) {
+      return $http.put('/api/books/' + book._id, book).then(successHandler);
     }
     function successHandler(response) {
       return response.data;

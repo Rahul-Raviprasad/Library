@@ -14,6 +14,7 @@ module.exports = function (app) {
 
   app.route('/api/unavailableBooks')
     .get(books.listUnavailableBooks);
+    // .put(books.update);
 
   // Single book routes
   app.route('/api/books/:bookId').all(booksPolicy.isAllowed)

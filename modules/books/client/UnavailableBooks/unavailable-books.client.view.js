@@ -12,6 +12,7 @@
     vm.selectedItem = 'All';
     vm.categories = [];
     vm.categories.push('All');
+    vm.makeAvailable = makeAvailable;
     // vm.issueBook = issueBook;
     // vm.submitBook = submitBook;
     // vm.filteredBooks = vm.books;
@@ -58,6 +59,18 @@
     //     vm.submittedBooks.splice(index, 1);
     //   }
     // }
+
+    function makeAvailable(book) {
+      book.isActive = true;
+      BooksService.makeAvailable(book).then(successMakingAvailable);
+    }
+    function successMakingAvailable() {
+      vm.filteredBooks = vm.books.filter(filteredBooks);
+      alert('Book is back in shelf!');
+    }
+    function filteredBooks(book) {
+      return book.isActive === false;
+    }
 
     function changeSelectedBook(selectedItem) {
       vm.selectedItem = selectedItem;
