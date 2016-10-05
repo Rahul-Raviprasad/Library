@@ -116,6 +116,19 @@ exports.list = function (req, res) {
   });
 };
 
+exports.listUnavailableBooks = function (req, res) {
+  // Book.find().sort('-created').populate('user', 'displayName').exec(function (err, books) {
+  Book.find({ isActive: false }).sort('-created').exec(function (err, books) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(books);
+    }
+  });
+};
+
 /**
  * Book middleware
  */

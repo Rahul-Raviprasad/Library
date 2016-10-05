@@ -12,6 +12,9 @@ module.exports = function (app) {
     .get(books.list)
     .post(books.create);
 
+  app.route('/api/unavailableBooks')
+    .get(books.listUnavailableBooks);
+
   // Single book routes
   app.route('/api/books/:bookId').all(booksPolicy.isAllowed)
     .get(books.read)

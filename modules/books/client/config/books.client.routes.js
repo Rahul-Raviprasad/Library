@@ -51,7 +51,16 @@
         controller: 'BooksListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Books List'
+          pageTitle: 'Submitted Books List'
+        }
+      })
+      .state('books.listUnavailable', {
+        url: '/unavailable',
+        templateUrl: 'modules/books/client/UnavailableBooks/unavailable-books.client.view.html',
+        controller: 'UnavailableBooksController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Unavailable Books List'
         }
       })
       // .state('books.edit', {

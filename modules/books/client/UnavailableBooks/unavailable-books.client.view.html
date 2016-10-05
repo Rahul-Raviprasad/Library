@@ -1,0 +1,64 @@
+<section class="book-list">
+  <div class="page-header">
+    <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
+  </div>
+  <h3> Total number of books: {{ vm.filteredBooks.length }}</h3>
+  <div ng-show="vm.filteredBooks.length" class="list-group">
+      <div class="row row-eq-height" ng-repeat="book in vm.filteredBooks | orderBy:'title'">
+        <div ng-show="!!book.imageURL" class="col-md-2">
+            <a href="#">
+                <img class="img-responsive" ng-src="{{ book.imageURL }}" />
+            </a>
+        </div>
+        <div ng-show="!book.imageURL" class="col-md-2 col-sm-2">
+            <a href="#">
+                <img class="img-responsive" ng-src="modules/books/client/img/default5.jpeg" alt="Yet to be uploaded"></img>
+            </a>
+        </div>
+        <div class="col-md-10">
+          <div class="col-md-4">
+            <h4 ng-bind="book.title"></h4>
+            <h5 ng-bind="book.subtitle"></h5>
+            <h5>Author: {{book.author}}</h5>
+            <div>Publication: {{book.publications}}</div>
+            <div>Category: {{book.category}}</div>
+            <div>Location: {{book.location}}</div>
+          </div>
+          <div class="col-md-3">
+            <h5>Description: </h5>
+            <p ng-bind="book.desc"></p>
+          </div>
+          <div class="col-md-5 col-sm-4">
+            <div class="book-action">
+              <h5 ng-show="book.status == 'issued' && book.userEmail === vm.userEmail">
+                Issued to you</h5>
+              <h5 ng-show="book.userEmail === vm.userEmail && book.status === 'reserved'">
+                You have submitted the book for approval.</h5>
+              <a class="btn btn-primary"
+                ng-href="/books/{{book._id}}">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-danger" ng-show="!!book.loggedUserRequested" /
+                ng-click="vm.cancelRequest(book)"
+                href="#">Cancel Request<span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+              <div ng-show="book.status !== 'available' && book.loggedUserRequested === true">
+                <p>
+                  Your request for this book is submitted and you stand
+                  {{ book.loggedUserQueueNumber }}<span ng-show="book.loggedUserQueueNumber === 1">st
+                  </span><span ng-show="book.loggedUserQueueNumber === 2">nd
+                  </span><span ng-show="book.loggedUserQueueNumber === 3">rd
+                  </span><span ng-show="book.loggedUserQueueNumber > 3">th</span>
+                  in queue.
+                </p>
+              </div>
+              <a class="btn btn-success" ng-click="vm.submitBook(book)"
+                ng-show="book.status == 'issued' && book.userEmail === vm.userEmail"
+                href="#">Return <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div ng-show="!vm.filteredBooks.length">
+    <h3>No Books found !!!</h3>
+  </div>
+</section>
