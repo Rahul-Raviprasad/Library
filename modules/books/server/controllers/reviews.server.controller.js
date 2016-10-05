@@ -26,7 +26,7 @@ exports.list = function (req, res) {
 
 exports.findOneAndUpdate = function(req, res) {
   Review.findOneAndUpdate({ bookId: req.body.bookId },
-  { $push: { 'reviews': { comments: req.body.comments, reviewerName: req.user.displayName, reviewerEmail: req.user.email } } },
+  { $push: { 'reviews': { comments: req.body.comments, reviewerName: req.session.cas.attributes.cn[0], reviewerEmail: req.session.cas.attributes.mail[0] } } },
   { safe: true, upsert: true, new: true },
     function(err, model) {
       if (err) {
