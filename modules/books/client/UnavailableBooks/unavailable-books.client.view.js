@@ -62,7 +62,7 @@
 
     function makeAvailable(book) {
       book.isActive = true;
-      BooksService.makeAvailable(book).then(successMakingAvailable);
+      BooksService.updateBookDetails(book._id, book).then(successMakingAvailable);
     }
     function successMakingAvailable() {
       vm.filteredBooks = vm.books.filter(filteredBooks);
