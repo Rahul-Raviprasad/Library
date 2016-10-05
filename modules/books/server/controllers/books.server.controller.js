@@ -129,20 +129,6 @@ exports.listUnavailableBooks = function (req, res) {
   });
 };
 
-// exports.makeAvailable = function (req, res) {
-//   // var book = req.body;
-//   var book = req.book;
-//   book.save(function (err) {
-//     if (err) {
-//       console.log(err);
-//       return res.status(400).send({
-//         message: errorHandler.getErrorMessage(err)
-//       });
-//     } else {
-//       res.json(book);
-//     }
-//   });
-// };
 /**
  * Book middleware
  */
