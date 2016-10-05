@@ -5,21 +5,35 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService'];
+  HeaderController.$inject = ['$scope', '$state', 'Authentication'];
 
-  function HeaderController($scope, $state, Authentication, menuService) {
+  function HeaderController($scope, $state, Authentication) {
     var vm = this;
 
-    vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;
     vm.isCollapsed = false;
-    vm.menu = menuService.getMenu('topbar');
+    vm.isAdmin = isAdmin;
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
+
+    isAdmin();
 
     function stateChangeSuccess() {
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
+    }
+
+    function isAdmin() {
+      if (Authentication.user) {
+        for (var i = 0; i < Authentication.user.roles.length; i++) {
+          if (Authentication.user.roles[i] === 'admin') {
+            $scope.admin = true;
+            return true;
+          }
+        }
+      }
+      $scope.admin = false;
+      return false;
     }
   }
 }());

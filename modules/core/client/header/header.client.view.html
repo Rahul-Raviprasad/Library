@@ -9,19 +9,44 @@
     <a ui-sref="home" class="navbar-brand">Bookshelf</a>
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
+    <!-- Navbar on the left-->
     <ul class="nav navbar-nav">
-      <li ng-repeat="item in vm.menu.items | orderBy: 'position'"
-          ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }"
-          ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
-        <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
-        <ul ng-switch-when="dropdown" class="dropdown-menu">
-          <li ng-repeat="subitem in item.items | orderBy: 'position'">
-            <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
+
+      <li class="dropdown" ng-switch="dropdown" uib-dropdown="true" ui-sref-active="active" >
+        <a class="dropdown-toggle" uib-dropdown-toggle ui-sref-active="active" role="button" aria-haspopup="true" aria-expanded="false">
+          Books&nbsp;
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a ui-sref="books.list">List Books</a>
+          </li>
+          <li>
+            <a ui-sref="books.create">Add Book</a>
+          </li>
+          <li>
+            <a ui-sref="books.submit">Submitted Books</a>
           </li>
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
+      <!--books ends-->
+      <li>
+        <a ui-sref="myBooks">My Books</a>
+      </li>
+      <!-- my books ends-->
+      <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="true">Admin&nbsp;<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a ui-sref="admin.users">Manage Users</a>
+          </li>
+        </ul>
+      </li>
+      <!-- Admin ends-->
     </ul>
+    <!-- Navbar on the left ends-->
+
+    <!-- Navbar on the right of the header-->
     <ul class="nav navbar-nav navbar-right">
       <li class="divider"></li>
       <li>
