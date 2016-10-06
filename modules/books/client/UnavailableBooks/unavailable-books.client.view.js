@@ -12,6 +12,7 @@
     vm.selectedItem = 'All';
     vm.categories = [];
     vm.categories.push('All');
+    vm.changeSelectedBook = changeSelectedBook;
     vm.makeAvailable = makeAvailable;
 
     function makeAvailable(book) {
