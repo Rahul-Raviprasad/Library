@@ -22,13 +22,13 @@
             <a ui-sref="books.list">List Books</a>
           </li>
           <li>
-            <a ui-sref="books.create">Add Book</a>
+            <a ui-sref="books.create" ng-if="vm.isAdmin()">Add Book</a>
           </li>
           <li>
-            <a ui-sref="books.submit">Submitted Books</a>
+            <a ui-sref="books.submit" ng-if="vm.isAdmin()">Submitted Books</a>
           </li>
           <li>
-            <a ui-sref="books.listUnavailable">Unavailable Books</a>
+            <a ui-sref="books.listUnavailable" ng-if="vm.isAdmin()">Unavailable Books</a>
           </li>
         </ul>
       </li>
@@ -37,7 +37,7 @@
         <a ui-sref="myBooks">My Books</a>
       </li>
       <!-- my books ends-->
-      <li class="dropdown">
+      <li class="dropdown" ng-if="vm.isAdmin()">
         <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="true">Admin&nbsp;<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li>
