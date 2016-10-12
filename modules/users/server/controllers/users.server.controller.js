@@ -4,6 +4,8 @@
  * Module dependencies
  */
 var _ = require('lodash');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
 /**
  * Extend user's controller
@@ -27,5 +29,16 @@ module.exports.getDetails = function(req, res) {
     }
   };
 
-  res.send(userDetails);
+  User.find({
+    email: req.session.cas.attributes.mail[0]
+  }).exec(function (err, admin) {
+    if (err) {
+      res.send(userDetails);
+    } else {
+      if (admin && admin.length) {
+        userDetails.user.roles.push('admin');
+      }
+      res.send(userDetails);
+    }
+  });
 };
