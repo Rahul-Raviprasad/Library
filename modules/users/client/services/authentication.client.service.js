@@ -14,6 +14,18 @@
       user: $window.user
     };
 
+    function isAdmin() {
+      if (auth.user) {
+        for (var i = 0; i < auth.user.roles.length; i++) {
+          if (auth.user.roles[i] === 'admin') {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    auth.isAdmin = isAdmin;
+
     return auth;
   }
 }());

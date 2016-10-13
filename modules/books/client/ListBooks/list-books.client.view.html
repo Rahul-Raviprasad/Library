@@ -55,7 +55,11 @@
               <h5 ng-show="book.userEmail === vm.userEmail && book.status === 'reserved'">
                 You have submitted the book for approval.</h5>
               <a class="btn btn-primary"
-                ng-href="/books/{{book._id}}">More Details<span class="glyphicon glyphicon-chevron-right"></span></a>
+                ng-href="/books/{{book._id}}"
+                ng-if="vm.Authentication.isAdmin()">
+                  More Details
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
               <!-- <a class="btn btn-primary"
                 ng-click="vm.requestBook(book)"
                 ng-show="((book.status === 'issued' && book.userName !== 'admin') || (book.status === 'reserved' && book.userName === 'admin')) && book.userEmail !== vm.userEmail && book.loggedUserRequested === false"

@@ -9,6 +9,7 @@
 
   function BooksListController(BooksService, Authentication, BookHistoryService) {
     var vm = this;
+    vm.Authentication = Authentication;
     vm.selectedItem = 'All';
     vm.categories = [];
     vm.categories.push('All');
