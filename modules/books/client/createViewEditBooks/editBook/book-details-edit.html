@@ -1,27 +1,4 @@
-<!-- <div class="pull-left book-details">
-  <div class="field"><b> Title : </b><input class="form-control" type="text" ng-model="vm.book.title" value="{{ vm.book.title }}"></input></div>
-  <div class="field"><b>Author : </b><input class="form-control" type="text" ng-model="vm.book.author" value="{{ vm.book.author }}"></input></div>
-  <div class="field"><b>Publications : </b><input class="form-control" type="text" ng-model="vm.book.publications" value="{{ vm.book.publications }}"></input></div>
-  <div class="field"><b>Category : </b><input class="form-control" type="text" ng-model="vm.book.category" value="{{ vm.book.category }}"></input></div>
-  <div class="field"><b>Status : </b><input class="form-control" type="text" ng-model="vm.book.status" value="{{ vm.book.status }}"></input></div>
-  <div class="field"><b>ISBN : </b><input class="form-control" type="text" ng-model="vm.book.isbn" value="{{ vm.book.isbn }}"></input></div>
-  <div class="field"><b>Condition : </b><input class="form-control" type="text" ng-model="vm.book.condition" value="{{ vm.book.condition }}"></input></div>
-  <div class="field"><b> Description : </b><input class="form-control" type="text" ng-model="vm.book.desc" value="{{ vm.book.desc }}"></input></div>
-</div>
-<div class="pull-left book-details">
-  <div ng-show="!!vm.book.userName" class="field"><b>Possessor : </b>{{ vm.book.userName }}</div>
-  <div class="field"><b>Review Link : </b>
-    <input class="form-control" type="text" ng-model="vm.book.reviewLink" value="{{ vm.book.reviewLink }}"></input></div>
-  <div class="field"><b>Location : </b><input class="form-control" type="text" ng-model="vm.book.location" value="{{ vm.book.location }}"></input></div>
-  <div class="field"><b>Contributed By : </b><input class="form-control" type="text" ng-model="vm.book.contributedBy" value="{{ vm.book.contributedBy }}"></input></div>
-  <div >
-    <a class="btn btn-primary" ng-click="vm.save()" href="#">Save</a>
-    <a class="btn btn-primary" ng-click="vm.edit=false" href="#">Cancel</a>
-  </div>
-</div> -->
-
-
-<form name="vm.form.bookForm" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
+<form ng-if="!!vm.authentication.isAdmin()" name="vm.form.bookForm" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
   <fieldset>
     <div class="row-fluid">
       <div class="col-md-6">
@@ -117,15 +94,19 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-md-12 form-group">
-        <button type="submit" class="btn btn-default">Create</button>
-      </div> -->
       <div >
         <button type="submit" class="btn btn-default">Update</button>
-        <!-- <a type="submit" class="btn btn-primary" ng-click="vm.save()" href="#">Save</a> -->
         <a class="btn btn-primary" ng-click="vm.cancel(vm.book)" href="#">Cancel</a>
       </div>
     </div>
-
   </fieldset>
 </form>
+
+<div ng-if="!vm.authentication.isAdmin()">
+  <h1>Forbidden</h1>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    You are not authorized to access this resource
+  </div>
+</div>

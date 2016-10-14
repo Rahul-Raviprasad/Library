@@ -15,12 +15,13 @@
     //
     // });
 
-  BookDetailsEditCtrl.inject = ['BooksService', 'BookHistoryService', '$scope', '$stateParams', '$state', 'FileUploader', '$timeout', '$window'];
+  BookDetailsEditCtrl.inject = ['BooksService', 'BookHistoryService', '$scope', '$stateParams', '$state', 'FileUploader', '$timeout', '$window', 'Authentication'];
 
-  function BookDetailsEditCtrl(BooksService, BookHistoryService, $scope, $stateParams, $state, FileUploader, $timeout, $window) {
+  function BookDetailsEditCtrl(BooksService, BookHistoryService, $scope, $stateParams, $state, FileUploader, $timeout, $window, Authentication) {
     var vm = this;
     vm.save = save;
     vm.cancel = cancel;
+    vm.authentication = Authentication;
 
     vm.uploadBookPicture = uploadBookPicture;
     vm.uploader = new FileUploader({
