@@ -1,39 +1,50 @@
-<section>
-  <div class="page-header">
-    <div>
-      <a class="btn btn-primary pull-right" ng-href="/books/{{ vm.bookId }}">
-        <span class="glyphicon glyphicon-chevron-left"></span>Back to Book Details
-      </a>
+<div ng-if="!!vm.authentication.isAdmin()">
+  <section>
+    <div class="page-header">
+      <div>
+        <a class="btn btn-primary pull-right" ng-href="/books/{{ vm.bookId }}">
+          <span class="glyphicon glyphicon-chevron-left"></span>Back to Book Details
+        </a>
+      </div>
+        <h3> Book History </h3>
     </div>
-      <h3> Book History </h3>
-  </div>
-</section>
-<div class="pull-left col-md-12" ng-show="vm.bookHistory.length">
-  <div class="row row-eq-height">
-    <div class="col-md-4">
-      <h4>Action</h5>
+  </section>
+  <div class="pull-left col-md-12" ng-show="vm.bookHistory.length">
+    <div class="row row-eq-height">
+      <div class="col-md-4">
+        <h4>Action</h5>
+      </div>
+      <div class="col-md-4">
+        <h4>Comments</h5>
+      </div>
+      <div class="col-md-4">
+        <h4>Date</h5>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h4>Comments</h5>
-    </div>
-    <div class="col-md-4">
-      <h4>Date</h5>
+
+    <div ng-repeat="history in vm.bookHistory | orderBy: '-date'" class="row row-eq-height">
+      <div class="col-md-4">
+         {{ history.action }}
+      </div>
+      <div class="col-md-4">
+         {{ history.comments }}
+      </div>
+      <div class="col-md-4">
+         {{ history.date.substring(0, history.date.length - 14).trim() }}
+      </div>
     </div>
   </div>
 
-  <div ng-repeat="history in vm.bookHistory | orderBy: '-date'" class="row row-eq-height">
-    <div class="col-md-4">
-       {{ history.action }}
-    </div>
-    <div class="col-md-4">
-       {{ history.comments }}
-    </div>
-    <div class="col-md-4">
-       {{ history.date.substring(0, history.date.length - 14).trim() }}
-    </div>
+  <div ng-show="!vm.bookHistory.length">
+    <h3>Transactions history for this book is not recorded yet !</h3>
   </div>
 </div>
 
-<div ng-show="!vm.bookHistory.length">
-  <h3>Transactions history for this book is not recorded yet !</h3>
+<div ng-if="!vm.authentication.isAdmin()">
+  <h1>Forbidden</h1>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    You are not authorized to access this resource
+  </div>
 </div>

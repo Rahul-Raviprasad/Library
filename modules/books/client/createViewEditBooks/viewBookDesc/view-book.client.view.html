@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <a class="btn btn-primary pull-right" ng-href="books/history/{{ vm.book._id }}">
+    <a ng-if="!!vm.authentication.isAdmin()" class="btn btn-primary pull-right" ng-href="books/history/{{ vm.book._id }}">
       Book History<span class="glyphicon glyphicon-chevron-right"></span>
     </a>
     <a class="btn btn-primary pull-right" href="/books">
