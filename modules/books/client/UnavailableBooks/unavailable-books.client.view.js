@@ -14,6 +14,7 @@
     vm.categories.push('All');
     vm.changeSelectedBook = changeSelectedBook;
     vm.makeAvailable = makeAvailable;
+    vm.authentication = Authentication;
 
     function makeAvailable(book) {
       if (window.confirm('So you found the book ahh.. ?')) {

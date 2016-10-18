@@ -1,4 +1,4 @@
-<section class="book-list">
+<section ng-if="vm.authentication.isAdmin()" class="book-list">
   <div class="page-header">
     <dropdown dropdown-name="Category" src="vm.categories" selected-item="vm.selectedItem" width="100" height="" on-change="vm.changeSelectedBook(selectedItem)" ></dropdown>
   </div>
@@ -40,3 +40,12 @@
     <h3>No Books found !!!</h3>
   </div>
 </section>
+
+<div ng-if="!vm.authentication.isAdmin()">
+  <h1>Forbidden</h1>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    You are not authorized to access this resource
+  </div>
+</div>
