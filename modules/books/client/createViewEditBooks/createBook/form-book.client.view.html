@@ -1,9 +1,9 @@
-<section class="book-form">
+<section ng-if="!!vm.authentication.isAdmin()" class="book-form">
   <div class="page-header">
     <a class="btn btn-primary pull-right" href="/books">
       <span class="glyphicon glyphicon-chevron-left"></span>View Books
     </a>
-    <h2>Add New Book</h2>
+    <h2>Add New Books</h2>
   </div>
   <div class="col-md-12">
     <form name="vm.form.bookForm" class="form-horizontal" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
@@ -111,3 +111,12 @@
     </form>
   </div>
 </section>
+
+<div ng-if="!vm.authentication.isAdmin()">
+  <h1>Forbidden</h1>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    You are not authorized to access this resource
+  </div>
+</div>
