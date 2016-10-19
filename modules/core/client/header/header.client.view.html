@@ -37,11 +37,11 @@
         <a ui-sref="myBooks">My Books</a>
       </li>
       <!-- my books ends-->
-      <li class="dropdown" ng-if="vm.isAdmin()">
-        <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="true">Admin&nbsp;<span class="caret"></span></a>
+      <li class="dropdown" ng-switch="dropdown" uib-dropdown="true" ng-if="vm.isAdmin()">
+        <a class="dropdown-toggle" uib-dropdown-toggle ui-sref-active="active" role="button" aria-haspopup="true" aria-expanded="true">Admin&nbsp;<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li>
-            <a ui-sref="admin.users">Manage Users</a>
+            <a ui-sref="admin.manage">Manage Users</a>
           </li>
         </ul>
       </li>
