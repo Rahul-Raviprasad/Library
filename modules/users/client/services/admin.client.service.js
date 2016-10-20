@@ -8,13 +8,18 @@ function AdminServices($http) {
   var svc = {};
 
   svc.getAllAdmins = getAllAdmins;
+  svc.deleteAdmin = deleteAdmin;
 
   return svc;
 
   // //////////
 
-  function getAllAdmins(bookId) {
+  function getAllAdmins() {
     return $http.get('/api/users').then(successHandler);
+  }
+
+  function deleteAdmin(adminID) {
+    return $http.delete('/api/users/' + adminID).then(successHandler);
   }
 
   function successHandler(response) {
