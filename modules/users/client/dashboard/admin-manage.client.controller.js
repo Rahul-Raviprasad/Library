@@ -12,6 +12,7 @@
     vm.authentication = Authentication;
     vm.deleteAdmin = deleteAdmin;
     vm.save = save;
+    vm.imageUrl = 'modules/users/client/img/profile/default.png';
     vm.uploader = new FileUploader({
       url: 'api/book/picture',
       alias: 'newProfilePicture',
@@ -37,7 +38,7 @@
 
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
-            vm.imageURL = fileReaderEvent.target.result;
+            vm.imageUrl = fileReaderEvent.target.result;
           }, 0);
         };
       }
@@ -57,6 +58,7 @@
 
     // Called after the user has successfully uploaded a new picture
     function onSuccessItem(fileItem, response, status, headers) {
+      vm.admin.profileImageURL = response;
       AdminServices.createAdmin(vm.admin).then(successfullCreateAdmin);
       cancelUpload();
     }
