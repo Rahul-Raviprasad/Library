@@ -12,7 +12,7 @@
     <div class="row row-eq-height" ng-repeat="admin in vm.admins | orderBy:'title'">
       <div ng-show="!!admin.profileImageURL" class="col-md-2">
           <a href="#">
-              <img class="img-responsive" ng-src="{{ admin.profileImageURL }}" />
+              <img class="img-responsive" ng-src="{{ admin.profileImageURL }}" alt="Yet to be uploaded" />
           </a>
       </div>
       <div ng-show="!admin.profileImageURL" class="col-md-2 col-sm-2">
