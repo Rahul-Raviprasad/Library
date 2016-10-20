@@ -1,10 +1,13 @@
-<div>
+<div ng-if="!vm.authentication.isAdmin()">
   <h1>Under Maintenance</h1>
   <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     <span class="sr-only">Error:</span>
     Admins are sleeping, please dont disturb :)
   </div>
+</div>
+
+<div ng-if="!!vm.authentication.isAdmin()">
 </div>
 <h2>Admins</h2>
 <div>
