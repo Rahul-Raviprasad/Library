@@ -16,15 +16,6 @@
         data: {
           roles: ['admin']
         }
-      })
-      .state('admin.manage', {
-        url: '',
-        templateUrl: 'modules/core/client/dashboard/admin-manage.view.html',
-        controller: 'AdminManageCtrl',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'Dashboard'
-        }
       });
   }
 }());

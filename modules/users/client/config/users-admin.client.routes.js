@@ -42,6 +42,15 @@
         data: {
           pageTitle: 'Edit User {{ userResolve.displayName }}'
         }
+      })
+      .state('admin.manage', {
+        url: '',
+        templateUrl: 'modules/users/client/dashboard/admin-manage.view.html',
+        controller: 'AdminManageCtrl',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Dashboard'
+        }
       });
 
     getUser.$inject = ['$stateParams', 'AdminService'];
