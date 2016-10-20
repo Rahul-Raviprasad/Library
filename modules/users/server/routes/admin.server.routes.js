@@ -12,7 +12,8 @@ module.exports = function (app) {
 
   // Users collection routes
   app.route('/api/users')
-    .get(admin.list);
+    .get(admin.list)
+    .post(admin.create);
 
   // Single user routes
   app.route('/api/users/:userId')

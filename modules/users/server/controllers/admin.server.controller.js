@@ -39,37 +39,6 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete a user
- */
-exports.delete = function (req, res) {
-  var user = req.model;
-  user.remove(function (err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    }
-
-    res.json(user);
-  });
-};
-
-/**
- * List of Users
- */
-exports.list = function (req, res) {
-  User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    }
-
-    res.json(users);
-  });
-};
-
-/**
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {
@@ -88,5 +57,53 @@ exports.userByID = function (req, res, next, id) {
 
     req.model = user;
     next();
+  });
+};
+
+
+/**
+ * Delete a Admin
+ */
+exports.delete = function (req, res) {
+  var user = req.model;
+  user.remove(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+  });
+};
+
+/**
+ * List of Admins
+ */
+exports.list = function (req, res) {
+  User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(users);
+  });
+};
+
+/**
+ * Create an Admin
+ */
+exports.create = function (req, res) {
+  var admin = new User(req.body);
+  admin.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(admin);
+    }
   });
 };

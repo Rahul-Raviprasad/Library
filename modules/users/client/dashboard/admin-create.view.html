@@ -6,28 +6,28 @@
     <h2>Add New Admin</h2>
   </div>
   <div class="col-md-12">
-    <form name="vm.form.bookForm" class="form-horizontal" ng-submit="vm.save(vm.form.bookForm.$valid)" novalidate>
+    <form name="vm.form.adminForm" class="form-horizontal" ng-submit="vm.save(vm.form.adminForm.$valid)" novalidate>
       <fieldset>
         <div class="row-fluid">
           <div class="col-md-6">
             <div class="form-group" show-errors>
               <label class="control-label" for="title">Display Name</label>
               <input name="title" size="30" type="text" ng-model="vm.admin.displayName" id="title" class="form-control" placeholder="Display Name" required>
-              <div ng-messages="vm.form.bookForm.title.$error" role="alert">
+              <div ng-messages="vm.form.adminForm.title.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Display Name is required.</p>
               </div>
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="author">LDAP Username</label>
               <input name="author" size="30" type="text" ng-model="vm.admin.username" id="author" class="form-control" placeholder="LDAP username" required>
-              <div ng-messages="vm.form.bookForm.author.$error" role="alert">
+              <div ng-messages="vm.form.adminForm.author.$error" role="alert">
                 <p class="help-block error-text" ng-message="required"> LDAP username is required.</p>
               </div>
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="isbn">Email ID</label>
               <input name="isbn" size="30" type="text" ng-model="vm.admin.email" id="isbn" class="form-control" placeholder="Email" required>
-              <div ng-messages="vm.form.bookForm.isbn.$error" role="alert">
+              <div ng-messages="vm.form.adminForm.isbn.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Email ID is required.</p>
               </div>
             </div>

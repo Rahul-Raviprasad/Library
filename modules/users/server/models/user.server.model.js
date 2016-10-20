@@ -52,10 +52,6 @@ var UserSchema = new Schema({
     type: String,
     default: 'modules/users/client/img/profile/default.png'
   },
-  provider: {
-    type: String,
-    required: 'Provider is required'
-  },
   providerData: {},
   additionalProvidersData: {},
   roles: {
