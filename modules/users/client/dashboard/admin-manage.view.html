@@ -7,13 +7,31 @@
   </div>
 </div>
 
-<div ng-if="!!vm.authentication.isAdmin()">
-</div>
 <h2>Admins</h2>
-<div>
-  <ul>
-    <li ng-repeat="item in vm.admins">
-      {{ item.displayName }}
-    </li>
-  </ul>
+<div ng-if="vm.admins.length && !!vm.authentication.isAdmin()" class="list-group">
+    <div class="row row-eq-height" ng-repeat="admin in vm.admins | orderBy:'title'">
+      <div ng-show="!!admin.profileImageURL" class="col-md-2">
+          <a href="#">
+              <img class="img-responsive" ng-src="{{ admin.profileImageURL }}" />
+          </a>
+      </div>
+      <div ng-show="!admin.profileImageURL" class="col-md-2 col-sm-2">
+          <a href="#">
+              <img class="img-responsive" ng-src="modules/books/client/img/default5.jpeg" alt="Yet to be uploaded"></img>
+          </a>
+      </div>
+      <div class="col-md-10">
+        <div class="col-md-4">
+          <h4 ng-bind="admin.displayName"></h4>
+          <div>User Name: {{ admin.username }}</div>
+          <div>Email: {{ admin.email }}</div>
+          <!-- <div>Location: {{book.location}}</div> -->
+        </div>
+        <div class="col-md-5">
+          <div class="book-action">
+            <a class="btn btn-primary" ng-click="vm.makeAvailable(book)">Revoke Admin Access</a>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
