@@ -43,8 +43,17 @@
           pageTitle: 'Edit User {{ userResolve.displayName }}'
         }
       })
+      .state('admin.create', {
+        url: '/create',
+        templateUrl: 'modules/users/client/dashboard/admin-create.view.html',
+        controller: 'AdminManageCtrl',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Dashboard'
+        }
+      })
       .state('admin.manage', {
-        url: '',
+        url: '/manage',
         templateUrl: 'modules/users/client/dashboard/admin-manage.view.html',
         controller: 'AdminManageCtrl',
         controllerAs: 'vm',
