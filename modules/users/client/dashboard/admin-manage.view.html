@@ -1,4 +1,4 @@
-<div ng-if="!vm.authentication.isAdmin()">
+<div ng-if="!vm.authentication.isAdmin() || !vm.admins.length">
   <h1>Under Maintenance</h1>
   <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -17,7 +17,7 @@
       </div>
       <div ng-show="!admin.profileImageURL" class="col-md-2 col-sm-2">
           <a href="#">
-              <img class="img-responsive" ng-src="modules/books/client/img/default5.jpeg" alt="Yet to be uploaded"></img>
+              <img class="img-responsive" ng-src="modules/users/client/img/profile/default.png" alt="Yet to be uploaded"></img>
           </a>
       </div>
       <div class="col-md-10">
