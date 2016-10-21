@@ -80,8 +80,9 @@
       vm.imageURL = vm.book.bookImageURL;
     }
 
-
-    AdminServices.getAllAdmins().then(successHandler);
+    if ($state.current.name !== 'admin.create') {
+      AdminServices.getAllAdmins().then(successHandler);
+    }
 
     function deleteAdmin(adminID) {
       AdminServices.deleteAdmin(adminID).then(remainingAdmins);
