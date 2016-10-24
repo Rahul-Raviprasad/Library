@@ -250,7 +250,7 @@ module.exports.init = function (db) {
   this.initSession(app, db);
 
   cas.configure({
-    host: 'corridor.pramati.com',
+    host: 'cev3-test.pramati.com',
     protocol: 'https',
     paths: {
       validate: '/cas/validate',
