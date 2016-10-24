@@ -27,7 +27,7 @@ module.exports = function (app) {
       req.session = null;
     }
     // req.send('signed out');
-    res.redirect('https://corridor.pramati.com/?custom_normal_logout=1');
+    res.redirect('https://cev3-test.pramati.com/?custom_normal_logout=1');
   });
 
     //  for logout from other apps
