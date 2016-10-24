@@ -251,7 +251,7 @@ module.exports.init = function (db) {
 
   cas.configure({
     host: 'cev3-test.pramati.com',
-    protocol: 'http',
+    protocol: 'https',
     paths: {
       validate: '/cas/validate',
       serviceValidate: '/cas/p3/serviceValidate',
