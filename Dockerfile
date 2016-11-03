@@ -11,7 +11,7 @@ FROM ubuntu:latest
 MAINTAINER Rahul Raviprasad
 
 # 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
-EXPOSE 80 443 3000 35729 8080
+EXPOSE 80 443 3000 35730 8080
 
 # Set development environment as default
 ENV NODE_ENV development
@@ -52,6 +52,7 @@ WORKDIR /opt/mean.js
 # Install npm packages
 COPY package.json /opt/mean.js/package.json
 RUN npm install --quiet && npm cache clean
+RUN npm install -g grunt
 
 # Install bower packages
 COPY bower.json /opt/mean.js/bower.json
