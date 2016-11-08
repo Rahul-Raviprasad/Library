@@ -55,3 +55,6 @@ $ grunt prod
 ```
 
 * explore `config/env/production.js` for production environment configuration options
+
+### License
+[MIT LICENSE]https://github.com/Rahul-Raviprasad/Library/blob/master/LICENSE.md
