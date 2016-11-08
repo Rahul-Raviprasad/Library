@@ -15,6 +15,11 @@
     "test": "grunt test",
     "postinstall": "bower install --config.interactive=false"
   },
+  "repository": "https://github.com/Rahul-Raviprasad/Library",
+  "bugs": {
+    "url": "https://github.com/Rahul-Raviprasad/Library/issues"
+  },
+  "homepage": "https://github.com/Rahul-Raviprasad/Library#readme",
   "dependencies": {
     "connect-cas": "git://github.com/uidev547/connect-cas.git",
     "acl": "~0.4.9",
