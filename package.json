@@ -15,12 +15,16 @@
     "test": "grunt test",
     "postinstall": "bower install --config.interactive=false"
   },
+  "repository": "https://github.com/Rahul-Raviprasad/Library",
+  "bugs": {
+    "url": "https://github.com/Rahul-Raviprasad/Library/issues"
+  },
+  "homepage": "https://github.com/Rahul-Raviprasad/Library#readme",
   "dependencies": {
     "connect-cas": "git://github.com/uidev547/connect-cas.git",
     "acl": "~0.4.9",
     "async": "~1.5.2",
     "body-parser": "~1.15.0",
-    "bower": "~1.7.7",
     "cfenv": "~1.0.3",
     "chalk": "~1.1.1",
     "compression": "~1.6.1",
@@ -35,8 +39,6 @@
     "forever": "~0.15.1",
     "generate-password": "~1.1.1",
     "glob": "~7.0.0",
-    "grunt": "0.4.5",
-    "grunt-cli": "~0.1.13",
     "gulp-wiredep": "~0.0.0",
     "helmet": "~1.3.0",
     "jasmine-core": "~2.4.1",
@@ -50,13 +52,6 @@
     "nodemailer": "~2.3.0",
     "owasp-password-strength-test": "~1.3.0",
     "passport": "~0.3.2",
-    "passport-facebook": "~2.1.0",
-    "passport-github": "~1.1.0",
-    "passport-google-oauth": "~1.0.0",
-    "passport-linkedin": "~1.0.0",
-    "passport-local": "~1.0.0",
-    "passport-paypal-openidconnect": "~0.1.1",
-    "passport-twitter": "~1.0.4",
     "phantomjs-prebuilt": "~2.1.4",
     "serve-favicon": "~2.3.0",
     "socket.io": "~1.4.5",
@@ -65,9 +60,12 @@
     "winston": "^2.2.0"
   },
   "devDependencies": {
+    "bower": "~1.7.7",
     "coveralls": "~2.11.6",
     "eslint": "~2.2.0",
     "eslint-config-airbnb": "~6.0.2",
+    "grunt": "0.4.5",
+    "grunt-cli": "~0.1.13",
     "grunt-concurrent": "~2.0.0",
     "grunt-contrib-copy": "~0.8.0",
     "grunt-contrib-csslint": "~0.4.0",
