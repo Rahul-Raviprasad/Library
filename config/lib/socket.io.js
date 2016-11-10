@@ -1,4 +1,5 @@
 'use strict';
+/* eslint no-console: 0 */
 
 // Load the module dependencies
 var config = require('../config'),
