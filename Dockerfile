@@ -7,14 +7,15 @@
 # Compose:
 # docker-compose up -d
 
-FROM ubuntu:latest
-MAINTAINER Rahul Raviprasad
-
-# 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
-EXPOSE 80 443 3000 35730 8080
+FROM ubuntu:14.04
+MAINTAINER Rahul Raviprasad,Manikantha Tadi
 
 # Set development environment as default
 ENV NODE_ENV development
+
+#install supervisord
+RUN apt-get update && apt-get install -y openssh-server apache2 supervisor
+RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
 # Install Utilities
 RUN apt-get update   \
@@ -59,7 +60,24 @@ COPY bower.json /opt/mean.js/bower.json
 COPY .bowerrc /opt/mean.js/.bowerrc
 RUN bower install --quiet --allow-root --config.interactive=false
 
-COPY . /opt/mean.js
+# Install mongodb
+RUN git clone https://github.com/Rahul-Raviprasad/Library
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" > /etc/apt/sources.list.d/mongodb-org.list
+
+RUN apt-get update
+RUN apt-get install -y mongodb-org
+
+RUN mkdir -p /data/db /data/configdb \
+	&& chown -R mongodb:mongodb /data/db /data/configdb
+VOLUME /data/db /data/configdb
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
+EXPOSE 80 443 3000 35730 8080 22
 
 # Run MEAN.JS server
-CMD ["npm", "start"]
+CMD ["/usr/bin/supervisord"]
+
