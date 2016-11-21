@@ -115,9 +115,9 @@ html, body {
 .wrapper {
   padding: 1%;
   border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
-  -moz-box-shadow:    0px 0px 8px rgba(0,0,0,0.3);
-  box-shadow:         0px 0px 8px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0 0 8px rgba(0,0,0,0.3);
+  box-shadow:         0 0 8px rgba(0,0,0,0.3);
 }
 
 .ribbon-wrapper-green {
@@ -131,13 +131,13 @@ html, body {
 
 .ribbon-green {
   font: bold 15px Sans-Serif;
-  color: #333;
   text-align: center;
-  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  text-shadow: rgba(255,255,255,0.5) 0 1px 0;
   -webkit-transform: rotate(45deg);
   -moz-transform:    rotate(45deg);
   -ms-transform:     rotate(45deg);
   -o-transform:      rotate(45deg);
+  transform:         rotate(45deg);
   position: relative;
   padding: 7px 0;
   left: -55px;
@@ -150,9 +150,9 @@ html, body {
   background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
   background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
   color: #6a6340;
-  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
-  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
-  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0 0 3px rgba(0,0,0,0.3);
+  box-shadow:         0 0 3px rgba(0,0,0,0.3);
 }
 
 .ribbon-green:before, .ribbon-green:after {

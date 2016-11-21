@@ -1,4 +1,5 @@
 'use strict';
+/* eslint no-console: 0 */
 
 var _ = require('lodash'),
   config = require('../config'),
