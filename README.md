@@ -56,5 +56,23 @@ $ grunt prod
 
 * explore `config/env/production.js` for production environment configuration options
 
+### Taking dumps and backups
+
+##### Create a folder
+```
+mkdir /backup
+```
+##### Navigate and take dump of entire DB
+```
+cd /backup
+
+mongodump --db mean-dev
+```
+##### Also export the important (currently) collections as JSON
+```
+mongoexport --db mean-dev --collection books --out books.json
+
+mongoexport --db mean-dev --collection users --out users.json
+```
 ### License
 [MIT](https://github.com/Rahul-Raviprasad/Library/blob/master/LICENSE.md)
