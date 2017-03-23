@@ -74,5 +74,9 @@ mongoexport --db mean-dev --collection books --out books.json
 
 mongoexport --db mean-dev --collection users --out users.json
 ```
+
+### Few more details
+.bowerrc file is provided with configuration for bower in JSON format. Currently it is only setting installation directory to 'public/lib' and this directory is git ignored.
+
 ### License
 [MIT](https://github.com/Rahul-Raviprasad/Library/blob/master/LICENSE.md)
